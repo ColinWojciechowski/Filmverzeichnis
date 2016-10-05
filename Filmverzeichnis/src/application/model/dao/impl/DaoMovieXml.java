@@ -1,6 +1,6 @@
 package application.model.dao.impl;
 
-import application.model.dao.abstracts.DaoXml;
+import application.model.dao.interfaces.IDao;
 import application.model.dto.Movie;
 
 import java.util.List;
@@ -9,7 +9,7 @@ import java.util.List;
  * Created by Kay Gerlitzki on 05.10.2016.
  */
 
-public class DaoMovieXml extends DaoXml<Movie> {
+public class DaoMovieXml implements IDao<Movie> {
     @Override
     public void saveOrUpdate(Movie movie) {
 
