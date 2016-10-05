@@ -1,7 +1,7 @@
-package model.dao.impl;
+package application.model.dao.impl;
 
-import model.dao.abstracts.DaoXml;
-import model.dto.Actor;
+import application.model.dao.abstracts.DaoXml;
+import application.model.dto.Actor;
 
 import java.util.List;
 

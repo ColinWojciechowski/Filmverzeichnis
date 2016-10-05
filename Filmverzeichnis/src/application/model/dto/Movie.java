@@ -1,4 +1,4 @@
-package model.dto;
+package application.model.dto;
 
 /**
  * Created by Kay Gerlitzki on 05.10.2016.

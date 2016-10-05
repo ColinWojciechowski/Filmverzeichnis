@@ -1,6 +1,6 @@
-package model.dto;
+package application.model.dto;
 
-import model.dto.enums.Sex;
+import application.model.dto.enums.Sex;
 import java.util.Date;
 
 /**
