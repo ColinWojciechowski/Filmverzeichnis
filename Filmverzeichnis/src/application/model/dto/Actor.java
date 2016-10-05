@@ -2,6 +2,7 @@ package application.model.dto;
 
 import application.model.dto.enums.Sex;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by Kay Gerlitzki on 05.10.2016.
@@ -12,6 +13,7 @@ public class Actor {
     private String name;
     private Date birthDate;
     private Sex sex;
+    private List<Movie> movies;
 
     public int getId() {
         return id;
@@ -44,4 +46,12 @@ public class Actor {
     public void setSex(Sex sex) {
         this.sex = sex;
     }
+
+	public List<Movie> getMovies() {
+		return movies;
+	}
+
+	public void setMovies(List<Movie> movies) {
+		this.movies = movies;
+	}
 }
