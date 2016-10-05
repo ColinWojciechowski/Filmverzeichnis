@@ -19,15 +19,7 @@ public class EntityActor {
 	    private Sex sex;
 	    private List<Integer> movieIds;
 
-	    public EntityActor(Actor actor){
-	    	this.id = actor.getId();
-	    	this.name = actor.getName();
-	    	this.birthDate = actor.getBirthDate();
-	    	this.sex = actor.getSex();
-	    	this.movieIds = new ArrayList<Integer>();
-	    	for (Movie movie : actor.getMovies()) {
-				movieIds.add(movie.getId());
-			}
+	    public EntityActor(){
 	    }
 	    
 	    public int getId() {
@@ -62,11 +54,11 @@ public class EntityActor {
 	        this.sex = sex;
 	    }
 
-		public List<Integer> getMovies() {
+		public List<Integer> getMovieIds() {
 			return movieIds;
 		}
 
-		public void setMovies(List<Integer> movieIds) {
+		public void setMovieIds(List<Integer> movieIds) {
 			this.movieIds = movieIds;
 		}
 }

@@ -16,14 +16,7 @@ public class EntityMovie {
     private int releaseYear;
     private List<Integer> actorIds;
     
-    public EntityMovie(Movie movie){
-    	this.id = movie.getId();
-    	this.name = movie.getName();
-    	this.releaseYear = movie.getReleaseYear();
-    	this.actorIds = new ArrayList<Integer>();
-    	for(Actor actor : movie.getActors()){
-    		actorIds.add(actor.getId());
-    	}
+    public EntityMovie(){
     }
     
     public int getId() {
@@ -50,11 +43,11 @@ public class EntityMovie {
         this.releaseYear = releaseYear;
     }
 
-	public List<Integer> getActors() {
+	public List<Integer> getActorIds() {
 		return actorIds;
 	}
 
-	public void setActors(List<Integer> actorIds) {
+	public void setActorIds(List<Integer> actorIds) {
 		this.actorIds = actorIds;
 	}    
 }

@@ -18,27 +18,41 @@ public class DaoActorXml implements IDao<Actor> {
 	private IDao daoMovie;
 	
 	public DaoActorXml() {
-		dtoList = new ArrayList<Actor>();
-		entityList = new ArrayList<EntityActor>();
-		daoMovie = new DaoMovieXml();
+		this.dtoList = new ArrayList<Actor>();
+		this.entityList = new ArrayList<EntityActor>();
+		this.daoMovie = new DaoMovieXml(this);
 	}
 	
-    @Override
+    public DaoActorXml(DaoMovieXml daoMovieXml) {
+    	this.dtoList = new ArrayList<Actor>();
+		this.entityList = new ArrayList<EntityActor>();
+		this.daoMovie = daoMovieXml;
+	}
+
+	@Override
     public void saveOrUpdate(Actor actor) {
-    	addNewActor(actor);    	
-    	try {
-			DaoXmlService.persistActors(entityList);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+    	dtoList = getAll();	
+    	dtoList.add(actor);
+    	saveOrUpdateAll(dtoList);
     }
     
-    private void addNewActor(Actor actor){
-    	if(dtoList.contains(actor)){
-    		deleteOldActor(actor); 	
-    	}    	    	
-    	entityList.add(new EntityActor(actor));    	
-    }    
+	private void addNewEntityActor(Actor actor){    	
+    	EntityActor newEntity = createNewEntity(actor);
+    	entityList.add(newEntity); 
+    }
+
+	private EntityActor createNewEntity(Actor actor) {
+		EntityActor newEntity = new EntityActor();    	
+    	newEntity.setId(actor.getId());
+    	newEntity.setName(actor.getName());
+    	newEntity.setBirthDate(actor.getBirthDate());
+    	newEntity.setSex(actor.getSex());
+    	newEntity.setMovieIds(new ArrayList<Integer>());
+    	for (Movie movie : actor.getMovies()) {
+    		newEntity.getMovieIds().add(new Integer(movie.getId()));
+		}
+    	return newEntity;
+	}    
     
 	private void deleteOldActor(Actor actor) {
 		EntityActor oldEntity = null;
@@ -52,9 +66,12 @@ public class DaoActorXml implements IDao<Actor> {
 	}
 
     @Override
-    public void saveOrUpdateAll(List<Actor> actorList) {
+    public void saveOrUpdateAll(List<Actor> actorList) {   
+    	entityList.clear();
+    	dtoList = actorList;
+    	
     	for(Actor actor : actorList){
-    		addNewActor(actor);
+    		addNewEntityActor(actor);
     	} 	
     	
     	try {
@@ -64,7 +81,7 @@ public class DaoActorXml implements IDao<Actor> {
 		}
     }
 
-    @Override
+	@Override
     public void delete(Actor actor) {
     	if(dtoList.contains(actor)){
     		deleteOldActor(actor);
@@ -110,8 +127,34 @@ public class DaoActorXml implements IDao<Actor> {
     private void fillDtoList(){
 		Actor currentActor;
 		for(EntityActor entity : entityList){
-			List<Movie> movies = daoMovie.getAll();
+			List<Movie> movies = daoMovie.getAllWithoutRelations();
 			currentActor = EntityConverter.getActor(entity, movies);
+			dtoList.add(currentActor);
+		}
+    }
+
+	@Override
+	public List<Actor> getAllWithoutRelations() {
+    	dtoList.clear();
+    	try {
+			entityList = DaoXmlService.loadActors();			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+    	
+    	if(entityList != null){	
+    		fillDtoListWithoutRelations();
+    	} else {
+    		return new ArrayList<Actor>();
+    	}   		
+    	
+        return dtoList;
+	}
+	
+    private void fillDtoListWithoutRelations(){
+		Actor currentActor;
+		for(EntityActor entity : entityList){
+			currentActor = EntityConverter.getActor(entity);
 			dtoList.add(currentActor);
 		}
     }

@@ -15,4 +15,5 @@ public interface IDao<T> {
     void delete(T dto);
     void deleteAll(List<T> dtoList);
     List<T> getAll();
+    List<T> getAllWithoutRelations();
 }
