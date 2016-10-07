@@ -1,0 +1,21 @@
+package application.controller;
+
+
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+
+public class AddActorController {
+
+	@FXML
+	Button btnAdd;
+	
+	@FXML
+	public void initialize(){
+		
+	}
+	
+	@FXML
+	public void btnAddClicked(){
+		System.out.println("Hello World");
+	}
+}
