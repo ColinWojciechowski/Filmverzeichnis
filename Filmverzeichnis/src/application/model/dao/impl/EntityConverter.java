@@ -7,6 +7,8 @@ import application.model.dto.Actor;
 import application.model.dto.Movie;
 import application.model.entity.EntityActor;
 import application.model.entity.EntityMovie;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
 
 public class EntityConverter {
 
@@ -14,8 +16,8 @@ public class EntityConverter {
 	public static Movie getMovie(EntityMovie entity) {
 		Movie movie = new Movie();
 		movie.setId(entity.getId());
-		movie.setName(entity.getName());
-		movie.setReleaseYear(entity.getReleaseYear());
+		movie.setName(new SimpleStringProperty(entity.getName()));
+		movie.setReleaseYear(new SimpleIntegerProperty(entity.getReleaseYear()));
 		movie.setActors(new ArrayList<Actor>());
 		
 		return movie;

@@ -6,6 +6,7 @@ import javafx.beans.property.StringProperty;
 public class AddActorViewModel {
 
 	 private StringProperty labelText =  new SimpleStringProperty("default");
+	 
 
 	public StringProperty getLabelText() {
 		return labelText;

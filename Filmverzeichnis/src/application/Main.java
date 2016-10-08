@@ -1,22 +1,10 @@
 package application;
 	
-import java.awt.List;
-import java.util.ArrayList;
-import java.util.Date;
-
-import application.model.dao.impl.DaoActorXml;
-import application.model.dao.impl.DaoMovieXml;
-import application.model.dao.impl.DaoXmlService;
-import application.model.dao.interfaces.IDao;
-import application.model.dto.Actor;
-import application.model.dto.Movie;
-import application.model.dto.enums.Sex;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
-
 
 public class Main extends Application {
 	@Override

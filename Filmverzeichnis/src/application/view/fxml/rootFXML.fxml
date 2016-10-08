@@ -14,11 +14,11 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TableView layoutX="13.0" layoutY="58.0" prefHeight="116.0" prefWidth="839.0">
+                        <TableView fx:id="movieTable" layoutX="13.0" layoutY="58.0" prefHeight="116.0" prefWidth="839.0">
                           <columns>
-                            <TableColumn prefWidth="75.0" text="Name" />
-                            <TableColumn prefWidth="75.0" text="Erscheinungsjahr" />
-                              <TableColumn prefWidth="75.0" text="Genre" />
+                            <TableColumn fx:id="movieName" maxWidth="10000.0" minWidth="100.0" prefWidth="-1.0" text="Name" />
+                            <TableColumn fx:id="movieYear" maxWidth="10000.0" minWidth="100.0" prefWidth="-1.0" text="Erscheinungsjahr" />
+                              <TableColumn maxWidth="10000.0" minWidth="100.0" prefWidth="-1.0" text="Genre" />
                           </columns>
                         </TableView>
                         <Button fx:id="btnAddActor" layoutX="764.0" layoutY="471.0" mnemonicParsing="false" onMouseClicked="#btnAddActorClicked" text="Add Actor" />
