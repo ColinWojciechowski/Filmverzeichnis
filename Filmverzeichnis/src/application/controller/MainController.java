@@ -2,15 +2,13 @@ package application.controller;
 
 import java.io.IOException;
 
-import application.view.OpenNewWindow;
+import application.view.AddActorToMovieWindow;
+import application.view.AddMovieToActorWindow;
+import application.view.CreateNewActorWindow;
+import application.view.CreateNewMovieWindow;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 
 public class MainController {
-
-	@FXML
-	Button btnAddActor;
-	Button btnNewMovie;
 
 	@FXML
 	public void initialize() {
@@ -20,7 +18,7 @@ public class MainController {
 	@FXML
 	public void btnNewMovieClicked() {
 		try {
-			new OpenNewWindow();
+			new CreateNewMovieWindow();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -29,6 +27,31 @@ public class MainController {
 
 	@FXML
 	public void btnAddActorClicked() {
-		System.out.println("Hello Dennis!");
+		try {
+			new AddActorToMovieWindow();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	@FXML
+	public void btnNewActorClicked() {
+		try {
+			new CreateNewActorWindow();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	@FXML
+	public void btnAddMovieClicked() {
+		try {
+			new AddMovieToActorWindow();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }
