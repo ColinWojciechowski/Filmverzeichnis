@@ -1,4 +1,4 @@
-package application.view;
+package application.view.create;
 
 import java.io.IOException;
 
@@ -8,15 +8,15 @@ import javafx.scene.Scene;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-public class CreateNewActorWindow extends Stage{
+public class CreateNewMovieWindow extends Stage{
 
 	Stage stage;
 	
-	public CreateNewActorWindow() throws IOException{
+	public CreateNewMovieWindow() throws IOException{
 		stage = this;
-		Parent root = FXMLLoader.load(getClass().getResource("NewActor.fxml"));
+		Parent root = FXMLLoader.load(getClass().getResource("../fxml/NewMovie.fxml"));
 		Scene scene = new Scene(root);
-		stage.setTitle("Create new actor");
+		stage.setTitle("Create new movie");
 		stage.setScene(scene);
 		stage.initModality(Modality.APPLICATION_MODAL);
 		stage.show();

@@ -1,10 +1,10 @@
-package application.controller;
+package application.controller.create;
 
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 
-public class AddActorController {
+public class NewActorController {
 
 	@FXML
 	Button btnAdd;

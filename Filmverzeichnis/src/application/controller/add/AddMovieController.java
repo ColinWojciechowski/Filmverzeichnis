@@ -1,10 +1,10 @@
-package application.controller;
+package application.controller.add;
 
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 
-public class NewMovieController {
+public class AddMovieController {
 
 	@FXML
 	Button btnAdd;
@@ -15,7 +15,7 @@ public class NewMovieController {
 	}
 	
 	@FXML
-	public void btnAddClicked(){
+	public void btnOKClicked(){
 		System.out.println("Hello World");
 	}
 }

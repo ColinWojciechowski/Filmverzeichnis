@@ -2,10 +2,10 @@ package application.controller;
 
 import java.io.IOException;
 
-import application.view.AddActorToMovieWindow;
-import application.view.AddMovieToActorWindow;
-import application.view.CreateNewActorWindow;
-import application.view.CreateNewMovieWindow;
+import application.view.add.AddActorToMovieWindow;
+import application.view.add.AddMovieToActorWindow;
+import application.view.create.CreateNewActorWindow;
+import application.view.create.CreateNewMovieWindow;
 import javafx.fxml.FXML;
 
 public class MainController {
