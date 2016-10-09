@@ -10,6 +10,8 @@ import application.view.add.AddActorToMovieWindow;
 import application.view.add.AddMovieToActorWindow;
 import application.view.create.CreateNewActorWindow;
 import application.view.create.CreateNewMovieWindow;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -18,6 +20,8 @@ import javafx.scene.control.TextField;
 public class MainController {
 
 	MainViewModel viewModel;
+	private ObservableList<Actor> movieActors = FXCollections.observableArrayList();
+	private ObservableList<Movie> actorMovies = FXCollections.observableArrayList();
 
 	@FXML
 	private TableView<Movie> movieTable;
@@ -29,6 +33,16 @@ public class MainController {
 	private TableView<Actor> actorTable;
 	@FXML
 	private TableColumn<Actor, String> actorName;
+	@FXML
+	private TableView<Actor> movieActorsTable;
+	@FXML
+	private TableColumn<Actor, String> movieActorsName;
+	@FXML
+	private TableView<Movie> actorMoviesTable;
+	@FXML
+	private TableColumn<Movie, String> actorMoviesName;
+	@FXML
+	private TableColumn<Movie, Number> actorMoviesYear;
 	@FXML
 	private TableColumn<Movie, Date> actorBirth;
 	@FXML
@@ -48,6 +62,12 @@ public class MainController {
 			if (newSelection != null) {
 				txtTitle.textProperty().unbind();
 				txtTitle.textProperty().bind(newSelection.getName());
+				movieActors.clear();
+				if (newSelection.getActors() != null) {
+					movieActors.addAll(newSelection.getActors());
+					movieActorsTable.setItems(movieActors);
+					movieActorsName.setCellValueFactory(cellData -> cellData.getValue().getName());
+				}
 			}
 		});
 
@@ -55,6 +75,13 @@ public class MainController {
 			if (newSelection != null) {
 				txtActor.textProperty().unbind();
 				txtActor.textProperty().bind(newSelection.getName());
+				actorMovies.clear();
+				if (newSelection.getMovies() != null) {
+					actorMovies.addAll(newSelection.getMovies());
+					actorMoviesTable.setItems(actorMovies);
+					actorMoviesName.setCellValueFactory(cellData -> cellData.getValue().getName());
+					actorMoviesYear.setCellValueFactory(cellData -> cellData.getValue().getReleaseYear());
+				}
 			}
 		});
 

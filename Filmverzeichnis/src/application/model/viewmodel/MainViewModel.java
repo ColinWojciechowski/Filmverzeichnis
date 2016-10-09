@@ -1,8 +1,6 @@
 package application.model.viewmodel;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 import application.model.dto.Actor;
 import application.model.dto.Movie;
@@ -14,7 +12,8 @@ import javafx.collections.ObservableList;
 public class MainViewModel {
 
 	private ObservableList<Movie> movieData = FXCollections.observableArrayList();
-	private ObservableList<Actor> allActors = FXCollections.observableArrayList();
+	private ObservableList<Actor> movieActors = FXCollections.observableArrayList();
+	private ObservableList<Movie> actorMovies = FXCollections.observableArrayList();
 	
 	public MainViewModel(){
 		Movie testMovie = new Movie();
@@ -33,8 +32,10 @@ public class MainViewModel {
 		testMovie2.setReleaseYear(new SimpleIntegerProperty(1998));
 		testActor.setBirthDate(new Date());
 		
-		allActors.add(testActor);
-		testMovie.setActors(allActors);
+		movieActors.add(testActor);
+		actorMovies.add(testMovie);
+		testMovie.setActors(movieActors);
+		testActor.setMovies(actorMovies);
 		
 		movieData.add(testMovie);
 		movieData.add(testMovie2);
@@ -46,7 +47,7 @@ public class MainViewModel {
 	}
 	
 	public ObservableList<Actor> getActorData(){
-		return allActors;
+		return movieActors;
 	}
 	
 }
