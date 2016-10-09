@@ -44,7 +44,7 @@ public class EntityConverter {
 		Actor actor = new Actor();
 		actor.setId(entity.getId());
 		actor.setBirthDate(entity.getBirthDate());
-		actor.setName(entity.getName());
+		actor.setName(new SimpleStringProperty(entity.getName()));
 		actor.setSex(entity.getSex());
 		actor.setMovies(new ArrayList<Movie>());
 		return actor;

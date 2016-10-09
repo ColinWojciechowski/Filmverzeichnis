@@ -44,7 +44,7 @@ public class DaoActorXml implements IDao<Actor> {
 	private EntityActor createNewEntity(Actor actor) {
 		EntityActor newEntity = new EntityActor();    	
     	newEntity.setId(actor.getId());
-    	newEntity.setName(actor.getName());
+    	newEntity.setName(actor.getName().get());
     	newEntity.setBirthDate(actor.getBirthDate());
     	newEntity.setSex(actor.getSex());
     	newEntity.setMovieIds(new ArrayList<Integer>());

@@ -2,23 +2,17 @@ package application.view.add;
 
 import java.io.IOException;
 
+import application.view.AbstractWindow;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
 
-public class AddActorToMovieWindow extends Stage{
+public class AddActorToMovieWindow extends AbstractWindow{
 
-	Stage stage;
-	
 	public AddActorToMovieWindow() throws IOException{
-		stage = this;
-		Parent root = FXMLLoader.load(getClass().getResource("../fxml/AddActor.fxml"));
-		Scene scene = new Scene(root);
+		root = FXMLLoader.load(getClass().getResource("../fxml/AddActor.fxml"));
+		scene = new Scene(root);
 		stage.setTitle("Add actor");
 		stage.setScene(scene);
-		stage.initModality(Modality.APPLICATION_MODAL);
 		stage.show();
 	}
 	

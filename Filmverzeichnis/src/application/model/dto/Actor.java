@@ -1,6 +1,9 @@
 package application.model.dto;
 
 import application.model.dto.enums.Sex;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+
 import java.util.Date;
 import java.util.List;
 
@@ -10,7 +13,7 @@ import java.util.List;
 
 public class Actor {
     private int id;
-    private String name;
+    private StringProperty name = new SimpleStringProperty();
     private Date birthDate;
     private Sex sex;
     private List<Movie> movies;
@@ -23,15 +26,17 @@ public class Actor {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
-    }
+    
 
-    public void setName(String name) {
-        this.name = name;
-    }
+    public StringProperty getName() {
+		return name;
+	}
 
-    public Date getBirthDate() {
+	public void setName(StringProperty name) {
+		this.name = name;
+	}
+
+	public Date getBirthDate() {
         return birthDate;
     }
 

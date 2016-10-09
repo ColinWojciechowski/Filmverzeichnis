@@ -10,6 +10,7 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
+			primaryStage.setResizable(false);
 			Pane root = (Pane) FXMLLoader.load(getClass().getResource("view/fxml/rootFXML.fxml"));
 			Scene scene = new Scene(root);
 			primaryStage.setTitle("Filmverzeichnis");
