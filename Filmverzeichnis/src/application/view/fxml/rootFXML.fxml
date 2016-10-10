@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="590.0" maxWidth="870.0" prefHeight="590.0" prefWidth="870.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.MainController">
+<AnchorPane maxHeight="590.0" maxWidth="870.0" prefHeight="590.0" prefWidth="870.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.MainController">
    <children>
       <TabPane prefHeight="264.0" prefWidth="458.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <tabs>
@@ -28,8 +28,8 @@
                               <TableView fx:id="movieActorsTable" prefHeight="155.0" prefWidth="725.0">
                                 <columns>
                                   <TableColumn fx:id="movieActorsName" prefWidth="75.0" text="Name" />
-                                  <TableColumn prefWidth="75.0" text="Date of birth" />
-                                    <TableColumn prefWidth="75.0" text="Sex" />
+                                  <TableColumn fx:id="movieActorsBirth" prefWidth="75.0" text="Date of birth" />
+                                    <TableColumn fx:id="movieActorsSex" prefWidth="75.0" text="Sex" />
                                 </columns>
                               </TableView>
                            </content>
@@ -66,7 +66,7 @@
                         <TableView fx:id="actorTable" layoutX="14.0" layoutY="57.0" prefHeight="115.0" prefWidth="840.0">
                            <columns>
                               <TableColumn fx:id="actorName" maxWidth="10000.0" minWidth="200.0" prefWidth="280.0" text="Name" />
-                              <TableColumn maxWidth="10000.0" minWidth="100.0" prefWidth="280.0" text="Sex" />
+                              <TableColumn fx:id="actorSex" maxWidth="10000.0" minWidth="100.0" prefWidth="280.0" text="Sex" />
                               <TableColumn fx:id="actorBirth" maxWidth="10000.0" minWidth="100.0" prefWidth="280.0" text="Date of birth" />
                            </columns>
                         </TableView>
