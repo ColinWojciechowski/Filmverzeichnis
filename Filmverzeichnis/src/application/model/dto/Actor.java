@@ -1,8 +1,10 @@
 package application.model.dto;
 
-import application.model.dto.enums.Sex;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
+
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
 /**
  * Created by Kay Gerlitzki on 05.10.2016.
@@ -10,9 +12,11 @@ import java.util.List;
 
 public class Actor {
     private int id;
-    private String name;
-    private Date birthDate;
-    private Sex sex;
+    private StringProperty name = new SimpleStringProperty();
+    private StringProperty birthDate = new SimpleStringProperty();
+//    private Date birthDate;
+    private StringProperty sex = new SimpleStringProperty();
+//    private Sex sex;
     private List<Movie> movies;
 
     public int getId() {
@@ -23,35 +27,39 @@ public class Actor {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
-    }
 
-    public void setName(String name) {
-        this.name = name;
-    }
 
-    public Date getBirthDate() {
+    public StringProperty getName() {
+      return name;
+   }
+
+   public void setName(StringProperty name) {
+      this.name = name;
+   }
+
+   public StringProperty getBirthDate() {
+        LocalDate d = LocalDate.now();
+        birthDate.set(d.toString());
         return birthDate;
     }
 
-    public void setBirthDate(Date birthDate) {
+    public void setBirthDate(StringProperty birthDate) {
         this.birthDate = birthDate;
     }
 
-    public Sex getSex() {
+    public StringProperty getSex() {
         return sex;
     }
 
-    public void setSex(Sex sex) {
-        this.sex = sex;
+    public void setSex(String sex) {
+        this.sex.set(sex);
     }
 
-	public List<Movie> getMovies() {
-		return movies;
-	}
+   public List<Movie> getMovies() {
+      return movies;
+   }
 
-	public void setMovies(List<Movie> movies) {
-		this.movies = movies;
-	}
+   public void setMovies(List<Movie> movies) {
+      this.movies = movies;
+   }
 }

@@ -47,8 +47,8 @@ public class DaoMovieXml implements IDao<Movie> {
 	private EntityMovie createNewEntity(Movie movie) {
 		EntityMovie newEntity = new EntityMovie();
     	newEntity.setId( movie.getId());
-    	newEntity.setName(movie.getName());
-    	newEntity.setReleaseYear(movie.getReleaseYear());
+    	newEntity.setName(movie.getName().get());
+    	newEntity.setReleaseYear(movie.getReleaseYear().get());
     	newEntity.setActorIds(new ArrayList<Integer>());
     	
     	for(Actor actor : movie.getActors()){

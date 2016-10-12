@@ -1,18 +1,17 @@
 package application.model.viewmodel;
 
+import application.model.dto.Movie;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
 
 public class AddActorViewModel {
 
-	 private StringProperty labelText =  new SimpleStringProperty("default");
+   public Movie getTestMovie(){
+      Movie testMovie = new Movie();
+      testMovie.setId(4);
+      testMovie.setName(new SimpleStringProperty("Sleepy Hollow"));
+      testMovie.setReleaseYear(new SimpleIntegerProperty(2120));
+      return testMovie;
+   }
 
-	public StringProperty getLabelText() {
-		return labelText;
-	}
-
-	public void setLabelText(StringProperty labelText) {
-		this.labelText = labelText;
-	}
-	
 }

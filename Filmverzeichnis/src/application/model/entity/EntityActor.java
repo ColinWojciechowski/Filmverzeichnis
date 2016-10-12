@@ -1,64 +1,58 @@
 package application.model.entity;
 
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-
-import application.model.dto.Actor;
-import application.model.dto.Movie;
-import application.model.dto.enums.Sex;
 
 /**
  * Created by Kay Gerlitzki on 05.10.2016.
  */
 
 public class EntityActor {
-	 	private int id;
-	    private String name;
-	    private Date birthDate;
-	    private Sex sex;
-	    private List<Integer> movieIds;
+       private int id;
+       private String name;
+       private String birthDate;
+       private String sex;
+       private List<Integer> movieIds;
 
-	    public EntityActor(){
-	    }
-	    
-	    public int getId() {
-	        return id;
-	    }
+       public EntityActor(){
+       }
 
-	    public void setId(int id) {
-	        this.id = id;
-	    }
+       public int getId() {
+           return id;
+       }
 
-	    public String getName() {
-	        return name;
-	    }
+       public void setId(int id) {
+           this.id = id;
+       }
 
-	    public void setName(String name) {
-	        this.name = name;
-	    }
+       public String getName() {
+           return name;
+       }
 
-	    public Date getBirthDate() {
-	        return birthDate;
-	    }
+       public void setName(String name) {
+           this.name = name;
+       }
 
-	    public void setBirthDate(Date birthDate) {
-	        this.birthDate = birthDate;
-	    }
+       public String getBirthDate() {
+           return birthDate;
+       }
 
-	    public Sex getSex() {
-	        return sex;
-	    }
+       public void setBirthDate(String birthDate) {
+           this.birthDate = birthDate;
+       }
 
-	    public void setSex(Sex sex) {
-	        this.sex = sex;
-	    }
+       public String getSex() {
+           return sex;
+       }
 
-		public List<Integer> getMovieIds() {
-			return movieIds;
-		}
+       public void setSex(String sex) {
+           this.sex = sex;
+       }
 
-		public void setMovieIds(List<Integer> movieIds) {
-			this.movieIds = movieIds;
-		}
+      public List<Integer> getMovieIds() {
+         return movieIds;
+      }
+
+      public void setMovieIds(List<Integer> movieIds) {
+         this.movieIds = movieIds;
+      }
 }

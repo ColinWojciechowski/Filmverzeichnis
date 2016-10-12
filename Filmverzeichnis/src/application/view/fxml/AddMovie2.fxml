@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import jfxtras.scene.control.*?>
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="addMoviePane" prefHeight="232.0" prefWidth="454.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.add.AddMovieController">
+   <children>
+      <Label layoutX="123.0" layoutY="14.0" text="Add movie to actor" textAlignment="CENTER" textOverrun="CLIP" wrapText="true">
+         <font>
+            <Font name="Calibri Bold" size="26.0" />
+         </font></Label>
+      <JFXTextField fx:id="txtGenre" layoutX="14.0" layoutY="85.0" maxWidth="181.0" minWidth="174.0" prefHeight="31.0" prefWidth="174.0" promptText="Genre" />
+      <JFXComboBox fx:id="chbActor" layoutX="256.0" layoutY="148.0" prefHeight="25.0" prefWidth="174.0" promptText="Select Actor" />
+      <JFXButton buttonType="RAISED" layoutX="397.0" layoutY="193.0" text="OK" />
+      <JFXButton buttonType="RAISED" layoutX="317.0" layoutY="193.0" ripplerFill="WHITE" text="Cancle" />
+      <JFXTextField fx:id="txtYear" layoutX="256.0" layoutY="85.0" maxWidth="181.0" minWidth="174.0" prefHeight="31.0" prefWidth="174.0" promptText="Year" />
+      <JFXTextField fx:id="txtTitle" layoutX="14.0" layoutY="145.0" maxWidth="181.0" minWidth="174.0" prefHeight="31.0" prefWidth="174.0" promptText="Title" />
+   </children>
+</AnchorPane>
