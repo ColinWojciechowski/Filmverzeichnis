@@ -15,7 +15,9 @@ public class Movie {
     private int id;
     private StringProperty name = new SimpleStringProperty();
     private IntegerProperty releaseYear = new SimpleIntegerProperty();
+    private StringProperty genre = new SimpleStringProperty();
     private List<Actor> actors;
+        
     public int getId() {
         return id;
     }
@@ -46,5 +48,13 @@ public class Movie {
 
 	public void setActors(List<Actor> actors) {
 		this.actors = actors;
+	}
+
+	public StringProperty getGenre() {
+		return genre;
+	}
+
+	public void setGenre(StringProperty genre) {
+		this.genre = genre;
 	}    
 }
