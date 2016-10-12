@@ -5,16 +5,15 @@ import java.io.IOException;
 import application.model.dto.Actor;
 import application.model.dto.Movie;
 import application.model.viewmodel.MainViewModel;
-import application.view.add.AddActorToMovieWindow;
-import application.view.add.AddMovieToActorWindow;
-import application.view.create.CreateNewActorWindow;
-import application.view.create.CreateNewMovieWindow;
+import application.view.InsertWindow;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 
 public class MainController {
 
@@ -51,9 +50,11 @@ public class MainController {
    @FXML
    private TableColumn<Movie, Number> actorMoviesYear;
    @FXML
-   TextField txtTitle;
+   Label lblTitle;
    @FXML
    TextField txtActor;
+   @FXML
+   AnchorPane movieAnchor;
 
    @FXML
    public void initialize() {
@@ -68,8 +69,8 @@ public class MainController {
       movieTable.getSelectionModel().selectedItemProperty()
          .addListener((obs, oldSelection, newSelection) -> {
             if (newSelection != null) {
-               txtTitle.textProperty().unbind();
-               txtTitle.textProperty().bind(newSelection.getName());
+               lblTitle.textProperty().unbind();
+               lblTitle.textProperty().bind(newSelection.getName());
                movieActors.clear();
                if (newSelection.getActors() != null) {
                   movieActors.addAll(newSelection.getActors());
@@ -98,47 +99,27 @@ public class MainController {
             }
          });
 
-      txtTitle.setEditable(false);
       txtActor.setEditable(false);
+
    }
 
    @FXML
-   public void btnNewMovieClicked() {
-      try {
-         new CreateNewMovieWindow();
-      } catch (IOException e) {
-         // TODO Auto-generated catch block
-         e.printStackTrace();
-      }
+   public void btnNewMovieClicked() throws IOException {
+      new InsertWindow("../view/fxml/NewMovie.fxml", "Create new movie");
    }
 
    @FXML
-   public void btnAddActorClicked() {
-      try {
-         new AddActorToMovieWindow();
-      } catch (IOException e) {
-         // TODO Auto-generated catch block
-         e.printStackTrace();
-      }
+   public void btnAddActorClicked() throws IOException {
+      new InsertWindow("../view/fxml/AddActor.fxml", "Add actor");
    }
 
    @FXML
-   public void btnNewActorClicked() {
-      try {
-         new CreateNewActorWindow();
-      } catch (IOException e) {
-         // TODO Auto-generated catch block
-         e.printStackTrace();
-      }
+   public void btnNewActorClicked() throws IOException {
+      new InsertWindow("../view/fxml/NewActor.fxml", "Create new actor");
    }
 
    @FXML
-   public void btnAddMovieClicked() {
-      try {
-         new AddMovieToActorWindow();
-      } catch (IOException e) {
-         // TODO Auto-generated catch block
-         e.printStackTrace();
-      }
+   public void btnAddMovieClicked() throws IOException {
+      new InsertWindow("../view/fxml/AddMovie2.fxml", "Add movie" );
    }
 }

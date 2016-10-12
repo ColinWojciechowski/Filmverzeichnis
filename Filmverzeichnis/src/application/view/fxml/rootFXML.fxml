@@ -1,43 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="590.0" maxWidth="870.0" prefHeight="590.0" prefWidth="870.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.MainController">
+<AnchorPane maxHeight="710.0" maxWidth="1030.0" prefHeight="710.0" prefWidth="1030.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.MainController">
    <children>
-      <TabPane prefHeight="264.0" prefWidth="458.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-        <tabs>
+      <TabPane prefHeight="710.0" prefWidth="1030.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <tabs>
           <Tab text="Movie">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+              <AnchorPane fx:id="movieAnchor" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TableView fx:id="movieTable" layoutX="13.0" layoutY="56.0" prefHeight="115.0" prefWidth="840.0">
+<!--                         <ImageView fitHeight="690.0" fitWidth="1046.0" layoutX="-7.0" layoutY="-1.0"> -->
+<!--                            <image> -->
+<!--                               <Image url="@../../../../../../../Desktop/Kino.png" /> -->
+<!--                            </image> -->
+<!--                         </ImageView> -->
+                        <TableView fx:id="movieTable" layoutX="212.0" layoutY="164.0" prefHeight="146.0" prefWidth="528.0">
                           <columns>
                             <TableColumn fx:id="movieName" maxWidth="10000.0" minWidth="100.0" prefWidth="280.0" text="Name" />
                             <TableColumn fx:id="movieYear" maxWidth="10000.0" minWidth="100.0" prefWidth="280.0" text="Erscheinungsjahr" />
                               <TableColumn maxWidth="10000.0" minWidth="100.0" prefWidth="280.0" text="Genre" />
                           </columns>
                         </TableView>
-                        <Button fx:id="btnAddActor" layoutX="764.0" layoutY="471.0" mnemonicParsing="false" onMouseClicked="#btnAddActorClicked" text="Add Actor" />
-                        <TextField layoutX="14.0" layoutY="14.0" />
-                        <ScrollPane layoutX="124.0" layoutY="299.0" prefHeight="157.0" prefWidth="728.0">
-                           <content>
-                              <TableView fx:id="movieActorsTable" prefHeight="155.0" prefWidth="725.0">
-                                <columns>
-                                  <TableColumn fx:id="movieActorsName" prefWidth="75.0" text="Name" />
-                                  <TableColumn fx:id="movieActorsBirth" prefWidth="75.0" text="Date of birth" />
-                                    <TableColumn fx:id="movieActorsSex" prefWidth="75.0" text="Sex" />
-                                </columns>
-                              </TableView>
-                           </content>
-                        </ScrollPane>
-                        <Button fx:id="btnNewMovie" layoutX="756.0" layoutY="192.0" mnemonicParsing="false" onMouseClicked="#btnNewMovieClicked" text="New Movie" />
-                        <Label layoutX="14.0" layoutY="264.0" prefHeight="21.0" prefWidth="44.0" text="Title:" />
-                        <Label layoutX="14.0" layoutY="378.0" prefHeight="21.0" prefWidth="57.0" text="Actors:" />
-                        <TextField fx:id="txtTitle" layoutX="124.0" layoutY="259.0" />
+                        <Button fx:id="btnAddActor" layoutX="750.0" layoutY="430.0" mnemonicParsing="false" onMouseClicked="#btnAddActorClicked" text="Add Actor" />
+                        <TextField layoutX="210.0" layoutY="137.0" promptText="Suche" />
+                        <Button fx:id="btnNewMovie" layoutX="747.0" layoutY="225.0" mnemonicParsing="false" onMouseClicked="#btnNewMovieClicked" text="New Movie" />
+                        <Label disable="true" layoutX="193.0" layoutY="292.0" opacity="0.0" prefHeight="21.0" prefWidth="44.0" text="Title:" />
+                        <Label disable="true" layoutX="193.0" layoutY="391.0" opacity="0.0" prefHeight="21.0" prefWidth="57.0" text="Actors:" />
+                        <TableView fx:id="movieActorsTable" layoutX="214.0" layoutY="357.0" prefHeight="170.0" prefWidth="525.0">
+                          <columns>
+                            <TableColumn fx:id="movieActorsName" prefWidth="173.0" text="Name" />
+                            <TableColumn fx:id="movieActorsBirth" prefWidth="173.0" text="Date of birth" />
+                              <TableColumn fx:id="movieActorsSex" prefWidth="173.0" text="Sex" />
+                          </columns>
+                        </TableView>
+                        <JFXButton layoutX="747.0" layoutY="260.0" text="New Movie" />
+                        <Label fx:id="lblTitle" layoutX="215.0" layoutY="332.0" />
                      </children>
                   </AnchorPane>
             </content>
@@ -74,7 +78,7 @@
                   </AnchorPane>
                </content>
             </Tab>
-        </tabs>
+         </tabs>
       </TabPane>
    </children>
 </AnchorPane>
