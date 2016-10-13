@@ -120,6 +120,6 @@ public class MainController {
 
    @FXML
    public void btnAddMovieClicked() throws IOException {
-      new InsertWindow("../view/fxml/AddMovie2.fxml", "Add movie" );
+      new InsertWindow("../view/fxml/AddMovie.fxml", "Add movie" );
    }
 }
