@@ -22,6 +22,9 @@ public class NewMovieController {
    @FXML
    public void initialize(){
       newMoviePane.getStylesheets().add(getClass().getResource("../../application.css").toExternalForm());
+      txtTitle.setFocusTraversable(false);
+      txtGenre.setFocusTraversable(false);
+      txtYear.setFocusTraversable(false);
    }
 
    @FXML

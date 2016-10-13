@@ -30,6 +30,7 @@ public class NewActorController {
       rbtnMale.fire();
       rbtnMale.setToggleGroup(group);
       rbtnFemale.setToggleGroup(group);
+      txtName.setFocusTraversable(false);
    }
 
    @FXML

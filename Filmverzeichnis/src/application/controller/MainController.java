@@ -12,7 +12,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 
 public class MainController {
@@ -27,6 +26,8 @@ public class MainController {
    private TableColumn<Movie, String> movieName;
    @FXML
    private TableColumn<Movie, Number> movieYear;
+   @FXML
+   private TableColumn<Movie, String> movieGenre;
    @FXML
    private TableView<Actor> actorTable;
    @FXML
@@ -50,57 +51,19 @@ public class MainController {
    @FXML
    private TableColumn<Movie, Number> actorMoviesYear;
    @FXML
+   private TableColumn<Movie, String> actorMoviesGenre;
+   @FXML
    Label lblTitle;
    @FXML
-   TextField txtActor;
+   Label lblActor;
    @FXML
    AnchorPane movieAnchor;
 
    @FXML
    public void initialize() {
       viewModel = new MainViewModel();
-      movieTable.setItems(viewModel.getMovieData());
-      actorTable.setItems(viewModel.getActorData());
-      movieName.setCellValueFactory(cellData -> cellData.getValue().getName());
-      movieYear.setCellValueFactory(cellData -> cellData.getValue().getReleaseYear());
-      actorName.setCellValueFactory(cellData -> cellData.getValue().getName());
-      actorBirth.setCellValueFactory(cellData -> cellData.getValue().getBirthDate());
-      actorSex.setCellValueFactory(cellData -> cellData.getValue().getSex());
-      movieTable.getSelectionModel().selectedItemProperty()
-         .addListener((obs, oldSelection, newSelection) -> {
-            if (newSelection != null) {
-               lblTitle.textProperty().unbind();
-               lblTitle.textProperty().bind(newSelection.getName());
-               movieActors.clear();
-               if (newSelection.getActors() != null) {
-                  movieActors.addAll(newSelection.getActors());
-                  movieActorsTable.setItems(movieActors);
-                  movieActorsName.setCellValueFactory(cellData -> cellData.getValue().getName());
-                  movieActorsBirth
-                     .setCellValueFactory(cellData -> cellData.getValue().getBirthDate());
-                  movieActorsSex.setCellValueFactory(cellData -> cellData.getValue().getSex());
-               }
-            }
-         });
-
-      actorTable.getSelectionModel().selectedItemProperty()
-         .addListener((obs, oldSelection, newSelection) -> {
-            if (newSelection != null) {
-               txtActor.textProperty().unbind();
-               txtActor.textProperty().bind(newSelection.getName());
-               actorMovies.clear();
-               if (newSelection.getMovies() != null) {
-                  actorMovies.addAll(newSelection.getMovies());
-                  actorMoviesTable.setItems(actorMovies);
-                  actorMoviesName.setCellValueFactory(cellData -> cellData.getValue().getName());
-                  actorMoviesYear
-                     .setCellValueFactory(cellData -> cellData.getValue().getReleaseYear());
-               }
-            }
-         });
-
-      txtActor.setEditable(false);
-
+      prepareTable();
+      bindTableToContent();
    }
 
    @FXML
@@ -122,4 +85,62 @@ public class MainController {
    public void btnAddMovieClicked() throws IOException {
       new InsertWindow("../view/fxml/AddMovie.fxml", "Add movie" );
    }
+
+   private void bindTableToContent() {
+      movieTable.getSelectionModel().selectedItemProperty()
+         .addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
+               lblTitle.textProperty().unbind();
+               lblTitle.textProperty().bind(newSelection.getName());
+               movieActors.clear();
+               if (newSelection.getActors() != null) {
+                  movieActors.addAll(newSelection.getActors());
+                  movieActorsTable.setItems(movieActors);
+                  changeMovieActorsContent();
+               }
+            }
+         });
+
+      actorTable.getSelectionModel().selectedItemProperty()
+      .addListener((obs, oldSelection, newSelection) -> {
+         if (newSelection != null) {
+            lblActor.textProperty().unbind();
+            lblActor.textProperty().bind(newSelection.getName());
+            actorMovies.clear();
+            if (newSelection.getMovies() != null) {
+               actorMovies.addAll(newSelection.getMovies());
+               changeAcorMoviesContent();
+            }
+         }
+      });
+   }
+
+   private void changeAcorMoviesContent() {
+      actorMoviesTable.setItems(actorMovies);
+      actorMoviesName.setCellValueFactory(cellData -> cellData.getValue().getName());
+      actorMoviesYear
+         .setCellValueFactory(cellData -> cellData.getValue().getReleaseYear());
+      actorMoviesGenre.setCellValueFactory(cellData -> cellData.getValue().getGenre());
+   }
+
+   private void changeMovieActorsContent() {
+      movieActorsName.setCellValueFactory(cellData -> cellData.getValue().getName());
+      movieActorsBirth
+         .setCellValueFactory(cellData -> cellData.getValue().getBirthDate());
+      movieActorsSex.setCellValueFactory(cellData -> cellData.getValue().getSex());
+   }
+
+   private void prepareTable() {
+      movieTable.setItems(viewModel.getMovieData());
+      movieName.setCellValueFactory(cellData -> cellData.getValue().getName());
+      movieYear.setCellValueFactory(cellData -> cellData.getValue().getReleaseYear());
+      movieGenre.setCellValueFactory(cellData -> cellData.getValue().getGenre());
+
+      actorTable.setItems(viewModel.getActorData());
+      actorName.setCellValueFactory(cellData -> cellData.getValue().getName());
+      actorBirth.setCellValueFactory(cellData -> cellData.getValue().getBirthDate());
+      actorSex.setCellValueFactory(cellData -> cellData.getValue().getSex());
+   }
+
+
 }

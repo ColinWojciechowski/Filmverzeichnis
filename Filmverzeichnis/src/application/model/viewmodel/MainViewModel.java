@@ -34,6 +34,10 @@ public class MainViewModel {
       testActor.setBirthDate(new SimpleStringProperty(LocalDate.now().toString()));
       testActor.setSex(Sex.MALE.toString());
 
+      testMovie.setGenre(new SimpleStringProperty("Comedy"));
+      testMovie2.setGenre(new SimpleStringProperty("Ganster"));
+
+
       movieActors.add(testActor);
       actorMovies.add(testMovie);
       testMovie.setActors(movieActors);
