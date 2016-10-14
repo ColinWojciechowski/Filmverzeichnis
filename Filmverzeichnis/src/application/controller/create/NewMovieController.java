@@ -1,6 +1,7 @@
 package application.controller.create;
 
 
+import application.model.dto.Movie;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -30,5 +31,18 @@ public class NewMovieController {
    @FXML
    public void btnAddClicked(){
       System.out.println("Hello World");
+   }
+
+   @FXML
+   public void btnCancleClicked(){
+      txtTitle.clear();
+      txtGenre.clear();
+      txtYear.clear();
+   }
+
+   @FXML
+   public void btnOKClicked(){
+      Movie movie = new Movie();
+
    }
 }

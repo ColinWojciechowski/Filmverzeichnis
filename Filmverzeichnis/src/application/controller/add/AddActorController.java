@@ -1,7 +1,7 @@
 package application.controller.add;
 
-
 import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXRadioButton;
 
 import application.model.viewmodel.AddActorViewModel;
@@ -31,12 +31,13 @@ public class AddActorController {
    JFXRadioButton rbtnMale;
    @FXML
    JFXRadioButton rbtnFemale;
-
-
+   @FXML
+   JFXDatePicker dateBirth;
 
    @FXML
-   public void initialize(){
-      addActorPane.getStylesheets().add(getClass().getResource("../../view/application.css").toExternalForm());
+   public void initialize() {
+      addActorPane.getStylesheets()
+         .add(getClass().getResource("../../view/application.css").toExternalForm());
       viewModel = new AddActorViewModel();
 
       rbtnMale.fire();
@@ -49,7 +50,15 @@ public class AddActorController {
    }
 
    @FXML
-   public void btnOKClicked(){
+   public void btnCancleClicked() {
+      rbtnMale.fire();
+      txtName.clear();
+      chbMovie.getSelectionModel().clearSelection();
+      dateBirth.setValue(null);
+   }
+
+   @FXML
+   public void btnOKClicked() {
 
    }
 }

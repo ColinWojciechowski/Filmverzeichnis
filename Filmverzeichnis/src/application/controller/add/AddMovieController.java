@@ -1,12 +1,12 @@
 package application.controller.add;
 
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 
 import application.model.viewmodel.AddMovieViewModel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 
@@ -16,7 +16,7 @@ public class AddMovieController {
    private ObservableList<String> allActors = FXCollections.observableArrayList();
 
    @FXML
-   Button btnAdd;
+   JFXButton btnCancle;
    @FXML
    JFXComboBox<String> chbActor;
    @FXML
@@ -25,8 +25,7 @@ public class AddMovieController {
    TextField txtGenre;
    @FXML
    TextField txtYear;
-   @
-   FXML AnchorPane addMoviePane;
+   @FXML AnchorPane addMoviePane;
 
    @FXML
    public void initialize() {
@@ -43,5 +42,13 @@ public class AddMovieController {
    @FXML
    public void btnOKClicked() {
       System.out.println("Hello World");
+   }
+
+   @FXML
+   public void btnCancleClicked(){
+      txtTitle.clear();
+      txtGenre.clear();
+      txtYear.clear();
+      chbActor.getSelectionModel().clearSelection();
    }
 }

@@ -6,18 +6,19 @@ import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
-public class GUI extends Application{
+public class GUI extends Application {
+
    @Override
    public void start(Stage primaryStage) {
       try {
          primaryStage.setResizable(false);
-         Pane root = (Pane) FXMLLoader.load(getClass().getResource("fxml/test.fxml"));
+         Pane root = (Pane) FXMLLoader.load(getClass().getResource("fxml/rootFXML.fxml"));
          Scene scene = new Scene(root);
          primaryStage.setTitle("Filmverzeichnis");
          scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
          primaryStage.setScene(scene);
          primaryStage.show();
-         } catch(Exception e) {
+      } catch (Exception e) {
          e.printStackTrace();
       }
    }
@@ -26,7 +27,6 @@ public class GUI extends Application{
       launch();
    }
 }
-
 
 /**
  * $ID: Entrypoint.java,v $

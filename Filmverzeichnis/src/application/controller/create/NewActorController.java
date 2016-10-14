@@ -1,6 +1,7 @@
 package application.controller.create;
 
 
+import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXRadioButton;
 
 import javafx.fxml.FXML;
@@ -23,6 +24,8 @@ public class NewActorController {
    JFXRadioButton rbtnFemale;
    @FXML
    TextField txtName;
+   @FXML
+   JFXDatePicker dateBirth;
 
    @FXML
    public void initialize(){
@@ -36,5 +39,12 @@ public class NewActorController {
    @FXML
    public void btnAddClicked(){
       System.out.println("Hello World");
+   }
+
+   @FXML
+   public void btnCancleClicked(){
+      txtName.clear();
+      dateBirth.setValue(null);
+      rbtnMale.fire();
    }
 }
