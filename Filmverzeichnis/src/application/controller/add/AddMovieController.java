@@ -30,7 +30,7 @@ public class AddMovieController {
 
    @FXML
    public void initialize() {
-      addMoviePane.getStylesheets().add(getClass().getResource("../../application.css").toExternalForm());
+      addMoviePane.getStylesheets().add(getClass().getResource("../../view/application.css").toExternalForm());
       viewModel = new AddMovieViewModel();
 
       allActors.add(viewModel.getTestActor().getName().get());

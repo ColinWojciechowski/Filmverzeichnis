@@ -26,7 +26,7 @@ public class NewActorController {
 
    @FXML
    public void initialize(){
-      newActorPane.getStylesheets().add(getClass().getResource("../../application.css").toExternalForm());
+      newActorPane.getStylesheets().add(getClass().getResource("../../view/application.css").toExternalForm());
       rbtnMale.fire();
       rbtnMale.setToggleGroup(group);
       rbtnFemale.setToggleGroup(group);

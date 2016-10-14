@@ -11,7 +11,7 @@ public class GUI extends Application{
    public void start(Stage primaryStage) {
       try {
          primaryStage.setResizable(false);
-         Pane root = (Pane) FXMLLoader.load(getClass().getResource("fxml/rootFXML.fxml"));
+         Pane root = (Pane) FXMLLoader.load(getClass().getResource("fxml/test.fxml"));
          Scene scene = new Scene(root);
          primaryStage.setTitle("Filmverzeichnis");
          scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());

@@ -36,7 +36,7 @@ public class AddActorController {
 
    @FXML
    public void initialize(){
-      addActorPane.getStylesheets().add(getClass().getResource("../../application.css").toExternalForm());
+      addActorPane.getStylesheets().add(getClass().getResource("../../view/application.css").toExternalForm());
       viewModel = new AddActorViewModel();
 
       rbtnMale.fire();

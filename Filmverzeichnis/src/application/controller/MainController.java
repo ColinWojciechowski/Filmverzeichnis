@@ -2,23 +2,19 @@ package application.controller;
 
 import java.io.IOException;
 
-import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.JFXDrawersStack;
-import com.jfoenix.controls.JFXRadioButton;
 
 import application.model.dto.Actor;
 import application.model.dto.Movie;
 import application.model.viewmodel.MainViewModel;
-import application.view.InsertWindow;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
@@ -73,72 +69,74 @@ public class MainController {
    @FXML
    private JFXDrawersStack stack;
    @FXML
-   private JFXDrawer bottomDrawer;
+   private JFXDrawer movieBottomDrawer;
+   @FXML
+   private JFXDrawer actorBottomDrawer;
    @FXML
    private Pane addActorPane;
    @FXML
    private Pane newMoviePane;
    @FXML
-   private TextField txtName;
+   private JFXDrawersStack actorStack;
    @FXML
-   private Button btnAdd;
+   private Pane addMoviePane;
    @FXML
-   private JFXComboBox<String> chbMovie;
-   @FXML
-   private JFXRadioButton rbtnMale;
-   @FXML
-   private JFXRadioButton rbtnFemale;
+   private Pane newActorPane;
+
+
 
    @FXML
-   public void initialize() {
+   public void initialize() throws IOException {
       viewModel = new MainViewModel();
       prepareTable();
       bindTableToContent();
-
-      rbtnMale.fire();
-      rbtnMale.setToggleGroup(group);
-      rbtnFemale.setToggleGroup(group);
-      chbMovie.setItems(viewModel.getAllMovies());
-      txtName.setFocusTraversable(false);
-
+      addActorPane=  FXMLLoader.load(getClass().getResource("../view/fxml/AddActor.fxml"));
+      newMoviePane=  FXMLLoader.load(getClass().getResource("../view/fxml/NewMovie.fxml"));
+      addMoviePane=  FXMLLoader.load(getClass().getResource("../view/fxml/AddMovie.fxml"));
+      newActorPane=  FXMLLoader.load(getClass().getResource("../view/fxml/NewActor.fxml"));
+      movieBottomDrawer.setDirection(JFXDrawer.DrawerDirection.BOTTOM);
+      actorBottomDrawer.setDirection(JFXDrawer.DrawerDirection.BOTTOM);
    }
 
    @FXML
-   public void toggle(){
-      bottomDrawer.setSidePane(addActorPane);
-      addActorPane.visibleProperty().set(true);
-      bottomDrawer.setDirection(JFXDrawer.DrawerDirection.BOTTOM);
-      bottomDrawer.setDefaultDrawerSize(400);
-      stack.toggle(bottomDrawer);
+   public void addActorToggle(){
+      movieBottomDrawer.setSidePane(addActorPane);
+      movieBottomDrawer.setDefaultDrawerSize(400);
+      stack.toggle(movieBottomDrawer);
    }
 
    @FXML
    public void newMovieToggle(){
-      bottomDrawer.setSidePane(newMoviePane);
-      newMoviePane.visibleProperty().set(true);
-      bottomDrawer.setDirection(JFXDrawer.DrawerDirection.BOTTOM);
-      bottomDrawer.setDefaultDrawerSize(400);
-      stack.toggle(bottomDrawer);
+      movieBottomDrawer.setSidePane(newMoviePane);
+      movieBottomDrawer.setDefaultDrawerSize(400);
+      stack.toggle(movieBottomDrawer);
    }
 
    @FXML
-   public void btnNewMovieClicked() throws IOException {
-      new InsertWindow("../view/fxml/NewMovie.fxml", "Create new movie");
+   public void addMoviewToggle(){
+      actorBottomDrawer.setSidePane(addMoviePane);
+      actorBottomDrawer.setDefaultDrawerSize(400);
+      actorStack.toggle(actorBottomDrawer);
    }
 
    @FXML
-   public void btnAddActorClicked() throws IOException {
-      new InsertWindow("../view/fxml/AddActor.fxml", "Add actor");
+   public void newActorToggle(){
+    actorBottomDrawer.setSidePane(newActorPane);
+    actorBottomDrawer.setDefaultDrawerSize(400);
+    actorStack.toggle(actorBottomDrawer);
    }
 
-   @FXML
-   public void btnNewActorClicked() throws IOException {
-      new InsertWindow("../view/fxml/NewActor.fxml", "Create new actor");
-   }
 
-   @FXML
-   public void btnAddMovieClicked() throws IOException {
-      new InsertWindow("../view/fxml/AddMovie.fxml", "Add movie" );
+   private void prepareTable() {
+      movieTable.setItems(viewModel.getMovieData());
+      movieName.setCellValueFactory(cellData -> cellData.getValue().getName());
+      movieYear.setCellValueFactory(cellData -> cellData.getValue().getReleaseYear());
+      movieGenre.setCellValueFactory(cellData -> cellData.getValue().getGenre());
+
+      actorTable.setItems(viewModel.getActorData());
+      actorName.setCellValueFactory(cellData -> cellData.getValue().getName());
+      actorBirth.setCellValueFactory(cellData -> cellData.getValue().getBirthDate());
+      actorSex.setCellValueFactory(cellData -> cellData.getValue().getSex());
    }
 
    private void bindTableToContent() {
@@ -170,6 +168,7 @@ public class MainController {
       });
    }
 
+
    private void changeAcorMoviesContent() {
       actorMoviesTable.setItems(actorMovies);
       actorMoviesName.setCellValueFactory(cellData -> cellData.getValue().getName());
@@ -185,17 +184,7 @@ public class MainController {
       movieActorsSex.setCellValueFactory(cellData -> cellData.getValue().getSex());
    }
 
-   private void prepareTable() {
-      movieTable.setItems(viewModel.getMovieData());
-      movieName.setCellValueFactory(cellData -> cellData.getValue().getName());
-      movieYear.setCellValueFactory(cellData -> cellData.getValue().getReleaseYear());
-      movieGenre.setCellValueFactory(cellData -> cellData.getValue().getGenre());
 
-      actorTable.setItems(viewModel.getActorData());
-      actorName.setCellValueFactory(cellData -> cellData.getValue().getName());
-      actorBirth.setCellValueFactory(cellData -> cellData.getValue().getBirthDate());
-      actorSex.setCellValueFactory(cellData -> cellData.getValue().getSex());
-   }
 
 
 }
