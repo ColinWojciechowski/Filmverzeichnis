@@ -9,11 +9,25 @@
 }
 
 AnchorPane{
-    -fx-background-color: linear-gradient(from 0.0% 0.0% to 100.0% 100.0%, #96DFEB, #B1E5FA)
+    -fx-background-color: #B1E5FA
 }
 
 
 .jfx-text-field {
-    -fx-prompt-text-fill: #FF00FF;
+      -fx-background-color: #B1E5FA;
+    -fx-prompt-text-fill: #0f5e59;
     -fx-prompt-text-font-size: 50px
+}
+
+.jfx-text-field Pane{
+      -fx-background-color: #B1E5FA;
+    -fx-prompt-text-fill: #0f5e59;
+    -fx-prompt-text-font-size: 50px
+}
+
+
+
+
+Pane{
+    -fx-background-color: #B1E5FA
 }

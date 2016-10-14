@@ -15,6 +15,7 @@ public class MainViewModel {
    private ObservableList<Movie> movieData = FXCollections.observableArrayList();
    private ObservableList<Actor> movieActors = FXCollections.observableArrayList();
    private ObservableList<Movie> actorMovies = FXCollections.observableArrayList();
+   private ObservableList<String> allMovies = FXCollections.observableArrayList();
 
    public MainViewModel(){
       Movie testMovie = new Movie();
@@ -46,14 +47,27 @@ public class MainViewModel {
       movieData.add(testMovie);
       movieData.add(testMovie2);
 
-   }
+      allMovies.add(getTestMovie().getName().get());
 
+   }
    public ObservableList<Movie> getMovieData(){
       return movieData;
    }
 
+   public ObservableList<String> getAllMovies(){
+      return allMovies;
+   }
+
    public ObservableList<Actor> getActorData(){
       return movieActors;
+   }
+
+   public Movie getTestMovie(){
+      Movie testMovie = new Movie();
+      testMovie.setId(4);
+      testMovie.setName(new SimpleStringProperty("Sleepy Hollow"));
+      testMovie.setReleaseYear(new SimpleIntegerProperty(2120));
+      return testMovie;
    }
 
 }

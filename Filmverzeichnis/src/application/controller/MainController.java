@@ -2,6 +2,11 @@ package application.controller;
 
 import java.io.IOException;
 
+import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXDrawer;
+import com.jfoenix.controls.JFXDrawersStack;
+import com.jfoenix.controls.JFXRadioButton;
+
 import application.model.dto.Actor;
 import application.model.dto.Movie;
 import application.model.viewmodel.MainViewModel;
@@ -9,16 +14,21 @@ import application.view.InsertWindow;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 
 public class MainController {
 
-   MainViewModel viewModel;
+   private MainViewModel viewModel;
    private ObservableList<Actor> movieActors = FXCollections.observableArrayList();
    private ObservableList<Movie> actorMovies = FXCollections.observableArrayList();
+   final ToggleGroup group = new ToggleGroup();
 
    @FXML
    private TableView<Movie> movieTable;
@@ -53,17 +63,62 @@ public class MainController {
    @FXML
    private TableColumn<Movie, String> actorMoviesGenre;
    @FXML
-   Label lblTitle;
+   private Label lblTitle;
    @FXML
-   Label lblActor;
+   private Label lblActor;
    @FXML
-   AnchorPane movieAnchor;
+   private AnchorPane movieAnchor;
+   @FXML
+   private AnchorPane actorAnchor;
+   @FXML
+   private JFXDrawersStack stack;
+   @FXML
+   private JFXDrawer bottomDrawer;
+   @FXML
+   private Pane addActorPane;
+   @FXML
+   private Pane newMoviePane;
+   @FXML
+   private TextField txtName;
+   @FXML
+   private Button btnAdd;
+   @FXML
+   private JFXComboBox<String> chbMovie;
+   @FXML
+   private JFXRadioButton rbtnMale;
+   @FXML
+   private JFXRadioButton rbtnFemale;
 
    @FXML
    public void initialize() {
       viewModel = new MainViewModel();
       prepareTable();
       bindTableToContent();
+
+      rbtnMale.fire();
+      rbtnMale.setToggleGroup(group);
+      rbtnFemale.setToggleGroup(group);
+      chbMovie.setItems(viewModel.getAllMovies());
+      txtName.setFocusTraversable(false);
+
+   }
+
+   @FXML
+   public void toggle(){
+      bottomDrawer.setSidePane(addActorPane);
+      addActorPane.visibleProperty().set(true);
+      bottomDrawer.setDirection(JFXDrawer.DrawerDirection.BOTTOM);
+      bottomDrawer.setDefaultDrawerSize(400);
+      stack.toggle(bottomDrawer);
+   }
+
+   @FXML
+   public void newMovieToggle(){
+      bottomDrawer.setSidePane(newMoviePane);
+      newMoviePane.visibleProperty().set(true);
+      bottomDrawer.setDirection(JFXDrawer.DrawerDirection.BOTTOM);
+      bottomDrawer.setDefaultDrawerSize(400);
+      stack.toggle(bottomDrawer);
    }
 
    @FXML
