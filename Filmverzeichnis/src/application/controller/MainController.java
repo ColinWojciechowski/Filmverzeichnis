@@ -8,6 +8,7 @@ import com.jfoenix.controls.JFXDrawersStack;
 import application.model.dto.Actor;
 import application.model.dto.Movie;
 import application.model.viewmodel.MainViewModel;
+import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -16,7 +17,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.ToggleGroup;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 
 public class MainController {
@@ -63,11 +63,7 @@ public class MainController {
    @FXML
    private Label lblActor;
    @FXML
-   private AnchorPane movieAnchor;
-   @FXML
-   private AnchorPane actorAnchor;
-   @FXML
-   private JFXDrawersStack stack;
+   private JFXDrawersStack movieStack;
    @FXML
    private JFXDrawer movieBottomDrawer;
    @FXML
@@ -83,49 +79,39 @@ public class MainController {
    @FXML
    private Pane newActorPane;
 
-
-
    @FXML
    public void initialize() throws IOException {
       viewModel = new MainViewModel();
+      loadFxmlFiles();
       prepareTable();
-      bindTableToContent();
-      addActorPane=  FXMLLoader.load(getClass().getResource("../view/fxml/AddActor.fxml"));
-      newMoviePane=  FXMLLoader.load(getClass().getResource("../view/fxml/NewMovie.fxml"));
-      addMoviePane=  FXMLLoader.load(getClass().getResource("../view/fxml/AddMovie.fxml"));
-      newActorPane=  FXMLLoader.load(getClass().getResource("../view/fxml/NewActor.fxml"));
-      movieBottomDrawer.setDirection(JFXDrawer.DrawerDirection.BOTTOM);
-      actorBottomDrawer.setDirection(JFXDrawer.DrawerDirection.BOTTOM);
+      bindMovieTableToContent();
+      bindActorTableToContent();
+      setDrawerDirection();
    }
 
    @FXML
-   public void addActorToggle(){
-      movieBottomDrawer.setSidePane(addActorPane);
-      movieBottomDrawer.setDefaultDrawerSize(400);
-      stack.toggle(movieBottomDrawer);
+   public void addActorToggle() {
+      prepareDrawer(movieBottomDrawer, addActorPane);
+      movieStack.toggle(movieBottomDrawer);
    }
 
    @FXML
-   public void newMovieToggle(){
-      movieBottomDrawer.setSidePane(newMoviePane);
-      movieBottomDrawer.setDefaultDrawerSize(400);
-      stack.toggle(movieBottomDrawer);
+   public void newMovieToggle() {
+      prepareDrawer(movieBottomDrawer, newMoviePane);
+      movieStack.toggle(movieBottomDrawer);
    }
 
    @FXML
-   public void addMoviewToggle(){
-      actorBottomDrawer.setSidePane(addMoviePane);
-      actorBottomDrawer.setDefaultDrawerSize(400);
+   public void addMoviewToggle() {
+      prepareDrawer(actorBottomDrawer, addMoviePane);
       actorStack.toggle(actorBottomDrawer);
    }
 
    @FXML
-   public void newActorToggle(){
-    actorBottomDrawer.setSidePane(newActorPane);
-    actorBottomDrawer.setDefaultDrawerSize(400);
-    actorStack.toggle(actorBottomDrawer);
+   public void newActorToggle() {
+      prepareDrawer(actorBottomDrawer, newActorPane);
+      actorStack.toggle(actorBottomDrawer);
    }
-
 
    private void prepareTable() {
       movieTable.setItems(viewModel.getMovieData());
@@ -139,37 +125,37 @@ public class MainController {
       actorSex.setCellValueFactory(cellData -> cellData.getValue().getSex());
    }
 
-   private void bindTableToContent() {
-      movieTable.getSelectionModel().selectedItemProperty()
+   private void bindActorTableToContent() {
+      actorTable.getSelectionModel().selectedItemProperty()
          .addListener((obs, oldSelection, newSelection) -> {
+            StringProperty lblActorValue = newSelection.getName();
             if (newSelection != null) {
-               lblTitle.textProperty().unbind();
-               lblTitle.textProperty().bind(newSelection.getName());
-               movieActors.clear();
-               if (newSelection.getActors() != null) {
-                  movieActors.addAll(newSelection.getActors());
-                  movieActorsTable.setItems(movieActors);
-                  changeMovieActorsContent();
+               rebindLabel(lblActor, lblActorValue);
+               actorMovies.clear();
+               if (newSelection.getMovies() != null) {
+                  actorMovies.addAll(newSelection.getMovies());
+                  changeAcorMoviesTableContent();
                }
             }
          });
-
-      actorTable.getSelectionModel().selectedItemProperty()
-      .addListener((obs, oldSelection, newSelection) -> {
-         if (newSelection != null) {
-            lblActor.textProperty().unbind();
-            lblActor.textProperty().bind(newSelection.getName());
-            actorMovies.clear();
-            if (newSelection.getMovies() != null) {
-               actorMovies.addAll(newSelection.getMovies());
-               changeAcorMoviesContent();
-            }
-         }
-      });
    }
 
+   private void bindMovieTableToContent() {
+      movieTable.getSelectionModel().selectedItemProperty()
+         .addListener((obs, oldSelection, newSelection) -> {
+            StringProperty lblMovieValue = newSelection.getName();
+            if (newSelection != null) {
+               rebindLabel(lblTitle, lblMovieValue);
+               movieActors.clear();
+               if (newSelection.getActors() != null) {
+                  movieActors.addAll(newSelection.getActors());
+                  changeMovieActorsTableContent();
+               }
+            }
+         });
+   }
 
-   private void changeAcorMoviesContent() {
+   private void changeAcorMoviesTableContent() {
       actorMoviesTable.setItems(actorMovies);
       actorMoviesName.setCellValueFactory(cellData -> cellData.getValue().getName());
       actorMoviesYear
@@ -177,14 +163,34 @@ public class MainController {
       actorMoviesGenre.setCellValueFactory(cellData -> cellData.getValue().getGenre());
    }
 
-   private void changeMovieActorsContent() {
+   private void changeMovieActorsTableContent() {
+      movieActorsTable.setItems(movieActors);
       movieActorsName.setCellValueFactory(cellData -> cellData.getValue().getName());
       movieActorsBirth
          .setCellValueFactory(cellData -> cellData.getValue().getBirthDate());
       movieActorsSex.setCellValueFactory(cellData -> cellData.getValue().getSex());
    }
 
+   private void loadFxmlFiles() throws IOException {
+      addActorPane = FXMLLoader.load(getClass().getResource("../view/fxml/AddActor.fxml"));
+      newMoviePane = FXMLLoader.load(getClass().getResource("../view/fxml/NewMovie.fxml"));
+      addMoviePane = FXMLLoader.load(getClass().getResource("../view/fxml/AddMovie.fxml"));
+      newActorPane = FXMLLoader.load(getClass().getResource("../view/fxml/NewActor.fxml"));
+   }
 
+   private void setDrawerDirection() {
+      movieBottomDrawer.setDirection(JFXDrawer.DrawerDirection.TOP);
+      actorBottomDrawer.setDirection(JFXDrawer.DrawerDirection.TOP);
+   }
 
+   private void prepareDrawer(JFXDrawer drawer, Pane pane) {
+      drawer.setSidePane(pane);
+      drawer.setDefaultDrawerSize(400);
+   }
+
+   private void rebindLabel(Label label, StringProperty labelValue) {
+      label.textProperty().unbind();
+      label.textProperty().bind(labelValue);
+   }
 
 }
