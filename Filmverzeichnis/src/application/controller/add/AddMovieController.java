@@ -45,6 +45,7 @@ public class AddMovieController {
    @FXML
    public void btnOkClicked() {
       MainObservable.toggleActor();
+      //TODO Fachkonzept 1 anbinden
    }
 
    @FXML
