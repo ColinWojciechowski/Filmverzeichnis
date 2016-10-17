@@ -60,11 +60,11 @@ public class AddActorViewModel {
     * @since 1.0
     */
    public void addActor(LocalDate birth) {
-      StringProperty birthDate = new SimpleStringProperty(birth.toString());
-      Actor actor = new Actor();
-      actor.setSex(sex.get());
-      actor.setName(name);
-      actor.setBirthDate(birthDate);
+         StringProperty birthDate = new SimpleStringProperty(birth.toString());
+         Actor actor = new Actor();
+         actor.setSex(sex.get());
+         actor.setName(name);
+         actor.setBirthDate(birthDate);
       //TODO Fachkonzept einbinden
    }
 

@@ -1,12 +1,13 @@
 package application.controller.create;
 
+import com.jfoenix.controls.JFXTextField;
+
 import application.controller.MainObservable;
 import application.model.viewmodel.NewMovieViewModel;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 
 public class NewMovieController {
@@ -19,11 +20,11 @@ public class NewMovieController {
    @FXML
    AnchorPane newMoviePane;
    @FXML
-   TextField txtTitle;
+   JFXTextField txtTitle;
    @FXML
-   TextField txtGenre;
+   JFXTextField txtGenre;
    @FXML
-   TextField txtYear;
+   JFXTextField txtYear;
 
    @FXML
    public void initialize() {
@@ -47,7 +48,7 @@ public class NewMovieController {
          removeArguments();
          txtYear.setPromptText("Year");
          MainObservable.toggleMovie();
-      } catch (NumberFormatException e) {
+      } catch (NumberFormatException | NullPointerException e) {
          txtYear.clear();
          txtYear.setPromptText("Bitte nur Zahlen eingeben!");
       }
@@ -57,6 +58,7 @@ public class NewMovieController {
    public void btnCancleClicked() {
       removeArguments();
       MainObservable.toggleMovie();
+      txtYear.setPromptText("Year");
    }
 
    private void removeArguments() {

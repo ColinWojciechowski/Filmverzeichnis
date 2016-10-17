@@ -1,5 +1,7 @@
 package application.controller.add;
 
+import java.time.LocalDate;
+
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXRadioButton;
@@ -40,7 +42,6 @@ public class AddActorController {
       addActorPane.getStylesheets()
          .add(getClass().getResource("../../view/application.css").toExternalForm());
       viewModel = new AddActorViewModel();
-
       rbtnMale.fire();
       rbtnMale.setToggleGroup(group);
       rbtnFemale.setToggleGroup(group);
@@ -61,10 +62,15 @@ public class AddActorController {
 
    @FXML
    public void btnOkClicked(){
-     String sex = (rbtnMale.selectedProperty().get() == true) ? "Male" : "Female";
-     viewModel.getSex().set(sex);
-     viewModel.getName().bind(txtName.textProperty());
-     viewModel.addActor(this.dateBirth.getValue());
-     MainObservable.toggleMovie();
+      try {
+         String sex = (rbtnMale.selectedProperty().get() == true) ? "Male" : "Female";
+         viewModel.getSex().set(sex);
+         viewModel.getName().bind(txtName.textProperty());
+         viewModel.addActor(this.dateBirth.getValue());
+         MainObservable.toggleMovie();
+      } catch (NullPointerException e) {
+         dateBirth.setValue(LocalDate.now());
+      }
+
    }
 }
