@@ -15,7 +15,7 @@
          </font></Label>
       <JFXTextField fx:id="txtGenre" labelFloat="true" layoutX="196.0" layoutY="85.0" maxWidth="181.0" minWidth="174.0" prefHeight="31.0" prefWidth="174.0" promptText="Genre" />
       <JFXComboBox fx:id="chbActor" layoutX="109.0" layoutY="143.0" prefHeight="25.0" prefWidth="174.0" promptText="Select Actor" />
-      <JFXButton buttonType="RAISED" layoutX="510.0" layoutY="155.0" text="OK" />
+      <JFXButton buttonType="RAISED" layoutX="510.0" layoutY="155.0" onMouseClicked="#btnOkClicked" text="OK" />
       <JFXButton fx:id="btnCancle" buttonType="RAISED" layoutX="430.0" layoutY="155.0" onMouseClicked="#btnCancleClicked" ripplerFill="WHITE" text="Cancle" />
       <JFXTextField fx:id="txtYear" labelFloat="true" layoutX="369.0" layoutY="85.0" maxWidth="181.0" minWidth="174.0" prefHeight="31.0" prefWidth="174.0" promptText="Year" />
       <JFXTextField fx:id="txtTitle" labelFloat="true" layoutX="14.0" layoutY="85.0" maxWidth="181.0" minWidth="174.0" prefHeight="31.0" prefWidth="174.0" promptText="Title" />

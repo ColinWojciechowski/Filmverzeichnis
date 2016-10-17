@@ -8,6 +8,12 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
+/**
+ *
+ * @author  cw
+ * @version 1.0
+ *
+ */
 public class AddActorViewModel {
 
    StringProperty sex = new SimpleStringProperty();
@@ -29,6 +35,15 @@ public class AddActorViewModel {
       this.name = name;
    }
 
+   /**
+    * Erstellen eines Test-Films
+    *
+    * @return Ein Film, der zu Testzwecken erzeugt wurde
+    *
+    * @see Movie
+    *
+    * @since 1.0
+    */
    public Movie getTestMovie() {
       Movie testMovie = new Movie();
       testMovie.setId(4);
@@ -37,13 +52,20 @@ public class AddActorViewModel {
       return testMovie;
    }
 
+   /**
+    * Weist einem Schauspieler einen Film zu
+    *
+    * @param birth Geburtsdatum des Schauspielers
+    *
+    * @since 1.0
+    */
    public void addActor(LocalDate birth) {
       StringProperty birthDate = new SimpleStringProperty(birth.toString());
       Actor actor = new Actor();
       actor.setSex(sex.get());
       actor.setName(name);
       actor.setBirthDate(birthDate);
-      //TODO Fachkonzept einfügen!
+      //TODO Fachkonzept einbinden
    }
 
 }

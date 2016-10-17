@@ -4,6 +4,7 @@ package application.controller.create;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXRadioButton;
 
+import application.controller.MainObservable;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -37,8 +38,8 @@ public class NewActorController {
    }
 
    @FXML
-   public void btnAddClicked(){
-      System.out.println("Hello World");
+   public void btnOkClicked(){
+      MainObservable.toggleActor();
    }
 
    @FXML
@@ -46,5 +47,6 @@ public class NewActorController {
       txtName.clear();
       dateBirth.setValue(null);
       rbtnMale.fire();
+      MainObservable.toggleActor();
    }
 }

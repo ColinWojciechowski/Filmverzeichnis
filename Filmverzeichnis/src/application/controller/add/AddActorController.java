@@ -4,6 +4,7 @@ import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXRadioButton;
 
+import application.controller.MainObservable;
 import application.model.viewmodel.AddActorViewModel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -55,6 +56,7 @@ public class AddActorController {
       txtName.clear();
       chbMovie.getSelectionModel().clearSelection();
       dateBirth.setValue(null);
+      MainObservable.toggleMovie();
    }
 
    @FXML
@@ -63,5 +65,6 @@ public class AddActorController {
      viewModel.getSex().set(sex);
      viewModel.getName().bind(txtName.textProperty());
      viewModel.addActor(this.dateBirth.getValue());
+     MainObservable.toggleMovie();
    }
 }

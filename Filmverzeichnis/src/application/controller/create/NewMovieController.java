@@ -1,6 +1,6 @@
 package application.controller.create;
 
-
+import application.controller.MainObservable;
 import application.model.viewmodel.NewMovieViewModel;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -25,10 +25,10 @@ public class NewMovieController {
    @FXML
    TextField txtYear;
 
-
    @FXML
-   public void initialize(){
-      newMoviePane.getStylesheets().add(getClass().getResource("../../view/application.css").toExternalForm());
+   public void initialize() {
+      newMoviePane.getStylesheets()
+         .add(getClass().getResource("../../view/application.css").toExternalForm());
 
       viewModel.getTitle().bind(txtTitle.textProperty());
       viewModel.getGenre().bind(txtGenre.textProperty());
@@ -40,21 +40,23 @@ public class NewMovieController {
    }
 
    @FXML
-   public void btnOkClicked(){
+   public void btnOkClicked() {
       try {
          this.year.set(Integer.parseInt(txtYear.textProperty().get()));
          viewModel.addMovie();
          removeArguments();
          txtYear.setPromptText("Year");
-       } catch (NumberFormatException e) {
-        txtYear.clear();
-        txtYear.setPromptText("Bitte nur Zahlen eingeben!");
-       }
+         MainObservable.toggleMovie();
+      } catch (NumberFormatException e) {
+         txtYear.clear();
+         txtYear.setPromptText("Bitte nur Zahlen eingeben!");
+      }
    }
 
    @FXML
-   public void btnCancleClicked(){
+   public void btnCancleClicked() {
       removeArguments();
+      MainObservable.toggleMovie();
    }
 
    private void removeArguments() {

@@ -65,9 +65,9 @@ public class MainController {
    @FXML
    private JFXDrawersStack movieStack;
    @FXML
-   private JFXDrawer movieBottomDrawer;
+   private JFXDrawer movieTopDrawer;
    @FXML
-   private JFXDrawer actorBottomDrawer;
+   private JFXDrawer actorTopDrawer;
    @FXML
    private Pane addActorPane;
    @FXML
@@ -79,6 +79,7 @@ public class MainController {
    @FXML
    private Pane newActorPane;
 
+   @SuppressWarnings("unused")
    @FXML
    public void initialize() throws IOException {
       viewModel = new MainViewModel();
@@ -87,30 +88,55 @@ public class MainController {
       bindMovieTableToContent();
       bindActorTableToContent();
       setDrawerDirection();
+      MainObservable observable = new MainObservable(this);
    }
 
    @FXML
    public void addActorToggle() {
-      prepareDrawer(movieBottomDrawer, addActorPane);
-      movieStack.toggle(movieBottomDrawer);
+      prepareDrawer(movieTopDrawer, addActorPane);
+      toggle(movieStack, movieTopDrawer);
    }
 
    @FXML
    public void newMovieToggle() {
-      prepareDrawer(movieBottomDrawer, newMoviePane);
-      movieStack.toggle(movieBottomDrawer);
+      prepareDrawer(movieTopDrawer, newMoviePane);
+      toggle(movieStack, movieTopDrawer);
+   }
+
+   public void toggle(JFXDrawersStack stack, JFXDrawer drawer){
+      stack.toggle(drawer);
    }
 
    @FXML
    public void addMoviewToggle() {
-      prepareDrawer(actorBottomDrawer, addMoviePane);
-      actorStack.toggle(actorBottomDrawer);
+      prepareDrawer(actorTopDrawer, addMoviePane);
+      toggle(actorStack, actorTopDrawer);
    }
 
    @FXML
    public void newActorToggle() {
-      prepareDrawer(actorBottomDrawer, newActorPane);
-      actorStack.toggle(actorBottomDrawer);
+      prepareDrawer(actorTopDrawer, newActorPane);
+      toggle(actorStack, actorTopDrawer);
+   }
+
+
+
+   public JFXDrawersStack getMovieStack() {
+      return movieStack;
+   }
+
+   public JFXDrawer getMovieTopDrawer() {
+      return movieTopDrawer;
+   }
+
+
+   public JFXDrawer getActorTopDrawer() {
+      return actorTopDrawer;
+   }
+
+
+   public JFXDrawersStack getActorStack() {
+      return actorStack;
    }
 
    private void prepareTable() {
@@ -130,7 +156,7 @@ public class MainController {
          .addListener((obs, oldSelection, newSelection) -> {
             StringProperty lblActorValue = newSelection.getName();
             if (newSelection != null) {
-               rebindLabel(lblActor, lblActorValue);
+               lblActor.textProperty().bind(lblActorValue);
                actorMovies.clear();
                if (newSelection.getMovies() != null) {
                   actorMovies.addAll(newSelection.getMovies());
@@ -145,7 +171,7 @@ public class MainController {
          .addListener((obs, oldSelection, newSelection) -> {
             StringProperty lblMovieValue = newSelection.getName();
             if (newSelection != null) {
-               rebindLabel(lblTitle, lblMovieValue);
+               lblTitle.textProperty().bind(lblMovieValue);
                movieActors.clear();
                if (newSelection.getActors() != null) {
                   movieActors.addAll(newSelection.getActors());
@@ -179,18 +205,13 @@ public class MainController {
    }
 
    private void setDrawerDirection() {
-      movieBottomDrawer.setDirection(JFXDrawer.DrawerDirection.TOP);
-      actorBottomDrawer.setDirection(JFXDrawer.DrawerDirection.TOP);
+      movieTopDrawer.setDirection(JFXDrawer.DrawerDirection.TOP);
+      actorTopDrawer.setDirection(JFXDrawer.DrawerDirection.TOP);
    }
 
    private void prepareDrawer(JFXDrawer drawer, Pane pane) {
       drawer.setSidePane(pane);
       drawer.setDefaultDrawerSize(400);
-   }
-
-   private void rebindLabel(Label label, StringProperty labelValue) {
-      label.textProperty().unbind();
-      label.textProperty().bind(labelValue);
    }
 
 }

@@ -22,7 +22,7 @@
             <content>
               <AnchorPane fx:id="movieAnchor" minHeight="0.0" minWidth="0.0" prefHeight="450.0" prefWidth="637.0">
                      <children>
-                        <JFXDrawer fx:id="movieBottomDrawer" prefHeight="51.0" prefWidth="72.0" />
+                        <JFXDrawer fx:id="movieTopDrawer" prefHeight="51.0" prefWidth="72.0" />
                         <JFXTextField labelFloat="true" layoutX="15.0" layoutY="211.0" promptText="Suche" />
                         <TableView fx:id="movieTable" layoutX="17.0" layoutY="246.0" prefHeight="146.0" prefWidth="528.0">
                           <columns>
@@ -60,7 +60,7 @@
                <content>
                   <AnchorPane fx:id="actorAnchor" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <JFXDrawer fx:id="actorBottomDrawer" prefHeight="21.0" prefWidth="17.0" />
+                        <JFXDrawer fx:id="actorTopDrawer" prefHeight="21.0" prefWidth="17.0" />
                         <TableView fx:id="actorTable" layoutX="14.0" layoutY="245.0" prefHeight="139.0" prefWidth="527.0">
                            <columns>
                               <TableColumn fx:id="actorName" maxWidth="10000.0" minWidth="175.0" prefWidth="175.0" text="Name" />
@@ -77,7 +77,7 @@
                         </TableView>
                         <JFXButton layoutX="469.0" layoutY="385.0" onMouseClicked="#newActorToggle" text="New Actor" />
                         <JFXButton layoutX="471.0" layoutY="611.0" onMouseClicked="#addMoviewToggle" text="Add Movie" />
-                        <Label fx:id="lblActor" layoutX="14.0" layoutY="431.0" prefHeight="36.0" prefWidth="325.0" />
+                        <Label fx:id="lblActor" layoutX="14.0" layoutY="398.0" prefHeight="36.0" prefWidth="325.0" />
                         <JFXTextField labelFloat="true" layoutX="14.0" layoutY="214.0" promptText="Suche" />
                         <JFXDrawersStack fx:id="actorStack" layoutX="-2.0" prefHeight="201.0" prefWidth="565.0">
                            <children>

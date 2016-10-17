@@ -19,7 +19,7 @@
       <JFXRadioButton fx:id="rbtnMale" layoutX="74.0" layoutY="112.0" prefHeight="17.0" prefWidth="52.0" text="Male" />
       <JFXRadioButton fx:id="rbtnFemale" layoutX="159.0" layoutY="112.0" prefHeight="17.0" prefWidth="66.0" text="Female" />
       <JFXButton fx:id="btnCancle" layoutX="418.0" layoutY="161.0" onMouseClicked="#btnCancleClicked" text="Cancle" />
-      <JFXButton layoutX="505.0" layoutY="161.0" text="OK" />
+      <JFXButton layoutX="505.0" layoutY="161.0" onMouseClicked="#btnOkClicked" text="OK" />
       <JFXDatePicker fx:id="dateBirth" layoutX="306.0" layoutY="58.0" />
    </children>
 </AnchorPane>
