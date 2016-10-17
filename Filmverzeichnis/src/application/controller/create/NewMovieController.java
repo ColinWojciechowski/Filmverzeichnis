@@ -1,13 +1,18 @@
 package application.controller.create;
 
 
-import application.model.dto.Movie;
+import application.model.viewmodel.NewMovieViewModel;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 
 public class NewMovieController {
+
+   NewMovieViewModel viewModel = new NewMovieViewModel();
+   IntegerProperty year = new SimpleIntegerProperty();
 
    @FXML
    Button btnAdd;
@@ -20,29 +25,41 @@ public class NewMovieController {
    @FXML
    TextField txtYear;
 
+
    @FXML
    public void initialize(){
       newMoviePane.getStylesheets().add(getClass().getResource("../../view/application.css").toExternalForm());
+
+      viewModel.getTitle().bind(txtTitle.textProperty());
+      viewModel.getGenre().bind(txtGenre.textProperty());
+      viewModel.getYear().bind(year);
+
       txtTitle.setFocusTraversable(false);
       txtGenre.setFocusTraversable(false);
       txtYear.setFocusTraversable(false);
    }
 
    @FXML
-   public void btnAddClicked(){
-      System.out.println("Hello World");
+   public void btnOkClicked(){
+      try {
+         this.year.set(Integer.parseInt(txtYear.textProperty().get()));
+         viewModel.addMovie();
+         removeArguments();
+         txtYear.setPromptText("Year");
+       } catch (NumberFormatException e) {
+        txtYear.clear();
+        txtYear.setPromptText("Bitte nur Zahlen eingeben!");
+       }
    }
 
    @FXML
    public void btnCancleClicked(){
+      removeArguments();
+   }
+
+   private void removeArguments() {
       txtTitle.clear();
       txtGenre.clear();
       txtYear.clear();
-   }
-
-   @FXML
-   public void btnOKClicked(){
-      Movie movie = new Movie();
-
    }
 }

@@ -47,7 +47,7 @@
                               <Pane fx:id="newMoviePane" prefHeight="200.0" prefWidth="200.0" visible="false" />
                               <ImageView fx:id="imgFilmrolle" fitHeight="149.0" fitWidth="200.0">
                                  <image>
-                                    <Image url="@../../../../../../../Desktop/finalMovieImage.png" />
+                                    <Image url="@../finalMovieImage.png" />
                                  </image>
                               </ImageView>
                            </children>
@@ -85,7 +85,7 @@
                               <Pane fx:id="newActorPane" prefHeight="200.0" prefWidth="200.0" visible="false" />
                               <ImageView fx:id="imgFilmrolle1" fitHeight="149.0" fitWidth="200.0">
                                  <image>
-                                    <Image url="@../../../../../../../Desktop/finalMovieImage.png" />
+                                    <Image url="@../finalMovieImage.png" />
                                  </image>
                               </ImageView>
                            </children>

@@ -58,7 +58,10 @@ public class AddActorController {
    }
 
    @FXML
-   public void btnOKClicked() {
-
+   public void btnOKClicked(){
+     String sex = (rbtnMale.selectedProperty().get() == true) ? "Male" : "Female";
+     viewModel.getSex().set(sex);
+     viewModel.getName().bind(txtName.textProperty());
+     viewModel.addActor(this.dateBirth.getValue());
    }
 }

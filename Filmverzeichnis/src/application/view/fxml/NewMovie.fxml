@@ -17,6 +17,6 @@
       <JFXTextField fx:id="txtYear" labelFloat="true" layoutX="378.0" layoutY="96.0" maxWidth="181.0" minWidth="174.0" prefHeight="31.0" prefWidth="174.0" promptText="Year" />
       <JFXTextField fx:id="txtTitle" labelFloat="true" layoutX="14.0" layoutY="96.0" maxWidth="181.0" minWidth="174.0" prefHeight="31.0" prefWidth="174.0" promptText="Title" />
       <JFXButton fx:id="btnCancle" layoutX="451.0" layoutY="162.0" onMouseClicked="#btnCancleClicked" text="Cancle" />
-      <JFXButton fx:id="btnOK" layoutX="519.0" layoutY="162.0" text="OK" />
+      <JFXButton fx:id="btnOK" layoutX="519.0" layoutY="162.0" onMouseClicked="#btnOkClicked" text="OK" />
    </children>
 </AnchorPane>

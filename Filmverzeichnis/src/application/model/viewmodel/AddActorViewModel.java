@@ -1,17 +1,49 @@
 package application.model.viewmodel;
 
+import java.time.LocalDate;
+
+import application.model.dto.Actor;
 import application.model.dto.Movie;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
 public class AddActorViewModel {
 
-   public Movie getTestMovie(){
+   StringProperty sex = new SimpleStringProperty();
+   StringProperty name = new SimpleStringProperty();
+
+   public StringProperty getSex() {
+      return sex;
+   }
+
+   public void setSex(StringProperty sex) {
+      this.sex = sex;
+   }
+
+   public StringProperty getName() {
+      return name;
+   }
+
+   public void setName(StringProperty name) {
+      this.name = name;
+   }
+
+   public Movie getTestMovie() {
       Movie testMovie = new Movie();
       testMovie.setId(4);
       testMovie.setName(new SimpleStringProperty("Sleepy Hollow"));
       testMovie.setReleaseYear(new SimpleIntegerProperty(2120));
       return testMovie;
+   }
+
+   public void addActor(LocalDate birth) {
+      StringProperty birthDate = new SimpleStringProperty(birth.toString());
+      Actor actor = new Actor();
+      actor.setSex(sex.get());
+      actor.setName(name);
+      actor.setBirthDate(birthDate);
+      //TODO Fachkonzept einfügen!
    }
 
 }
