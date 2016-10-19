@@ -46,6 +46,7 @@ public class NewMovieController {
       boolean txtValid = false;
       try {
          this.year.set(Integer.parseInt(txtYear.getText()));
+         txtYear.setPromptText("Year");
          yearValid = true;
       } catch (NumberFormatException e) {
          txtYear.clear();
@@ -54,13 +55,15 @@ public class NewMovieController {
       try {
          if (txtTitle.getText().isEmpty() || txtGenre.getText().isEmpty())
             throw new NullPointerException();
-         viewModel.addMovie();
+         txtTitle.setPromptText("Title");
+         txtGenre.setPromptText("Genre");
          txtValid = true;
       } catch (NullPointerException e) {
-         txtTitle.setPromptText(txtTitle.getText().isEmpty() ? "Titel - Pflichtfeld" : "Title");
+         txtTitle.setPromptText(txtTitle.getText().isEmpty() ? "Title - Pflichtfeld" : "Title");
          txtGenre.setPromptText(txtGenre.getText().isEmpty() ? "Genre - Pflichtfeld" : "Genre");
       }
       if (yearValid && txtValid) {
+         viewModel.addMovie();
          removeArguments();
          MainObservable.toggleMovie();
       }
@@ -70,6 +73,12 @@ public class NewMovieController {
    public void btnCancleClicked() {
       removeArguments();
       MainObservable.toggleMovie();
+      resetPrompt();
+   }
+
+   private void resetPrompt() {
+      txtTitle.setPromptText("Title");
+      txtGenre.setPromptText("Genre");
       txtYear.setPromptText("Year");
    }
 

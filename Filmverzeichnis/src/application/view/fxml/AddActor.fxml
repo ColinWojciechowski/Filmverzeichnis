@@ -21,6 +21,6 @@
       <JFXButton fx:id="btnCancle" buttonType="RAISED" layoutX="452.0" layoutY="152.0" onMouseClicked="#btnCancleClicked" ripplerFill="WHITE" text="Cancle" />
       <JFXRadioButton fx:id="rbtnMale" layoutX="32.0" layoutY="77.0" prefHeight="17.0" prefWidth="52.0" text="Male" />
       <JFXRadioButton fx:id="rbtnFemale" layoutX="31.0" layoutY="113.0" prefHeight="17.0" prefWidth="66.0" text="Female" />
-      <JFXDatePicker fx:id="dateBirth" layoutX="359.0" layoutY="64.0" />
+      <JFXDatePicker fx:id="dateBirth" layoutX="359.0" layoutY="64.0" promptText="Geburtstag" />
    </children>
 </AnchorPane>
