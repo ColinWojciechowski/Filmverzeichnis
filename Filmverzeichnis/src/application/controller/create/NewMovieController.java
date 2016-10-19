@@ -63,7 +63,7 @@ public class NewMovieController {
          txtGenre.setPromptText(txtGenre.getText().isEmpty() ? "Genre - Pflichtfeld" : "Genre");
       }
       if (yearValid && txtValid) {
-         viewModel.addMovie();
+         viewModel.createMovie();
          removeArguments();
          MainObservable.toggleMovie();
       }

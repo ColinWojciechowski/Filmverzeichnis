@@ -5,7 +5,7 @@ import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXRadioButton;
 
 import application.controller.MainObservable;
-import application.model.viewmodel.AddActorViewModel;
+import application.model.viewmodel.ActorViewModel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -16,7 +16,7 @@ import javafx.scene.layout.AnchorPane;
 
 public class AddActorController {
 
-   AddActorViewModel viewModel;
+   ActorViewModel viewModel;
    private ObservableList<String> allMovies = FXCollections.observableArrayList();
    final ToggleGroup group = new ToggleGroup();
 
@@ -40,7 +40,7 @@ public class AddActorController {
 
       addActorPane.getStylesheets()
          .add(getClass().getResource("../../view/application.css").toExternalForm());
-      viewModel = new AddActorViewModel();
+      viewModel = new ActorViewModel();
       rbtnMale.fire();
       rbtnMale.setToggleGroup(group);
       rbtnFemale.setToggleGroup(group);
@@ -68,12 +68,12 @@ public class AddActorController {
 
    @FXML
    public void btnOkClicked() {
-
       try {
          String sex = (rbtnMale.selectedProperty().get() == true) ? "Male" : "Female";
          viewModel.getSex().set(sex);
          viewModel.getName().bind(txtName.textProperty());
-         if (txtName.getText().isEmpty() || dateBirth.getPromptText().isEmpty() || chbMovie.getSelectionModel().getSelectedItem().isEmpty())
+         if (txtName.getText().isEmpty() || dateBirth.getPromptText().isEmpty()
+            || chbMovie.getSelectionModel().getSelectedItem().isEmpty())
             throw new NullPointerException();
          viewModel.addActor(this.dateBirth.getValue());
          resetValues();
@@ -83,6 +83,5 @@ public class AddActorController {
          dateBirth.setPromptText("Geburtstag - Pflichtfeld");
          chbMovie.setPromptText("Film auswählen!");
       }
-
    }
 }

@@ -4,7 +4,7 @@ import application.model.dto.Actor;
 import application.model.dto.enums.Sex;
 import javafx.beans.property.SimpleStringProperty;
 
-public class AddMovieViewModel {
+public class MovieViewModel {
 
    public Actor getTestActor(){
       Actor testActor = new Actor();

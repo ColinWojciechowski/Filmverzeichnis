@@ -50,6 +50,15 @@ public class NewMovieViewModel {
       this.year = year;
    }
 
+
+   public void createMovie() {
+      Movie movie = new Movie();
+      movie.setName(title);
+      movie.setGenre(genre);
+      movie.setReleaseYear(year);
+      //TODO Fachkonzept einbinden
+   }
+
 }
 
 
