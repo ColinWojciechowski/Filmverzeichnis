@@ -14,4 +14,9 @@ public class MovieViewModel {
       return testActor;
    }
 
+   public void createMovie() {
+      // TODO Auto-generated method stub
+
+   }
+
 }
