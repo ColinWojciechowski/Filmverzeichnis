@@ -2,9 +2,11 @@ package application.model.viewmodel;
 
 import java.time.LocalDate;
 
+import application.model.dao.interfaces.IDao;
 import application.model.dto.Actor;
 import application.model.dto.Movie;
 import application.model.dto.enums.Sex;
+import application.model.fachkonzept.interfaces.IFachkonzept;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -16,8 +18,11 @@ public class MainViewModel {
    private ObservableList<Actor> movieActors = FXCollections.observableArrayList();
    private ObservableList<Movie> actorMovies = FXCollections.observableArrayList();
    private ObservableList<String> allMovies = FXCollections.observableArrayList();
+   private IFachkonzept fachkonzept;
+   private IDao<Actor> daoActorXml;
+   private IDao<Movie> daoMovieXml;
 
-   public MainViewModel(){
+   public MainViewModel() {
       Movie testMovie = new Movie();
       Movie testMovie2 = new Movie();
       Actor testActor = new Actor();
@@ -38,7 +43,6 @@ public class MainViewModel {
       testMovie.setGenre(new SimpleStringProperty("Comedy"));
       testMovie2.setGenre(new SimpleStringProperty("Ganster"));
 
-
       movieActors.add(testActor);
       actorMovies.add(testMovie);
       testMovie.setActors(movieActors);
@@ -50,24 +54,46 @@ public class MainViewModel {
       allMovies.add(getTestMovie().getName().get());
 
    }
-   public ObservableList<Movie> getMovieData(){
+
+   public ObservableList<Movie> getMovieData() {
       return movieData;
    }
 
-   public ObservableList<String> getAllMovies(){
+   public ObservableList<String> getAllMovies() {
       return allMovies;
    }
 
-   public ObservableList<Actor> getActorData(){
+   public ObservableList<Actor> getActorData() {
       return movieActors;
    }
 
-   public Movie getTestMovie(){
+   public Movie getTestMovie() {
       Movie testMovie = new Movie();
       testMovie.setId(4);
       testMovie.setName(new SimpleStringProperty("Sleepy Hollow"));
       testMovie.setReleaseYear(new SimpleIntegerProperty(2120));
       return testMovie;
+   }
+
+   public void setFachkonzept(IFachkonzept fachkonzept) {
+      this.fachkonzept = fachkonzept;
+   }
+
+   public void setDatenhaltung(IDao<Actor> daoActorXml, IDao<Movie> daoMovieXml) {
+      this.daoActorXml = daoActorXml;
+      this.daoMovieXml = daoMovieXml;
+   }
+
+   public IFachkonzept getFachkonzept() {
+      return fachkonzept;
+   }
+
+   public IDao<Actor> getDaoActorXml() {
+      return daoActorXml;
+   }
+
+   public IDao<Movie> getDaoMovieXml() {
+      return daoMovieXml;
    }
 
 }

@@ -103,7 +103,7 @@ public class MainController {
       toggle(movieStack, movieTopDrawer);
    }
 
-   public void toggle(JFXDrawersStack stack, JFXDrawer drawer){
+   public void toggle(JFXDrawersStack stack, JFXDrawer drawer) {
       stack.toggle(drawer);
    }
 
@@ -119,8 +119,6 @@ public class MainController {
       toggle(actorStack, actorTopDrawer);
    }
 
-
-
    public JFXDrawersStack getMovieStack() {
       return movieStack;
    }
@@ -129,11 +127,9 @@ public class MainController {
       return movieTopDrawer;
    }
 
-
    public JFXDrawer getActorTopDrawer() {
       return actorTopDrawer;
    }
-
 
    public JFXDrawersStack getActorStack() {
       return actorStack;
@@ -212,6 +208,10 @@ public class MainController {
    private void prepareDrawer(JFXDrawer drawer, Pane pane) {
       drawer.setSidePane(pane);
       drawer.setDefaultDrawerSize(400);
+   }
+
+   public MainViewModel getViewModel() {
+      return viewModel;
    }
 
 }

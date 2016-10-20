@@ -17,6 +17,18 @@ public class MainObservable {
       main.toggle(main.getActorStack(), main.getActorTopDrawer());
    }
 
+   public static void getFachkonzept(){
+      main.getViewModel().getFachkonzept();
+   }
+
+   public static void getDaoActorXml(){
+      main.getViewModel().getDaoActorXml();
+   }
+
+   public static void getDaoMovieXml(){
+      main.getViewModel().getDaoMovieXml();
+   }
+
 }
 
 
