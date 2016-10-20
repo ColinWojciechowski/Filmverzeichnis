@@ -2,45 +2,44 @@ package application.model.fachkonzept.impl;
 
 import java.util.List;
 
+import application.model.dao.impl.DaoActorXml;
+import application.model.dao.interfaces.IDao;
 import application.model.dto.Actor;
 import application.model.fachkonzept.interfaces.IFachkonzept;
 
 
 public class FachkonzeptActor implements IFachkonzept<Actor> {
 
+   IDao<Actor> actorDao = new DaoActorXml();
+
    @Override
    public void saveOrUpdate(Actor actor) {
-      // TODO Auto-generated method stub
+      actorDao.saveOrUpdate(actor);
    }
 
    @Override
    public void saveOrUpdateAll(List<Actor> actorList) {
-      // TODO Auto-generated method stub
-
+      actorDao.saveOrUpdateAll(actorList);
    }
 
    @Override
    public void delete(Actor actor) {
-      // TODO Auto-generated method stub
-
+      actorDao.delete(actor);
    }
 
    @Override
    public void deleteAll(List<Actor> actorList) {
-      // TODO Auto-generated method stub
-
+      actorDao.deleteAll(actorList);
    }
 
    @Override
    public List<Actor> getAll() {
-      // TODO Auto-generated method stub
-      return null;
+      return actorDao.getAll();
    }
 
    @Override
    public List<Actor> getAllWithoutRelations() {
-      // TODO Auto-generated method stub
-      return null;
+      return actorDao.getAllWithoutRelations();
    }
 
 

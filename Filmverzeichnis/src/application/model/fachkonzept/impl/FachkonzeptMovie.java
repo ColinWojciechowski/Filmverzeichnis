@@ -2,45 +2,46 @@ package application.model.fachkonzept.impl;
 
 import java.util.List;
 
+import application.model.dao.impl.DaoMovieXml;
+import application.model.dao.interfaces.IDao;
 import application.model.dto.Movie;
 import application.model.fachkonzept.interfaces.IFachkonzept;
 
-public class FachkonzeptMovie implements IFachkonzept<Movie>{
+public class FachkonzeptMovie implements IFachkonzept<Movie> {
+
+   IDao<Movie> movieDao = new DaoMovieXml();
 
    @Override
    public void saveOrUpdate(Movie movie) {
-      // TODO Auto-generated method stub
+      movieDao.saveOrUpdate(movie);
    }
 
    @Override
    public void saveOrUpdateAll(List<Movie> movieList) {
-      // TODO Auto-generated method stub
+      movieDao.saveOrUpdateAll(movieList);
    }
 
    @Override
    public void delete(Movie movie) {
-      // TODO Auto-generated method stub
+      movieDao.delete(movie);
    }
 
    @Override
    public void deleteAll(List<Movie> movieList) {
-      // TODO Auto-generated method stub
+      movieDao.deleteAll(movieList);
    }
 
    @Override
    public List<Movie> getAll() {
-      // TODO Auto-generated method stub
-      return null;
+      return movieDao.getAll();
    }
 
    @Override
    public List<Movie> getAllWithoutRelations() {
-      // TODO Auto-generated method stub
-      return null;
+      return movieDao.getAllWithoutRelations();
    }
 
 }
-
 
 /**
  * $ID: FachkonzeptMovie.java,v $
