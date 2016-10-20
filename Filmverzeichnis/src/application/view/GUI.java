@@ -13,7 +13,8 @@ import javafx.stage.Stage;
 
 public class GUI extends Application {
 
-   private IFachkonzept fachkonzept;
+   private IFachkonzept<Actor> fachkonzeptActor;
+   private IFachkonzept<Movie> fachkonzeptMovie;
    private IDao<Actor> daoActorXml;
    private IDao<Movie> daoMovieXml;
 
@@ -25,7 +26,7 @@ public class GUI extends Application {
          MainController mainController = new MainController();
          loader.setController(mainController);
          Pane root = (Pane) loader.load();
-         mainController.getViewModel().setFachkonzept(fachkonzept);
+         mainController.getViewModel().setFachkonzept(fachkonzeptActor, fachkonzeptMovie);
          mainController.getViewModel().setDatenhaltung(daoActorXml, daoMovieXml);
          Scene scene = new Scene(root);
          primaryStage.setTitle("Filmverzeichnis");
@@ -41,8 +42,9 @@ public class GUI extends Application {
       launch();
    }
 
-   public void setFachkonzept(IFachkonzept fachkonzept) {
-      this.fachkonzept = fachkonzept;
+   public void setFachkonzept(IFachkonzept<Actor> fachkonzeptActor, IFachkonzept<Movie> fachkonzeptMovie) {
+      this.fachkonzeptActor = fachkonzeptActor;
+      this.fachkonzeptMovie = fachkonzeptMovie;
    }
 
    public void setDatenhaltung(IDao<Actor> daoActorXml, IDao<Movie> daoMovieXml) {

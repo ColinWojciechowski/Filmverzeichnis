@@ -18,7 +18,8 @@ public class MainViewModel {
    private ObservableList<Actor> movieActors = FXCollections.observableArrayList();
    private ObservableList<Movie> actorMovies = FXCollections.observableArrayList();
    private ObservableList<String> allMovies = FXCollections.observableArrayList();
-   private IFachkonzept fachkonzept;
+   private IFachkonzept<Actor> fachkonzeptActor;
+   private IFachkonzept<Movie> fachkonzeptMovie;
    private IDao<Actor> daoActorXml;
    private IDao<Movie> daoMovieXml;
 
@@ -75,8 +76,9 @@ public class MainViewModel {
       return testMovie;
    }
 
-   public void setFachkonzept(IFachkonzept fachkonzept) {
-      this.fachkonzept = fachkonzept;
+   public void setFachkonzept(IFachkonzept<Actor> fachkonzeptActor, IFachkonzept<Movie> fachkonzeptMovie) {
+      this.fachkonzeptActor = fachkonzeptActor;
+      this.fachkonzeptMovie = fachkonzeptMovie;
    }
 
    public void setDatenhaltung(IDao<Actor> daoActorXml, IDao<Movie> daoMovieXml) {
@@ -84,8 +86,13 @@ public class MainViewModel {
       this.daoMovieXml = daoMovieXml;
    }
 
-   public IFachkonzept getFachkonzept() {
-      return fachkonzept;
+   public IFachkonzept<Actor> getFachkonzeptActor() {
+      return fachkonzeptActor;
+   }
+
+
+   public IFachkonzept<Movie> getFachkonzeptMovie() {
+      return fachkonzeptMovie;
    }
 
    public IDao<Actor> getDaoActorXml() {
