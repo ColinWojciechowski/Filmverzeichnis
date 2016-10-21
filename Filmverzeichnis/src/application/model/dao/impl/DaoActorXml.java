@@ -124,4 +124,15 @@ public class DaoActorXml extends AbstractDaoXml<Actor, EntityActor, Movie> {
 	protected List<EntityActor> loadEntityList() throws Exception {
 		return DaoXmlService.loadActors();
 	}
+
+	@Override
+	protected void deleteDtoWithSameId(Actor dto) {
+		List<Actor> duplicatedActors = new ArrayList<Actor>();
+		for(Actor currentActor : dtoList){
+			if(currentActor.getId() == dto.getId()){
+				duplicatedActors.add(currentActor);
+			}
+		}
+		dtoList.removeAll(duplicatedActors);		
+	}
 }

@@ -22,10 +22,7 @@ import application.model.entity.EntityMovie;
 
 public class DaoXmlService {
 	public static void persistMovies(List<EntityMovie> movies) throws Exception {
-		System.out.println("hey");
 		for(EntityMovie currentMovie : movies){
-			System.out.println("hey2");
-			System.out.println(currentMovie.getName());
 		}
 		
 		XMLEncoder encoder = new XMLEncoder(
@@ -57,9 +54,14 @@ public class DaoXmlService {
 	public static List<EntityActor> loadActors() throws Exception {
 		checkAndCreateFiles(Constants.XML_ACTOR_FILENAME);
 		XMLDecoder decoder = new XMLDecoder(new BufferedInputStream(new FileInputStream(Constants.XML_ACTOR_FILENAME)));
-		List<EntityActor> movies = (List<EntityActor>) decoder.readObject();
+		List<EntityActor> actors;
+		try {
+			actors = (List<EntityActor>) decoder.readObject();
+		} catch (ArrayIndexOutOfBoundsException e){
+			actors = new ArrayList<>();
+		}
 		decoder.close();
-		return movies;
+		return actors;
 	}
 
 	private static void checkAndCreateFiles(String path) throws FileNotFoundException {

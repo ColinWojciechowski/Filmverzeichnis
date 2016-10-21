@@ -28,6 +28,7 @@ public class DaoMovieXml extends AbstractDaoXml<Movie, EntityMovie, Actor> {
 	@Override
     public void saveOrUpdate(Movie movie) {
     	dtoList = getAll();
+    	deleteDtoWithSameId(movie);
     	dtoList.add(movie);
     	saveOrUpdateAll(dtoList);
     }
@@ -143,6 +144,16 @@ public class DaoMovieXml extends AbstractDaoXml<Movie, EntityMovie, Actor> {
 	@Override
 	protected List<EntityMovie> loadEntityList() throws Exception {
 		return DaoXmlService.loadMovies();
-	}  
-   
+	}
+
+	@Override
+	protected void deleteDtoWithSameId(Movie dto) {
+		List<Movie> duplicatedMovies = new ArrayList<Movie>();
+		for(Movie currentMovie : dtoList){
+			if(currentMovie.getId() == dto.getId()){
+				duplicatedMovies.add(currentMovie);
+			}
+		}
+		dtoList.removeAll(duplicatedMovies);
+	}     
 }
