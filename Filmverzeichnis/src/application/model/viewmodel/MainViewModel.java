@@ -2,10 +2,14 @@ package application.model.viewmodel;
 
 import java.time.LocalDate;
 
+import application.model.dao.impl.DaoActorXml;
+import application.model.dao.impl.DaoMovieXml;
 import application.model.dao.interfaces.IDao;
 import application.model.dto.Actor;
 import application.model.dto.Movie;
 import application.model.dto.enums.Sex;
+import application.model.fachkonzept.impl.FachkonzeptActor;
+import application.model.fachkonzept.impl.FachkonzeptMovie;
 import application.model.fachkonzept.interfaces.IFachkonzept;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -24,6 +28,8 @@ public class MainViewModel {
    private IDao<Movie> daoMovieXml;
 
    public MainViewModel() {
+      setFachkonzept(new FachkonzeptActor(), new FachkonzeptMovie());
+      setDatenhaltung(new DaoActorXml(), new DaoMovieXml());
       Movie testMovie = new Movie();
       Movie testMovie2 = new Movie();
       Actor testActor = new Actor();
