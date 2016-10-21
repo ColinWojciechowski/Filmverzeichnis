@@ -13,10 +13,6 @@ import application.model.entity.EntityActor;
  */
 
 public class DaoActorXml extends AbstractDaoXml<Actor, EntityActor, Movie> {
-	private List<Actor> dtoList;
-	private List<EntityActor> entityList;
-	private AbstractDaoXml dao;
-
 	public DaoActorXml() {
 		this.dtoList = new ArrayList<Actor>();
 		this.entityList = new ArrayList<EntityActor>();
