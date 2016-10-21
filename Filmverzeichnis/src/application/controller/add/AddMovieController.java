@@ -70,7 +70,7 @@ public class AddMovieController {
          chbActor.setPromptText("Film auswählen!");
       }
       if (yearValid && txtValid) {
-         viewModel.createMovie();
+         viewModel.addMovie();
          resetValues();
          MainObservable.refreshMainView();
          MainObservable.toggleActor();

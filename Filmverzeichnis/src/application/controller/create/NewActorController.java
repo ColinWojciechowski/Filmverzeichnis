@@ -56,7 +56,6 @@ public class NewActorController {
          txtName.setPromptText(txtName.getText().isEmpty() ? "Name - Pflichtfeld" : "Name");
          dateBirth.setPromptText("Geburtstag - Pflichtfeld");
       }
-      // TODO Fachkonzept 1 anbinden
    }
 
    @FXML

@@ -16,7 +16,10 @@ public class MovieViewModel {
 
    public void createMovie() {
       // TODO Auto-generated method stub
+   }
 
+   public void addMovie() {
+      // TODO Auto-generated method stub
    }
 
 }

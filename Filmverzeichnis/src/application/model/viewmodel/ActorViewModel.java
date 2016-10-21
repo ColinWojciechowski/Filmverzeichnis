@@ -2,6 +2,7 @@ package application.model.viewmodel;
 
 import java.time.LocalDate;
 
+import application.controller.MainObservable;
 import application.model.dto.Actor;
 import application.model.dto.Movie;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -60,6 +61,7 @@ public class ActorViewModel {
       actor.setSex(sex.get());
       actor.setName(name);
       actor.setBirthDate(birthDate);
+      MainObservable.getDaoActorXml().saveOrUpdate(actor);
       // TODO Fachkonzept einbinden
    }
 
@@ -69,7 +71,7 @@ public class ActorViewModel {
       actor.setSex(sex.get());
       actor.setName(name);
       actor.setBirthDate(birthDate);
-      // TODO Fachkonzept einbinden
+      // TODO MainObservable.getDaoActorXml().saveOrUpdate(actor);
    }
 
 }

@@ -56,7 +56,7 @@ public class NewMovieViewModel {
       movie.setName(title);
       movie.setGenre(genre);
       movie.setReleaseYear(year);
-      //TODO Fachkonzept einbinden
+      //TODO MainObservable.getDaoMovieXml().saveOrUpdate(movie);
    }
 
 }
