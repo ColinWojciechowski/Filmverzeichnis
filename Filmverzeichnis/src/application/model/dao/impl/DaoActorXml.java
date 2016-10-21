@@ -3,7 +3,7 @@ package application.model.dao.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import application.model.dao.interfaces.IDao;
+import application.model.dao.interfaces.AbstractDaoXml;
 import application.model.dto.Actor;
 import application.model.dto.Movie;
 import application.model.entity.EntityActor;
@@ -12,150 +12,120 @@ import application.model.entity.EntityActor;
  * Created by Kay Gerlitzki on 05.10.2016.
  */
 
-public class DaoActorXml implements IDao<Actor> {
-   private List<Actor> dtoList;
-   private List<EntityActor> entityList;
-   private IDao<Movie> daoMovie;
+public class DaoActorXml extends AbstractDaoXml<Actor, EntityActor, Movie> {
+	private List<Actor> dtoList;
+	private List<EntityActor> entityList;
+	private AbstractDaoXml dao;
 
-   public DaoActorXml() {
-      this.dtoList = new ArrayList<Actor>();
-      this.entityList = new ArrayList<EntityActor>();
-      this.daoMovie = new DaoMovieXml(this);
-   }
+	public DaoActorXml() {
+		this.dtoList = new ArrayList<Actor>();
+		this.entityList = new ArrayList<EntityActor>();
+		this.dao = new DaoMovieXml(this);
+	}
 
-    public DaoActorXml(DaoMovieXml daoMovieXml) {
-       this.dtoList = new ArrayList<Actor>();
-      this.entityList = new ArrayList<EntityActor>();
-      this.daoMovie = daoMovieXml;
-   }
+	public DaoActorXml(DaoMovieXml daoMovieXml) {
+		this.dtoList = new ArrayList<Actor>();
+		this.entityList = new ArrayList<EntityActor>();
+		this.dao = daoMovieXml;
+	}
 
-   @Override
-    public void saveOrUpdate(Actor actor) {
-       dtoList = getAll();
-       dtoList.add(actor);
-       saveOrUpdateAll(dtoList);
-    }
+	@Override
+	public void saveOrUpdate(Actor actor) {
+		dtoList = getAll();
+		dtoList.add(actor);
+		saveOrUpdateAll(dtoList);
+	}
 
-   private void addNewEntityActor(Actor actor){
-       EntityActor newEntity = createNewEntity(actor);
-       entityList.add(newEntity);
-    }
+	@Override
+	public void saveOrUpdateAll(List<Actor> actorList) {
+		entityList.clear();
+		dtoList = actorList;
 
-   private EntityActor createNewEntity(Actor actor) {
-      EntityActor newEntity = new EntityActor();
-       newEntity.setId(actor.getId());
-       newEntity.setName(actor.getName().get());
-       newEntity.setBirthDate(actor.getBirthDate().get());
-       newEntity.setSex(actor.getSex().get());
-       newEntity.setMovieIds(new ArrayList<Integer>());
-       for (Movie movie : actor.getMovies()) {
-          newEntity.getMovieIds().add(new Integer(movie.getId()));
-      }
-       return newEntity;
-   }
+		for (Actor actor : actorList) {
+			addNewEntity(actor);
+		}
 
-   private void deleteOldActor(Actor actor) {
-      EntityActor oldEntity = null;
-      for(EntityActor entity : entityList){
-         if(entity.getId() == actor.getId()){
-            oldEntity = entity;
-         }
-      }
-      entityList.remove(oldEntity);
-      dtoList.remove(actor);
-   }
+		try {
+			DaoXmlService.persistActors(entityList);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
-    @Override
-    public void saveOrUpdateAll(List<Actor> actorList) {
-       entityList.clear();
-       dtoList = actorList;
+	@Override
+	public void delete(Actor actor) {
+		if (dtoList.contains(actor)) {
+			deleteDto(actor);
+		}
 
-       for(Actor actor : actorList){
-          addNewEntityActor(actor);
-       }
+		try {
+			DaoXmlService.persistActors(entityList);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
-       try {
-         DaoXmlService.persistActors(entityList);
-      } catch (Exception e) {
-         e.printStackTrace();
-      }
-    }
+	@Override
+	public void deleteAll(List<Actor> dtoList) {
+		dtoList.clear();
+		entityList.clear();
 
-   @Override
-    public void delete(Actor actor) {
-       if(dtoList.contains(actor)){
-          deleteOldActor(actor);
-       }
+		try {
+			DaoXmlService.persistActors(entityList);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
-       try {
-         DaoXmlService.persistActors(entityList);
-      } catch (Exception e) {
-         e.printStackTrace();
-      }
-    }
+	@Override
+	public List<Actor> getAll() {
+		dtoList.clear();
+		try {
+			entityList = DaoXmlService.loadActors();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
-    @Override
-    public void deleteAll(List<Actor> dtoList) {
-       dtoList.clear();
-       entityList.clear();
+		if (entityList != null) {
+			fillDtoList();
+		} else {
+			return new ArrayList<Actor>();
+		}
 
-       try {
-         DaoXmlService.persistActors(entityList);
-      } catch (Exception e) {
-         e.printStackTrace();
-      }
-    }
+		return dtoList;
+	}
 
-    @Override
-    public List<Actor> getAll() {
-       dtoList.clear();
-       try {
-         entityList = DaoXmlService.loadActors();
-      } catch (Exception e) {
-         e.printStackTrace();
-      }
+	@Override
+	protected Actor convertEntityToDto(EntityActor entity, List<Movie> otherDtoList) {
+		return EntityToDtoConverterActor.convert(entity, otherDtoList);
+	}
 
-       if(entityList != null){
-          fillDtoList();
-       } else {
-          return new ArrayList<Actor>();
-       }
+	@Override
+	protected Actor convertEntityToDto(EntityActor entity) {
+		return EntityToDtoConverterActor.convert(entity);
+	}
 
-        return dtoList;
-    }
+	@Override
+	protected EntityActor createNewEntity(Actor dto) {
+		EntityActor newEntity = new EntityActor();
+		newEntity.setId(dto.getId());
+		newEntity.setName(dto.getName().get());
+		newEntity.setBirthDate(dto.getBirthDate().get());
+		newEntity.setSex(dto.getSex().get());
+		newEntity.setMovieIds(new ArrayList<Integer>());
+		for (Movie movie : dto.getMovies()) {
+			newEntity.getMovieIds().add(new Integer(movie.getId()));
+		}
+		return newEntity;
+	}
 
-    private void fillDtoList(){
-      Actor currentActor;
-      for(EntityActor entity : entityList){
-         List<Movie> movies = daoMovie.getAllWithoutRelations();
-         currentActor = EntityConverter.getActor(entity, movies);
-         dtoList.add(currentActor);
-      }
-    }
+	@Override
+	protected boolean isEntityIdEqualDtoId(Actor dto, EntityActor entity) {
+		return dto.getId() == entity.getId();
+	}
 
-   @Override
-   public List<Actor> getAllWithoutRelations() {
-       dtoList.clear();
-       try {
-         entityList = DaoXmlService.loadActors();
-      } catch (Exception e) {
-         e.printStackTrace();
-      }
-
-       if(entityList != null){
-          fillDtoListWithoutRelations();
-       } else {
-          return new ArrayList<Actor>();
-       }
-
-        return dtoList;
-   }
-
-    private void fillDtoListWithoutRelations(){
-      Actor currentActor;
-      for(EntityActor entity : entityList){
-         currentActor = EntityConverter.getActor(entity);
-         dtoList.add(currentActor);
-      }
-    }
+	@Override
+	protected List<EntityActor> loadEntityList() throws Exception {
+		return DaoXmlService.loadActors();
+	}
 }
