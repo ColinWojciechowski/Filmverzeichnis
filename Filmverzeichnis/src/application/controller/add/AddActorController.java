@@ -77,6 +77,7 @@ public class AddActorController {
             throw new NullPointerException();
          viewModel.addActor(this.dateBirth.getValue());
          resetValues();
+         MainObservable.refreshMainView();
          MainObservable.toggleMovie();
       } catch (NullPointerException e) {
          txtName.setPromptText((txtName.getText().isEmpty()) ? "Name - Pflichtfeld" : "Name");

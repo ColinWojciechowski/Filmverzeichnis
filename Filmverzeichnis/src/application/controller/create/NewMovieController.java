@@ -65,6 +65,7 @@ public class NewMovieController {
       if (yearValid && txtValid) {
          viewModel.createMovie();
          removeArguments();
+         MainObservable.refreshMainView();
          MainObservable.toggleMovie();
       }
    }

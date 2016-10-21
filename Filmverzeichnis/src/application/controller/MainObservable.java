@@ -37,6 +37,14 @@ public class MainObservable {
       return main.getViewModel().getDaoMovieXml();
    }
 
+   public static void refreshMainView(){
+      System.out.println("Updating view!");
+      main.getMovieTable().refresh();
+      main.getActorTable().refresh();
+      main.getMovieActorsTable().refresh();
+      main.getActorMoviesTable().refresh();
+   }
+
 }
 
 /**

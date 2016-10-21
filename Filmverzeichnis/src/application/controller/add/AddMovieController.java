@@ -72,6 +72,7 @@ public class AddMovieController {
       if (yearValid && txtValid) {
          viewModel.createMovie();
          resetValues();
+         MainObservable.refreshMainView();
          MainObservable.toggleActor();
       }
       // TODO Fachkonzept 1 anbinden

@@ -214,4 +214,24 @@ public class MainController {
       return viewModel;
    }
 
+
+   public TableView<Movie> getMovieTable() {
+      return movieTable;
+   }
+
+
+   public TableView<Actor> getActorTable() {
+      return actorTable;
+   }
+
+
+   public TableView<Actor> getMovieActorsTable() {
+      return movieActorsTable;
+   }
+
+
+   public TableView<Movie> getActorMoviesTable() {
+      return actorMoviesTable;
+   }
+
 }
