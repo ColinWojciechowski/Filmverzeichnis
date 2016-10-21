@@ -1,5 +1,6 @@
 package application.model.fachkonzept.impl;
 
+import java.util.Collections;
 import java.util.List;
 
 import application.model.dao.impl.DaoActorXml;
@@ -34,11 +35,13 @@ public class FachkonzeptActor implements IFachkonzept<Actor> {
 
    @Override
    public List<Actor> getAll() {
+      Collections.sort(actorDao.getAll());
       return actorDao.getAll();
    }
 
    @Override
    public List<Actor> getAllWithoutRelations() {
+      Collections.sort(actorDao.getAllWithoutRelations());
       return actorDao.getAllWithoutRelations();
    }
 

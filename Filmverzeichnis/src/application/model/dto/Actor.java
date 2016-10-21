@@ -10,7 +10,7 @@ import javafx.beans.property.StringProperty;
  * Created by Kay Gerlitzki on 05.10.2016.
  */
 
-public class Actor {
+public class Actor implements Comparable<Actor>{
     private int id;
     private StringProperty name = new SimpleStringProperty();
     private StringProperty birthDate = new SimpleStringProperty();
@@ -61,5 +61,10 @@ public class Actor {
 
    public void setMovies(List<Movie> movies) {
       this.movies = movies;
+   }
+
+   @Override
+   public int compareTo(Actor actor) {
+      return this.name.get().compareTo(actor.getName().get());
    }
 }

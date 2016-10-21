@@ -1,5 +1,6 @@
 package application.model.fachkonzept.impl;
 
+import java.util.Collections;
 import java.util.List;
 
 import application.model.dao.impl.DaoMovieXml;
@@ -33,11 +34,13 @@ public class FachkonzeptMovie implements IFachkonzept<Movie> {
 
    @Override
    public List<Movie> getAll() {
+      Collections.sort(movieDao.getAll());
       return movieDao.getAll();
    }
 
    @Override
    public List<Movie> getAllWithoutRelations() {
+      Collections.sort(movieDao.getAllWithoutRelations());
       return movieDao.getAllWithoutRelations();
    }
 

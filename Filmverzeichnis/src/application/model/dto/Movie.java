@@ -11,50 +11,55 @@ import javafx.beans.property.StringProperty;
  * Created by Kay Gerlitzki on 05.10.2016.
  */
 
-public class Movie {
+public class Movie implements Comparable<Movie>{
     private int id;
     private StringProperty name = new SimpleStringProperty();
     private IntegerProperty releaseYear = new SimpleIntegerProperty();
     private StringProperty genre = new SimpleStringProperty();
     private List<Actor> actors;
-        
+
     public int getId() {
         return id;
     }
-    
-    public IntegerProperty getReleaseYear() {
-		return releaseYear;
-	}
 
-	public void setReleaseYear(IntegerProperty releaseYear) {
-		this.releaseYear = releaseYear;
-	}
+    public IntegerProperty getReleaseYear() {
+      return releaseYear;
+   }
+
+   public void setReleaseYear(IntegerProperty releaseYear) {
+      this.releaseYear = releaseYear;
+   }
 
     public StringProperty getName() {
-		return name;
-	}
+      return name;
+   }
 
-	public void setName(StringProperty name) {
-		this.name = name;
-	}
+   public void setName(StringProperty name) {
+      this.name = name;
+   }
 
-	public void setId(int id) {
+   public void setId(int id) {
         this.id = id;
     }
 
-	public List<Actor> getActors() {
-		return actors;
-	}
+   public List<Actor> getActors() {
+      return actors;
+   }
 
-	public void setActors(List<Actor> actors) {
-		this.actors = actors;
-	}
+   public void setActors(List<Actor> actors) {
+      this.actors = actors;
+   }
 
-	public StringProperty getGenre() {
-		return genre;
-	}
+   public StringProperty getGenre() {
+      return genre;
+   }
 
-	public void setGenre(StringProperty genre) {
-		this.genre = genre;
-	}    
+   public void setGenre(StringProperty genre) {
+      this.genre = genre;
+   }
+
+   @Override
+   public int compareTo(Movie movie) {
+      return this.name.get().compareTo(movie.name.get());
+   }
 }
