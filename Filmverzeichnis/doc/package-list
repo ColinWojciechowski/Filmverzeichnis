@@ -8,5 +8,7 @@ application.model.dao.interfaces
 application.model.dto
 application.model.dto.enums
 application.model.entity
+application.model.fachkonzept.impl
+application.model.fachkonzept.interfaces
 application.model.viewmodel
 application.view
