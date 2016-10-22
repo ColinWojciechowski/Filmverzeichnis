@@ -37,13 +37,6 @@ public class FachkonzeptMovie implements IFachkonzept<Movie> {
       Collections.sort(movieDao.getAll());
       return movieDao.getAll();
    }
-
-   @Override
-   public List<Movie> getAllWithoutRelations() {
-      Collections.sort(movieDao.getAllWithoutRelations());
-      return movieDao.getAllWithoutRelations();
-   }
-
 }
 
 /**

@@ -9,8 +9,6 @@ public interface IFachkonzept<T> {
    void delete(T Dto);
    void deleteAll(List<T> dtoList);
    List<T> getAll();
-   List<T> getAllWithoutRelations();
-
 }
 
 

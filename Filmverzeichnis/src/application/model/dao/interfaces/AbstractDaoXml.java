@@ -3,12 +3,12 @@ package application.model.dao.interfaces;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class AbstractDaoXml <Dto, Entity, OtherDto> implements IDao<Dto>{
+public abstract class AbstractDaoXml <Dto, Entity, ReferencedDto> implements IDao<Dto>{
 	protected List<Dto> dtoList;
 	protected List<Entity> entityList;
 	public AbstractDaoXml dao;
 	
-	protected abstract Dto convertEntityToDto(Entity entity, List<OtherDto> otherDtoList);
+	protected abstract Dto convertEntityToDto(Entity entity, List<ReferencedDto> referencedDtoList);
 	
 	protected abstract Dto convertEntityToDto(Entity entity);
 
@@ -17,6 +17,8 @@ public abstract class AbstractDaoXml <Dto, Entity, OtherDto> implements IDao<Dto
 	protected abstract boolean isEntityIdEqualDtoId(Dto dto, Entity entity);
 	
 	protected abstract List<Entity> loadEntityList() throws Exception;
+	
+	protected abstract void deleteDtoWithSameId(Dto dto);
 	
 	public List<Dto> getAllWithoutRelations() {
     	dtoList.clear();
@@ -54,7 +56,7 @@ public abstract class AbstractDaoXml <Dto, Entity, OtherDto> implements IDao<Dto
 	protected void fillDtoList() {
 		Dto currentDto;
 		for(Entity entity : entityList){
-			List<OtherDto> otherDtos = dao.getAllWithoutRelations();
+			List<ReferencedDto> otherDtos = dao.getAllWithoutRelations();
 			currentDto = convertEntityToDto(entity, otherDtos);
 			dtoList.add(currentDto);
 		}

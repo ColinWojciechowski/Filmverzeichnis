@@ -38,14 +38,6 @@ public class FachkonzeptActor implements IFachkonzept<Actor> {
       Collections.sort(actorDao.getAll());
       return actorDao.getAll();
    }
-
-   @Override
-   public List<Actor> getAllWithoutRelations() {
-      Collections.sort(actorDao.getAllWithoutRelations());
-      return actorDao.getAllWithoutRelations();
-   }
-
-
 }
 
 
