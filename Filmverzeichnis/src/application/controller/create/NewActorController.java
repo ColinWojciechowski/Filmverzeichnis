@@ -5,6 +5,8 @@ import com.jfoenix.controls.JFXRadioButton;
 
 import application.controller.MainObservable;
 import application.model.viewmodel.ActorViewModel;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -15,6 +17,8 @@ public class NewActorController {
 
    final ToggleGroup group = new ToggleGroup();
    ActorViewModel viewModel = new ActorViewModel();
+   StringProperty sex = new SimpleStringProperty();
+   StringProperty name = new SimpleStringProperty();
 
    @FXML
    Button btnAdd;
@@ -43,15 +47,17 @@ public class NewActorController {
    @FXML
    public void btnOkClicked() {
       try {
-         String sex = (rbtnMale.selectedProperty().get() == true) ? "Male" : "Female";
-         viewModel.getSex().set(sex);
-         viewModel.getName().bind(txtName.textProperty());
          if (txtName.getText().isEmpty() || dateBirth.getPromptText().isEmpty())
             throw new NullPointerException();
-        viewModel.createActor(this.dateBirth.getValue());
-        resetValues();
-        MainObservable.toggleActor();
-        MainObservable.refreshMainView();
+         String sex = (rbtnMale.selectedProperty().get() == true) ? "Male" : "Female";
+         this.sex.set(sex);
+         this.name.set(txtName.getText());
+         viewModel.setSex(this.sex);
+         viewModel.setName(name);
+         viewModel.createActor(this.dateBirth.getValue());
+         resetValues();
+         MainObservable.toggleActor();
+         MainObservable.refreshMainView();
       } catch (NullPointerException e) {
          txtName.setPromptText(txtName.getText().isEmpty() ? "Name - Pflichtfeld" : "Name");
          dateBirth.setPromptText("Geburtstag - Pflichtfeld");

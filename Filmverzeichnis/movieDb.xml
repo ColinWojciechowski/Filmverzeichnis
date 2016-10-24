@@ -7,13 +7,13 @@
      <object class="java.util.ArrayList"/>
     </void>
     <void property="id">
-     <int>14</int>
+     <int>2</int>
     </void>
     <void property="name">
-     <string>s</string>
+     <string>Scary Movie</string>
     </void>
     <void property="releaseYear">
-     <int>1</int>
+     <int>2000</int>
     </void>
    </object>
   </void>
@@ -23,58 +23,13 @@
      <object class="java.util.ArrayList"/>
     </void>
     <void property="id">
-     <int>55</int>
+     <int>3</int>
     </void>
     <void property="name">
-     <string>Bernd Bremse reist gern</string>
+     <string>Batman hält die Welt in Atem</string>
     </void>
     <void property="releaseYear">
-     <int>2005</int>
-    </void>
-   </object>
-  </void>
-  <void method="add">
-   <object class="application.model.entity.EntityMovie">
-    <void property="actorIds">
-     <object class="java.util.ArrayList"/>
-    </void>
-    <void property="name">
-     <string>bbb</string>
-    </void>
-    <void property="releaseYear">
-     <int>1212</int>
-    </void>
-   </object>
-  </void>
-  <void method="add">
-   <object class="application.model.entity.EntityMovie">
-    <void property="actorIds">
-     <object class="java.util.ArrayList"/>
-    </void>
-    <void property="id">
-     <int>5</int>
-    </void>
-    <void property="name">
-     <string>ADS</string>
-    </void>
-    <void property="releaseYear">
-     <int>2121</int>
-    </void>
-   </object>
-  </void>
-  <void method="add">
-   <object class="application.model.entity.EntityMovie">
-    <void property="actorIds">
-     <object class="java.util.ArrayList"/>
-    </void>
-    <void property="id">
-     <int>6</int>
-    </void>
-    <void property="name">
-     <string>CAC</string>
-    </void>
-    <void property="releaseYear">
-     <int>12</int>
+     <int>1966</int>
     </void>
    </object>
   </void>
@@ -87,10 +42,68 @@
      <int>4</int>
     </void>
     <void property="name">
-     <string>GameBoy</string>
+     <string>Master of the Universe</string>
     </void>
     <void property="releaseYear">
-     <int>12</int>
+     <int>1987</int>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="application.model.entity.EntityMovie">
+    <void property="actorIds">
+     <object class="java.util.ArrayList"/>
+    </void>
+    <void property="id">
+     <int>5</int>
+    </void>
+    <void property="name">
+     <string>Die Glücksbärchis im Abenteuerland</string>
+    </void>
+    <void property="releaseYear">
+     <int>1986</int>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="application.model.entity.EntityMovie">
+    <void property="actorIds">
+     <object class="java.util.ArrayList"/>
+    </void>
+    <void property="genre">
+     <string>Fantasy</string>
+    </void>
+    <void property="id">
+     <int>6</int>
+    </void>
+    <void property="name">
+     <string>Sharknado</string>
+    </void>
+    <void property="releaseYear">
+     <int>2013</int>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="application.model.entity.EntityMovie">
+    <void property="actorIds">
+     <object class="java.util.ArrayList">
+      <void method="add">
+       <int>0</int>
+      </void>
+      <void method="add">
+       <int>0</int>
+      </void>
+     </object>
+    </void>
+    <void property="id">
+     <int>1</int>
+    </void>
+    <void property="name">
+     <string>Stirb langsam</string>
+    </void>
+    <void property="releaseYear">
+     <int>1988</int>
     </void>
    </object>
   </void>

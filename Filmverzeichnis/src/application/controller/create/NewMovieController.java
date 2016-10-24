@@ -3,7 +3,7 @@ package application.controller.create;
 import com.jfoenix.controls.JFXTextField;
 
 import application.controller.MainObservable;
-import application.model.viewmodel.NewMovieViewModel;
+import application.model.viewmodel.MovieViewModel;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -14,7 +14,7 @@ import javafx.scene.layout.AnchorPane;
 
 public class NewMovieController {
 
-   NewMovieViewModel viewModel = new NewMovieViewModel();
+   MovieViewModel viewModel = new MovieViewModel();
    StringProperty name = new SimpleStringProperty();
    StringProperty genre = new SimpleStringProperty();
    IntegerProperty year = new SimpleIntegerProperty();

@@ -139,9 +139,6 @@ public class MainController {
       movieName.setCellValueFactory(cellData -> cellData.getValue().getName());
       movieYear.setCellValueFactory(cellData -> cellData.getValue().getReleaseYear());
       movieGenre.setCellValueFactory(cellData -> cellData.getValue().getGenre());
-      for (Movie rowCounter : movieTable.getItems()) {
-         System.out.println(rowCounter.getId());
-      }
 
       actorTable.setItems(FXCollections.observableList(viewModel.getDaoActorXml().getAll()));
       actorName.setCellValueFactory(cellData -> cellData.getValue().getName());

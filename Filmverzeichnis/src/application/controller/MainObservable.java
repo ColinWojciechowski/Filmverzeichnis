@@ -44,11 +44,15 @@ public class MainObservable {
       main.getActorMoviesTable().refresh();
    }
 
-   public static int getId() {
+   public static int getMovieId() {
       if (main.getMovieTable().getSelectionModel().getSelectedItem() == null)
          return main.getMovieTable().getItems().size() + 1;
       else
          return main.getMovieTable().getSelectionModel().getSelectedItem().getId();
+   }
+
+   public static Movie getSelectedMovie(){
+      return main.getMovieTable().getSelectionModel().getSelectedItem();
    }
 
 }

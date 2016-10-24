@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 import application.controller.MainObservable;
 import application.model.dto.Actor;
-import application.model.dto.Movie;
+import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -15,8 +15,10 @@ import javafx.beans.property.StringProperty;
  */
 public class ActorViewModel {
 
+   IntegerProperty id = new SimpleIntegerProperty();
    StringProperty sex = new SimpleStringProperty();
    StringProperty name = new SimpleStringProperty();
+   StringProperty birthDate = new SimpleStringProperty();
 
    public StringProperty getSex() {
       return sex;
@@ -34,19 +36,14 @@ public class ActorViewModel {
       this.name = name;
    }
 
-   /**
-    * Erstellen eines Test-Films
-    *
-    * @return Ein Film, der zu Testzwecken erzeugt wurde
-    * @see Movie
-    * @since 1.0
-    */
-   public Movie getTestMovie() {
-      Movie testMovie = new Movie();
-      testMovie.setId(4);
-      testMovie.setName(new SimpleStringProperty("Sleepy Hollow"));
-      testMovie.setReleaseYear(new SimpleIntegerProperty(2120));
-      return testMovie;
+   public void createActor(LocalDate birth) {
+      birthDate.set(birth.toString());
+      Actor actor = new Actor();
+      actor.setId(5);
+      actor.setName(name);
+      actor.setSex(sex.get());
+      actor.setBirthDate(birthDate);
+      MainObservable.getDaoActorXml().saveOrUpdate(actor);
    }
 
    /**
@@ -61,18 +58,14 @@ public class ActorViewModel {
       actor.setSex(sex.get());
       actor.setName(name);
       actor.setBirthDate(birthDate);
-      // MainObservable.getDaoActorXml().saveOrUpdate(actor);
+      MainObservable.getDaoActorXml().saveOrUpdate(actor);
+      MainObservable.getSelectedMovie().getActors().add(actor);
+      MainObservable.getDaoMovieXml().saveOrUpdate(MainObservable.getSelectedMovie());
+      MainObservable.refreshMainView();
+//       MainObservable.getDaoActorXml().saveOrUpdate(actor);
       // TODO: Methode, die einem Film diesen Schauspieler zuordnet in der Impl der IDao erzeugen
    }
 
-   public void createActor(LocalDate birth) {
-      StringProperty birthDate = new SimpleStringProperty(birth.toString());
-      Actor actor = new Actor();
-      actor.setId(3);
-      actor.setSex(sex.get());
-      actor.setName(name);
-      actor.setBirthDate(birthDate);
-      MainObservable.getDaoActorXml().saveOrUpdate(actor);
-   }
+
 
 }
