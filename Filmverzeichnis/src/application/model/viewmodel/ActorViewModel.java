@@ -9,10 +9,6 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
-/**
- * @author cw
- * @version 1.0
- */
 public class ActorViewModel {
 
    IntegerProperty id = new SimpleIntegerProperty();
@@ -46,12 +42,6 @@ public class ActorViewModel {
       MainObservable.getDaoActorXml().saveOrUpdate(actor);
    }
 
-   /**
-    * Weist einem Schauspieler einen Film zu
-    *
-    * @param birth Geburtsdatum des Schauspielers
-    * @since 1.0
-    */
    public void addActor(LocalDate birth) {
       StringProperty birthDate = new SimpleStringProperty(birth.toString());
       Actor actor = new Actor();
@@ -62,10 +52,6 @@ public class ActorViewModel {
       MainObservable.getSelectedMovie().getActors().add(actor);
       MainObservable.getDaoMovieXml().saveOrUpdate(MainObservable.getSelectedMovie());
       MainObservable.refreshMainView();
-//       MainObservable.getDaoActorXml().saveOrUpdate(actor);
-      // TODO: Methode, die einem Film diesen Schauspieler zuordnet in der Impl der IDao erzeugen
    }
-
-
 
 }

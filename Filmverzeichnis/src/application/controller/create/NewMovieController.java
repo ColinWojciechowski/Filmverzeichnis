@@ -34,9 +34,6 @@ public class NewMovieController {
    public void initialize() {
       newMoviePane.getStylesheets()
          .add(getClass().getResource("../../view/application.css").toExternalForm());
-      txtTitle.setFocusTraversable(false);
-      txtGenre.setFocusTraversable(false);
-      txtYear.setFocusTraversable(false);
    }
 
    @FXML
@@ -92,4 +89,10 @@ public class NewMovieController {
       txtGenre.clear();
       txtYear.clear();
    }
+
+
+   @FXML
+   public void selectNextTextField(){
+   }
+
 }

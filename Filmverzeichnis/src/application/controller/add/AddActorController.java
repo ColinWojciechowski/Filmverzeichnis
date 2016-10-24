@@ -43,7 +43,6 @@ public class AddActorController {
       rbtnMale.setToggleGroup(group);
       rbtnFemale.setToggleGroup(group);
       dateBirth.editableProperty().set(false);
-      txtName.setFocusTraversable(false);
    }
 
    @FXML
@@ -65,11 +64,11 @@ public class AddActorController {
       try {
          String sex = (rbtnMale.selectedProperty().get() == true) ? "Male" : "Female";
          this.sex = new SimpleStringProperty(sex);
-         this.name = txtName.textProperty();
-         viewModel.setSex(this.sex);
-         viewModel.setName(name);
+         this.name.set(txtName.getText());
          if (txtName.getText().isEmpty() || dateBirth.getPromptText().isEmpty())
             throw new NullPointerException();
+         viewModel.setSex(this.sex);
+         viewModel.setName(name);
          viewModel.addActor(this.dateBirth.getValue());
          resetValues();
          MainObservable.refreshMainView();

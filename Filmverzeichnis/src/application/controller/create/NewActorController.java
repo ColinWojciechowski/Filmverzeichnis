@@ -41,7 +41,6 @@ public class NewActorController {
       rbtnMale.setToggleGroup(group);
       rbtnFemale.setToggleGroup(group);
       dateBirth.editableProperty().set(false);
-      txtName.setFocusTraversable(false);
    }
 
    @FXML

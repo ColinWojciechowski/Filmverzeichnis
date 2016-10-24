@@ -40,9 +40,6 @@ public class AddMovieController {
 
       allActors.add(viewModel.getTestActor().getName().get());
       chbActor.setItems(allActors);
-      txtTitle.setFocusTraversable(false);
-      txtGenre.setFocusTraversable(false);
-      txtYear.setFocusTraversable(false);
    }
 
    @FXML
