@@ -37,11 +37,18 @@ public class MainObservable {
       return main.getViewModel().getDaoMovieXml();
    }
 
-   public static void refreshMainView(){
+   public static void refreshMainView() {
       main.getMovieTable().refresh();
       main.getActorTable().refresh();
       main.getMovieActorsTable().refresh();
       main.getActorMoviesTable().refresh();
+   }
+
+   public static int getId() {
+      if (main.getMovieTable().getSelectionModel().getSelectedItem() == null)
+         return main.getMovieTable().getItems().size() + 1;
+      else
+         return main.getMovieTable().getSelectionModel().getSelectedItem().getId();
    }
 
 }

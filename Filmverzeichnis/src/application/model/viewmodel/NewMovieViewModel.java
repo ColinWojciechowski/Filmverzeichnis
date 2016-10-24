@@ -9,12 +9,14 @@ import javafx.beans.property.StringProperty;
 
 public class NewMovieViewModel {
 
+   IntegerProperty id = new SimpleIntegerProperty();
    StringProperty title = new SimpleStringProperty();
    StringProperty genre = new SimpleStringProperty();
    IntegerProperty year = new SimpleIntegerProperty();
 
    public void addMovie() {
       Movie movie = new Movie();
+//      movie.setId(MainObservable.getId());
       movie.setName(title);
       movie.setGenre(genre);
       movie.setReleaseYear(year);
@@ -54,7 +56,7 @@ public class NewMovieViewModel {
 
    public void createMovie() {
       Movie movie = new Movie();
-      movie.setId(55);
+      movie.setId(MainObservable.getId());
       movie.setName(title);
       movie.setGenre(genre);
       movie.setReleaseYear(year);

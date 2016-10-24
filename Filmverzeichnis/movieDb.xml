@@ -6,35 +6,6 @@
     <void property="actorIds">
      <object class="java.util.ArrayList"/>
     </void>
-    <void property="name">
-     <string>d</string>
-    </void>
-    <void property="releaseYear">
-     <int>2</int>
-    </void>
-   </object>
-  </void>
-  <void method="add">
-   <object class="application.model.entity.EntityMovie">
-    <void property="actorIds">
-     <object class="java.util.ArrayList"/>
-    </void>
-    <void property="id">
-     <int>4</int>
-    </void>
-    <void property="name">
-     <string>gb</string>
-    </void>
-    <void property="releaseYear">
-     <int>13333</int>
-    </void>
-   </object>
-  </void>
-  <void method="add">
-   <object class="application.model.entity.EntityMovie">
-    <void property="actorIds">
-     <object class="java.util.ArrayList"/>
-    </void>
     <void property="id">
      <int>14</int>
     </void>
@@ -59,6 +30,67 @@
     </void>
     <void property="releaseYear">
      <int>2005</int>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="application.model.entity.EntityMovie">
+    <void property="actorIds">
+     <object class="java.util.ArrayList"/>
+    </void>
+    <void property="name">
+     <string>bbb</string>
+    </void>
+    <void property="releaseYear">
+     <int>1212</int>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="application.model.entity.EntityMovie">
+    <void property="actorIds">
+     <object class="java.util.ArrayList"/>
+    </void>
+    <void property="id">
+     <int>5</int>
+    </void>
+    <void property="name">
+     <string>ADS</string>
+    </void>
+    <void property="releaseYear">
+     <int>2121</int>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="application.model.entity.EntityMovie">
+    <void property="actorIds">
+     <object class="java.util.ArrayList"/>
+    </void>
+    <void property="id">
+     <int>6</int>
+    </void>
+    <void property="name">
+     <string>CAC</string>
+    </void>
+    <void property="releaseYear">
+     <int>12</int>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="application.model.entity.EntityMovie">
+    <void property="actorIds">
+     <object class="java.util.ArrayList"/>
+    </void>
+    <void property="id">
+     <int>4</int>
+    </void>
+    <void property="name">
+     <string>GameBoy</string>
+    </void>
+    <void property="releaseYear">
+     <int>12</int>
     </void>
    </object>
   </void>
