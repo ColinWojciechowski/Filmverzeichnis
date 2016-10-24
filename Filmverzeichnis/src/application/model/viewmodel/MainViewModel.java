@@ -21,7 +21,6 @@ public class MainViewModel {
    private ObservableList<Movie> movieData = FXCollections.observableArrayList();
    private ObservableList<Actor> movieActors = FXCollections.observableArrayList();
    private ObservableList<Movie> actorMovies = FXCollections.observableArrayList();
-   private ObservableList<String> allMovies = FXCollections.observableArrayList();
    private IFachkonzept<Actor> fachkonzeptActor;
    private IFachkonzept<Movie> fachkonzeptMovie;
    private IDao<Actor> daoActorXml;
@@ -30,44 +29,18 @@ public class MainViewModel {
    public MainViewModel() {
       setFachkonzept(new FachkonzeptActor(), new FachkonzeptMovie());
       setDatenhaltung(new DaoActorXml(), new DaoMovieXml());
-      Movie testMovie = new Movie();
-      Movie testMovie2 = new Movie();
       Actor testActor = new Actor();
 
-      testMovie.setId(1);
-      testMovie2.setId(2);
       testActor.setId(1);
-
-      testMovie.setName(new SimpleStringProperty("Scary Movie"));
-      testMovie2.setName(new SimpleStringProperty("Pulp Fiction"));
       testActor.setName(new SimpleStringProperty("Harrisson Ford"));
-
-      testMovie.setReleaseYear(new SimpleIntegerProperty(2005));
-      testMovie2.setReleaseYear(new SimpleIntegerProperty(1998));
       testActor.setBirthDate(new SimpleStringProperty(LocalDate.now().toString()));
       testActor.setSex(Sex.MALE.toString());
-
-      testMovie.setGenre(new SimpleStringProperty("Comedy"));
-      testMovie2.setGenre(new SimpleStringProperty("Ganster"));
-
       movieActors.add(testActor);
-      actorMovies.add(testMovie);
-      testMovie.setActors(movieActors);
       testActor.setMovies(actorMovies);
-
-      movieData.add(testMovie);
-      movieData.add(testMovie2);
-
-      allMovies.add(getTestMovie().getName().get());
-
    }
 
    public ObservableList<Movie> getMovieData() {
       return movieData;
-   }
-
-   public ObservableList<String> getAllMovies() {
-      return allMovies;
    }
 
    public ObservableList<Actor> getActorData() {

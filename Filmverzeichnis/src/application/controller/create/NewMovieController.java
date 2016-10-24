@@ -6,6 +6,8 @@ import application.controller.MainObservable;
 import application.model.viewmodel.NewMovieViewModel;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
@@ -13,6 +15,8 @@ import javafx.scene.layout.AnchorPane;
 public class NewMovieController {
 
    NewMovieViewModel viewModel = new NewMovieViewModel();
+   StringProperty name = new SimpleStringProperty();
+   StringProperty genre = new SimpleStringProperty();
    IntegerProperty year = new SimpleIntegerProperty();
 
    @FXML
@@ -30,11 +34,6 @@ public class NewMovieController {
    public void initialize() {
       newMoviePane.getStylesheets()
          .add(getClass().getResource("../../view/application.css").toExternalForm());
-
-      viewModel.getTitle().bind(txtTitle.textProperty());
-      viewModel.getGenre().bind(txtGenre.textProperty());
-      viewModel.getYear().bind(year);
-
       txtTitle.setFocusTraversable(false);
       txtGenre.setFocusTraversable(false);
       txtYear.setFocusTraversable(false);
@@ -57,15 +56,20 @@ public class NewMovieController {
             throw new NullPointerException();
          txtTitle.setPromptText("Title");
          txtGenre.setPromptText("Genre");
+         this.name.set(txtTitle.getText());
+         this.genre.set(txtGenre.getText());
          txtValid = true;
       } catch (NullPointerException e) {
          txtTitle.setPromptText(txtTitle.getText().isEmpty() ? "Title - Pflichtfeld" : "Title");
          txtGenre.setPromptText(txtGenre.getText().isEmpty() ? "Genre - Pflichtfeld" : "Genre");
       }
       if (yearValid && txtValid) {
+         viewModel.setTitle(name);
+         viewModel.setGenre(genre);
+         viewModel.setYear(year);
          viewModel.createMovie();
-         removeArguments();
          MainObservable.refreshMainView();
+         removeArguments();
          MainObservable.toggleMovie();
       }
    }

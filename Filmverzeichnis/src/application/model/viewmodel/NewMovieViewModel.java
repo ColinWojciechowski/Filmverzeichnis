@@ -1,5 +1,6 @@
 package application.model.viewmodel;
 
+import application.controller.MainObservable;
 import application.model.dto.Movie;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -53,10 +54,11 @@ public class NewMovieViewModel {
 
    public void createMovie() {
       Movie movie = new Movie();
+      movie.setId(55);
       movie.setName(title);
       movie.setGenre(genre);
       movie.setReleaseYear(year);
-      //TODO MainObservable.getDaoMovieXml().saveOrUpdate(movie);
+      MainObservable.getDaoMovieXml().saveOrUpdate(movie);
    }
 
 }

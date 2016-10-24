@@ -8,7 +8,6 @@ import com.jfoenix.controls.JFXDrawersStack;
 import application.model.dto.Actor;
 import application.model.dto.Movie;
 import application.model.viewmodel.MainViewModel;
-import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -82,13 +81,13 @@ public class MainController {
    @SuppressWarnings("unused")
    @FXML
    public void initialize() throws IOException {
+      MainObservable observable = new MainObservable(this);
       viewModel = new MainViewModel();
       loadFxmlFiles();
       prepareTable();
       bindMovieTableToContent();
       bindActorTableToContent();
       setDrawerDirection();
-      MainObservable observable = new MainObservable(this);
    }
 
    @FXML
@@ -136,12 +135,12 @@ public class MainController {
    }
 
    private void prepareTable() {
-      movieTable.setItems(viewModel.getMovieData());
+      movieTable.setItems(FXCollections.observableList(viewModel.getDaoMovieXml().getAll()));
       movieName.setCellValueFactory(cellData -> cellData.getValue().getName());
       movieYear.setCellValueFactory(cellData -> cellData.getValue().getReleaseYear());
       movieGenre.setCellValueFactory(cellData -> cellData.getValue().getGenre());
 
-      actorTable.setItems(viewModel.getActorData());
+      actorTable.setItems(FXCollections.observableList(viewModel.getDaoActorXml().getAll()));
       actorName.setCellValueFactory(cellData -> cellData.getValue().getName());
       actorBirth.setCellValueFactory(cellData -> cellData.getValue().getBirthDate());
       actorSex.setCellValueFactory(cellData -> cellData.getValue().getSex());
@@ -150,9 +149,8 @@ public class MainController {
    private void bindActorTableToContent() {
       actorTable.getSelectionModel().selectedItemProperty()
          .addListener((obs, oldSelection, newSelection) -> {
-            StringProperty lblActorValue = newSelection.getName();
             if (newSelection != null) {
-               lblActor.textProperty().bind(lblActorValue);
+               lblActor.textProperty().bind(newSelection.getName());
                actorMovies.clear();
                if (newSelection.getMovies() != null) {
                   actorMovies.addAll(newSelection.getMovies());
@@ -165,9 +163,8 @@ public class MainController {
    private void bindMovieTableToContent() {
       movieTable.getSelectionModel().selectedItemProperty()
          .addListener((obs, oldSelection, newSelection) -> {
-            StringProperty lblMovieValue = newSelection.getName();
             if (newSelection != null) {
-               lblTitle.textProperty().bind(lblMovieValue);
+               lblTitle.textProperty().bind(newSelection.getName());
                movieActors.clear();
                if (newSelection.getActors() != null) {
                   movieActors.addAll(newSelection.getActors());

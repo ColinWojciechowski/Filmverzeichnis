@@ -50,8 +50,8 @@ public class NewActorController {
             throw new NullPointerException();
         viewModel.createActor(this.dateBirth.getValue());
         resetValues();
+        MainObservable.toggleActor();
         MainObservable.refreshMainView();
-         MainObservable.toggleActor();
       } catch (NullPointerException e) {
          txtName.setPromptText(txtName.getText().isEmpty() ? "Name - Pflichtfeld" : "Name");
          dateBirth.setPromptText("Geburtstag - Pflichtfeld");
