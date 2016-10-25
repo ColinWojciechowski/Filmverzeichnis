@@ -134,16 +134,30 @@ public class MainController {
       return actorStack;
    }
 
-   private void prepareTable() {
+   public void prepareTable() {
+      movieTable.setItems(null);
       movieTable.setItems(FXCollections.observableList(viewModel.getDaoMovieXml().getAll()));
       movieName.setCellValueFactory(cellData -> cellData.getValue().getName());
       movieYear.setCellValueFactory(cellData -> cellData.getValue().getReleaseYear());
       movieGenre.setCellValueFactory(cellData -> cellData.getValue().getGenre());
 
+      actorTable.setItems(null);
       actorTable.setItems(FXCollections.observableList(viewModel.getDaoActorXml().getAll()));
       actorName.setCellValueFactory(cellData -> cellData.getValue().getName());
       actorBirth.setCellValueFactory(cellData -> cellData.getValue().getBirthDate());
       actorSex.setCellValueFactory(cellData -> cellData.getValue().getSex());
+
+      actorMoviesTable.setItems(actorMovies);
+      actorMoviesName.setCellValueFactory(cellData -> cellData.getValue().getName());
+      actorMoviesYear
+         .setCellValueFactory(cellData -> cellData.getValue().getReleaseYear());
+      actorMoviesGenre.setCellValueFactory(cellData -> cellData.getValue().getGenre());
+
+      movieActorsTable.setItems(movieActors);
+      movieActorsName.setCellValueFactory(cellData -> cellData.getValue().getName());
+      movieActorsBirth
+         .setCellValueFactory(cellData -> cellData.getValue().getBirthDate());
+      movieActorsSex.setCellValueFactory(cellData -> cellData.getValue().getSex());
    }
 
    private void bindActorTableToContent() {

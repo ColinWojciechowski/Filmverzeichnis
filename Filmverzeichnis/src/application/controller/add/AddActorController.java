@@ -70,8 +70,8 @@ public class AddActorController {
          viewModel.setSex(this.sex);
          viewModel.setName(name);
          viewModel.addActor(this.dateBirth.getValue());
-         resetValues();
          MainObservable.refreshMainView();
+         resetValues();
          MainObservable.toggleMovie();
       } catch (NullPointerException e) {
          txtName.setPromptText((txtName.getText().isEmpty()) ? "Name - Pflichtfeld" : "Name");

@@ -26,7 +26,7 @@ public class MovieViewModel {
 
    public void createMovie() {
       Movie movie = new Movie();
-      movie.setId(MainObservable.getMovieId());
+      movie.setId(MainObservable.getNewMovieId());
       movie.setName(title);
       movie.setGenre(genre);
       movie.setReleaseYear(year);

@@ -43,15 +43,30 @@ public class ActorViewModel {
    }
 
    public void addActor(LocalDate birth) {
+      boolean overrideActor = false;
       StringProperty birthDate = new SimpleStringProperty(birth.toString());
       Actor actor = new Actor();
+      System.out.println(MainObservable.getAddActorId());
+      actor.setId(MainObservable.getAddActorId());
       actor.setSex(sex.get());
       actor.setName(name);
       actor.setBirthDate(birthDate);
-      MainObservable.getDaoActorXml().saveOrUpdate(actor);
-      MainObservable.getSelectedMovie().getActors().add(actor);
-      MainObservable.getDaoMovieXml().saveOrUpdate(MainObservable.getSelectedMovie());
-      MainObservable.refreshMainView();
+
+      for (Actor curActor : MainObservable.getDaoActorXml().getAll()) {
+         if (actor.getId() == curActor.getId())
+            overrideActor = true;
+      }
+      if (overrideActor == true) {
+         MainObservable.getDaoActorXml().saveOrUpdate(actor);
+         MainObservable.getDaoMovieXml().saveOrUpdate(MainObservable.getSelectedMovie());
+         MainObservable.refreshMainView();
+      } else {
+         MainObservable.getDaoActorXml().saveOrUpdate(actor);
+         MainObservable.getSelectedMovie().getActors().add(actor);
+         MainObservable.getDaoMovieXml().saveOrUpdate(MainObservable.getSelectedMovie());
+         MainObservable.refreshMainView();
+      }
+
    }
 
 }
