@@ -1,6 +1,9 @@
 package application.model.viewmodel;
 
+import java.util.ArrayList;
+
 import application.controller.MainObservable;
+import application.model.dto.Actor;
 import application.model.dto.Movie;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -20,27 +23,38 @@ public class MovieViewModel {
       movie.setName(title);
       movie.setGenre(genre);
       movie.setReleaseYear(year);
+
+      for (Movie curMovie : MainObservable.getDaoMovieXml().getAll()) {
+         if (movie.getId() == curMovie.getId()) {
+            curMovie.setName(title);
+            curMovie.setGenre(genre);
+            curMovie.setReleaseYear(year);
+            MainObservable.getDaoMovieXml().saveOrUpdate(curMovie);
+            MainObservable.refreshMainView();
+            return;
+         }
+      }
       MainObservable.getDaoMovieXml().saveOrUpdate(movie);
    }
 
    public void addMovie() {
-      boolean overrideMovie = false;
       Movie movie = new Movie();
       movie.setId(MainObservable.getAddMovieId());
       movie.setName(title);
       movie.setGenre(genre);
       movie.setReleaseYear(year);
-
+      movie.setActors(new ArrayList<Actor>());
       for (Movie curMovie : MainObservable.getDaoMovieXml().getAll()) {
-         if (movie.getId() == curMovie.getId())
-            overrideMovie = true;
+         if (movie.getId() == curMovie.getId()) {
+            curMovie.setName(title);
+            curMovie.setGenre(genre);
+            curMovie.setReleaseYear(year);
+            MainObservable.getDaoMovieXml().saveOrUpdate(curMovie);
+            MainObservable.refreshMainView();
+            return;
+         }
       }
-      if (overrideMovie == true) {
-         MainObservable.getDaoMovieXml().saveOrUpdate(movie);
-      } else {
-         MainObservable.getDaoMovieXml().saveOrUpdate(movie);
-         MainObservable.getSelectedActor().getMovies().add(movie);
-      }
+      MainObservable.getDaoMovieXml().saveOrUpdate(movie);
       MainObservable.getDaoActorXml().saveOrUpdate(MainObservable.getSelectedActor());
       MainObservable.refreshMainView();
    }

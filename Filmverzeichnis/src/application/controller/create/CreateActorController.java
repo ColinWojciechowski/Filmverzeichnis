@@ -46,7 +46,9 @@ public class CreateActorController {
    @FXML
    public void btnOkClicked() {
       try {
-         if (txtName.getText().isEmpty() || dateBirth.getPromptText().isEmpty())
+         if (txtName.getText().isEmpty()
+//                  || dateBirth.getPromptText().isEmpty()
+                  )
             throw new NullPointerException();
          String sex = (rbtnMale.selectedProperty().get() == true) ? "Male" : "Female";
          this.sex.set(sex);

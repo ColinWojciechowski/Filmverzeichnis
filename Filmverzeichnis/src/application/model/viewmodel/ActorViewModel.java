@@ -21,15 +21,26 @@ public class ActorViewModel {
    public void createActor(LocalDate birth) {
       birthDate.set(birth.toString());
       Actor actor = new Actor();
-      actor.setId(5);
+      actor.setId(MainObservable.getNewActorId());
       actor.setName(name);
       actor.setSex(sex.get());
       actor.setBirthDate(birthDate);
+      for (Actor curActor : MainObservable.getDaoActorXml().getAll()) {
+         if (actor.getId() == curActor.getId())
+            actor.setId(MainObservable.getAddActorId());
+         curActor.setSex(sex.get());
+         curActor.setName(name);
+         curActor.setBirthDate(birthDate);
+         MainObservable.getDaoActorXml().saveOrUpdate(curActor);
+         curActor.getMovies().add(MainObservable.getSelectedMovie());
+         MainObservable.getDaoActorXml().saveOrUpdate(curActor);
+         MainObservable.getSelectedMovie().getActors().add(curActor);
+         return;
+      }
       MainObservable.getDaoActorXml().saveOrUpdate(actor);
    }
 
    public void addActor(LocalDate birth) {
-      boolean overrideActor = false;
       StringProperty birthDate = new SimpleStringProperty(birth.toString());
       Actor actor = new Actor();
       actor.setId(MainObservable.getAddActorId());
@@ -38,16 +49,16 @@ public class ActorViewModel {
       actor.setBirthDate(birthDate);
       actor.setMovies(new ArrayList<Movie>());
       for (Actor curActor : MainObservable.getDaoActorXml().getAll()) {
-         if (actor.getId() == curActor.getId())
-            overrideActor = true;
+         if (actor.getId() == curActor.getId()) {
+            curActor.setSex(sex.get());
+            curActor.setName(name);
+            curActor.setBirthDate(birthDate);
+            MainObservable.getDaoActorXml().saveOrUpdate(curActor);
+            MainObservable.refreshMainView();
+            return;
+         }
       }
-      if (overrideActor == true) {
-         MainObservable.getDaoActorXml().saveOrUpdate(actor);
-      } else {
-         actor.getMovies().add(MainObservable.getSelectedMovie());
-         MainObservable.getDaoActorXml().saveOrUpdate(actor);
-         MainObservable.getSelectedMovie().getActors().add(actor);
-      }
+      MainObservable.getDaoActorXml().saveOrUpdate(actor);
       MainObservable.getDaoMovieXml().saveOrUpdate(MainObservable.getSelectedMovie());
       MainObservable.refreshMainView();
    }
