@@ -12,7 +12,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 
-public class NewMovieController {
+public class CreateMovieController {
 
    MovieViewModel viewModel = new MovieViewModel();
    StringProperty name = new SimpleStringProperty();

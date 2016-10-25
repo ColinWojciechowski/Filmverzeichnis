@@ -46,7 +46,6 @@ public class ActorViewModel {
       boolean overrideActor = false;
       StringProperty birthDate = new SimpleStringProperty(birth.toString());
       Actor actor = new Actor();
-      System.out.println(MainObservable.getAddActorId());
       actor.setId(MainObservable.getAddActorId());
       actor.setSex(sex.get());
       actor.setName(name);

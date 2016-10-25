@@ -13,7 +13,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.AnchorPane;
 
-public class NewActorController {
+public class CreateActorController {
 
    final ToggleGroup group = new ToggleGroup();
    ActorViewModel viewModel = new ActorViewModel();

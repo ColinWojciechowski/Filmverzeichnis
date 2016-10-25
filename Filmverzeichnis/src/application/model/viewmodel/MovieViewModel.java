@@ -1,9 +1,7 @@
 package application.model.viewmodel;
 
 import application.controller.MainObservable;
-import application.model.dto.Actor;
 import application.model.dto.Movie;
-import application.model.dto.enums.Sex;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -16,14 +14,6 @@ public class MovieViewModel {
    StringProperty genre = new SimpleStringProperty();
    IntegerProperty year = new SimpleIntegerProperty();
 
-   public Actor getTestActor(){
-      Actor testActor = new Actor();
-      testActor.setId(4);
-      testActor.setName(new SimpleStringProperty("Jonny Banana"));
-      testActor.setSex(Sex.FEMALE.toString());
-      return testActor;
-   }
-
    public void createMovie() {
       Movie movie = new Movie();
       movie.setId(MainObservable.getNewMovieId());
@@ -34,10 +24,27 @@ public class MovieViewModel {
    }
 
    public void addMovie() {
+      boolean overrideMovie = false;
       Movie movie = new Movie();
+      movie.setId(MainObservable.getAddMovieId());
       movie.setName(title);
       movie.setGenre(genre);
       movie.setReleaseYear(year);
+
+      for (Movie curMovie : MainObservable.getDaoMovieXml().getAll()) {
+         if(movie.getId() == curMovie.getId())
+            overrideMovie = true;
+      }
+      if(overrideMovie == true){
+         MainObservable.getDaoMovieXml().saveOrUpdate(movie);
+         MainObservable.getDaoActorXml().saveOrUpdate(MainObservable.getSelectedActor());
+         MainObservable.refreshMainView();
+      } else {
+         MainObservable.getDaoMovieXml().saveOrUpdate(movie);
+         MainObservable.getSelectedActor().getMovies().add(movie);
+         MainObservable.getDaoActorXml().saveOrUpdate(MainObservable.getSelectedActor());
+         MainObservable.refreshMainView();
+      }
    }
 
 

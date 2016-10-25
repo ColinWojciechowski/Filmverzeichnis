@@ -4,7 +4,11 @@
   <void method="add">
    <object class="application.model.entity.EntityMovie">
     <void property="actorIds">
-     <object class="java.util.ArrayList"/>
+     <object class="java.util.ArrayList">
+      <void method="add">
+       <int>2</int>
+      </void>
+     </object>
     </void>
     <void property="genre">
      <string>B</string>
@@ -40,6 +44,58 @@
     </void>
     <void property="releaseYear">
      <int>1</int>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="application.model.entity.EntityMovie">
+    <void property="actorIds">
+     <object class="java.util.ArrayList">
+      <void method="add">
+       <int>6</int>
+      </void>
+     </object>
+    </void>
+    <void property="id">
+     <int>3</int>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="application.model.entity.EntityMovie">
+    <void property="actorIds">
+     <object class="java.util.ArrayList"/>
+    </void>
+    <void property="genre">
+     <string>C</string>
+    </void>
+    <void property="id">
+     <int>4</int>
+    </void>
+    <void property="name">
+     <string>C</string>
+    </void>
+    <void property="releaseYear">
+     <int>2</int>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="application.model.entity.EntityMovie">
+    <void property="actorIds">
+     <object class="java.util.ArrayList"/>
+    </void>
+    <void property="genre">
+     <string>Horror</string>
+    </void>
+    <void property="id">
+     <int>5</int>
+    </void>
+    <void property="name">
+     <string>SharkNado</string>
+    </void>
+    <void property="releaseYear">
+     <int>1999</int>
     </void>
    </object>
   </void>

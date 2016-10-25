@@ -97,6 +97,10 @@ public class MainObservable {
       return main.getMovieTable().getSelectionModel().getSelectedItem();
    }
 
+   public static Actor getSelectedActor(){
+      return main.getActorTable().getSelectionModel().getSelectedItem();
+   }
+
 }
 
 /**

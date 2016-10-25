@@ -7,16 +7,81 @@
      <string>2016-10-25</string>
     </void>
     <void property="id">
-     <int>1</int>
+     <int>2</int>
     </void>
     <void property="movieIds">
      <object class="java.util.ArrayList"/>
     </void>
     <void property="name">
-     <string>Wilhelm Schmidt</string>
+     <string>Bibi Blocksberg</string>
     </void>
     <void property="sex">
      <string>Female</string>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="application.model.entity.EntityActor">
+    <void property="birthDate">
+     <string>2016-10-25</string>
+    </void>
+    <void property="id">
+     <int>1</int>
+    </void>
+    <void property="movieIds">
+     <object class="java.util.ArrayList">
+      <void method="add">
+       <int>3</int>
+      </void>
+     </object>
+    </void>
+    <void property="name">
+     <string>Will Schmidt</string>
+    </void>
+    <void property="sex">
+     <string>Male</string>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="application.model.entity.EntityActor">
+    <void property="birthDate">
+     <string>2016-10-25</string>
+    </void>
+    <void property="id">
+     <int>6</int>
+    </void>
+    <void property="movieIds">
+     <object class="java.util.ArrayList"/>
+    </void>
+    <void property="name">
+     <string>ds</string>
+    </void>
+    <void property="sex">
+     <string>Male</string>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="application.model.entity.EntityActor">
+    <void property="birthDate">
+     <string>2016-10-25</string>
+    </void>
+    <void property="id">
+     <int>5</int>
+    </void>
+    <void property="movieIds">
+     <object class="java.util.ArrayList">
+      <void method="add">
+       <int>5</int>
+      </void>
+     </object>
+    </void>
+    <void property="name">
+     <string>Jonny Banana</string>
+    </void>
+    <void property="sex">
+     <string>Male</string>
     </void>
    </object>
   </void>
