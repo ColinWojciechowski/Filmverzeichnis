@@ -32,56 +32,46 @@ public class MovieViewModel {
       movie.setReleaseYear(year);
 
       for (Movie curMovie : MainObservable.getDaoMovieXml().getAll()) {
-         if(movie.getId() == curMovie.getId())
+         if (movie.getId() == curMovie.getId())
             overrideMovie = true;
       }
-      if(overrideMovie == true){
+      if (overrideMovie == true) {
          MainObservable.getDaoMovieXml().saveOrUpdate(movie);
-         MainObservable.getDaoActorXml().saveOrUpdate(MainObservable.getSelectedActor());
-         MainObservable.refreshMainView();
       } else {
          MainObservable.getDaoMovieXml().saveOrUpdate(movie);
          MainObservable.getSelectedActor().getMovies().add(movie);
-         MainObservable.getDaoActorXml().saveOrUpdate(MainObservable.getSelectedActor());
-         MainObservable.refreshMainView();
       }
+      MainObservable.getDaoActorXml().saveOrUpdate(MainObservable.getSelectedActor());
+      MainObservable.refreshMainView();
    }
-
 
    public IntegerProperty getId() {
       return id;
    }
 
-
    public void setId(IntegerProperty id) {
       this.id = id;
    }
-
 
    public StringProperty getTitle() {
       return title;
    }
 
-
    public void setTitle(StringProperty title) {
       this.title = title;
    }
-
 
    public StringProperty getGenre() {
       return genre;
    }
 
-
    public void setGenre(StringProperty genre) {
       this.genre = genre;
    }
 
-
    public IntegerProperty getYear() {
       return year;
    }
-
 
    public void setYear(IntegerProperty year) {
       this.year = year;
