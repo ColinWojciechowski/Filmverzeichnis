@@ -15,7 +15,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.Pane;
 
 public class MainController {
@@ -23,7 +22,6 @@ public class MainController {
    private MainViewModel viewModel;
    private ObservableList<Actor> movieActors = FXCollections.observableArrayList();
    private ObservableList<Movie> actorMovies = FXCollections.observableArrayList();
-   final ToggleGroup group = new ToggleGroup();
 
    @FXML
    private TableView<Movie> movieTable;
@@ -76,6 +74,8 @@ public class MainController {
    @FXML
    private Pane addMoviePane;
    @FXML
+   private Pane editMoviePane;
+   @FXML
    private Pane newActorPane;
 
    @SuppressWarnings("unused")
@@ -102,6 +102,12 @@ public class MainController {
       toggle(movieStack, movieTopDrawer);
    }
 
+   @FXML
+   public void editMovieToggle(){
+      prepareDrawer(movieTopDrawer, editMoviePane);
+      toggle(movieStack, movieTopDrawer);
+   }
+
    public void toggle(JFXDrawersStack stack, JFXDrawer drawer) {
       stack.toggle(drawer);
    }
@@ -118,21 +124,7 @@ public class MainController {
       toggle(actorStack, actorTopDrawer);
    }
 
-   public JFXDrawersStack getMovieStack() {
-      return movieStack;
-   }
 
-   public JFXDrawer getMovieTopDrawer() {
-      return movieTopDrawer;
-   }
-
-   public JFXDrawer getActorTopDrawer() {
-      return actorTopDrawer;
-   }
-
-   public JFXDrawersStack getActorStack() {
-      return actorStack;
-   }
 
    public void prepareTable() {
       movieTable.setItems(null);
@@ -206,9 +198,10 @@ public class MainController {
 
    private void loadFxmlFiles() throws IOException {
       addActorPane = FXMLLoader.load(getClass().getResource("../view/fxml/AddActor.fxml"));
-      newMoviePane = FXMLLoader.load(getClass().getResource("../view/fxml/NewMovie.fxml"));
+      newMoviePane = FXMLLoader.load(getClass().getResource("../view/fxml/CreateMovie.fxml"));
+      editMoviePane = FXMLLoader.load(getClass().getResource("../view/fxml/EditMovie.fxml"));
       addMoviePane = FXMLLoader.load(getClass().getResource("../view/fxml/AddMovie.fxml"));
-      newActorPane = FXMLLoader.load(getClass().getResource("../view/fxml/NewActor.fxml"));
+      newActorPane = FXMLLoader.load(getClass().getResource("../view/fxml/CreateActor.fxml"));
    }
 
    private void setDrawerDirection() {
@@ -219,6 +212,22 @@ public class MainController {
    private void prepareDrawer(JFXDrawer drawer, Pane pane) {
       drawer.setSidePane(pane);
       drawer.setDefaultDrawerSize(400);
+   }
+
+   public JFXDrawersStack getMovieStack() {
+      return movieStack;
+   }
+
+   public JFXDrawer getMovieTopDrawer() {
+      return movieTopDrawer;
+   }
+
+   public JFXDrawer getActorTopDrawer() {
+      return actorTopDrawer;
+   }
+
+   public JFXDrawersStack getActorStack() {
+      return actorStack;
    }
 
    public MainViewModel getViewModel() {

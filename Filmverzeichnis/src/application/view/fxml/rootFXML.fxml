@@ -36,8 +36,8 @@
                               <TableColumn fx:id="movieActorsSex" prefWidth="178.0" text="Sex" />
                           </columns>
                         </TableView>
-                        <JFXButton fx:id="btnNewMovie" layoutX="400.0" layoutY="393.0" onMouseClicked="#newMovieToggle" text="New Movie / Edit Movie" />
-                        <Label fx:id="lblTitle" layoutX="18.0" layoutY="405.0" prefHeight="32.0" prefWidth="293.0" />
+                        <JFXButton fx:id="btnNewMovie" layoutX="371.0" layoutY="393.0" onMouseClicked="#newMovieToggle" text="New Movie" />
+                        <Label fx:id="lblTitle" layoutX="19.0" layoutY="406.0" prefHeight="32.0" prefWidth="293.0" />
                         <JFXButton fx:id="btnAddActor" layoutX="475.0" layoutY="607.0" onMouseClicked="#addActorToggle" text="Add Actor" />
                         <JFXDrawersStack fx:id="movieStack" layoutX="-1.0" prefHeight="201.0" prefWidth="565.0">
                            <children>
@@ -50,6 +50,7 @@
                               </ImageView>
                            </children>
                         </JFXDrawersStack>
+                        <JFXButton fx:id="btnEditMovie" layoutX="471.0" layoutY="393.0" onMouseClicked="#editMovieToggle" text="Edit Movie" />
                      </children>
                   </AnchorPane>
             </content>
@@ -85,6 +86,7 @@
                                     <Image url="@../finalMovieImage.png" />
                                  </image>
                               </ImageView>
+                              <Pane fx:id="editMoviePane" prefHeight="200.0" prefWidth="200.0" visible="false" />
                            </children>
                         </JFXDrawersStack>
                      </children>

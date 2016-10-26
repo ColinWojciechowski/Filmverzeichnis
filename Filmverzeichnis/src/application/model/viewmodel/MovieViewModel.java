@@ -23,17 +23,6 @@ public class MovieViewModel {
       movie.setName(title);
       movie.setGenre(genre);
       movie.setReleaseYear(year);
-
-      for (Movie curMovie : MainObservable.getDaoMovieXml().getAll()) {
-         if (movie.getId() == curMovie.getId()) {
-            curMovie.setName(title);
-            curMovie.setGenre(genre);
-            curMovie.setReleaseYear(year);
-            MainObservable.getDaoMovieXml().saveOrUpdate(curMovie);
-            MainObservable.refreshMainView();
-            return;
-         }
-      }
       MainObservable.getDaoMovieXml().saveOrUpdate(movie);
    }
 
@@ -44,19 +33,18 @@ public class MovieViewModel {
       movie.setGenre(genre);
       movie.setReleaseYear(year);
       movie.setActors(new ArrayList<Actor>());
-      for (Movie curMovie : MainObservable.getDaoMovieXml().getAll()) {
-         if (movie.getId() == curMovie.getId()) {
+      MainObservable.getDaoMovieXml().saveOrUpdate(movie);
+      MainObservable.getDaoActorXml().saveOrUpdate(MainObservable.getSelectedActor());
+      MainObservable.refreshMainView();
+   }
+
+   public void editMovie(){
+         Movie curMovie = MainObservable.getSelectedMovie();
             curMovie.setName(title);
             curMovie.setGenre(genre);
             curMovie.setReleaseYear(year);
             MainObservable.getDaoMovieXml().saveOrUpdate(curMovie);
             MainObservable.refreshMainView();
-            return;
-         }
-      }
-      MainObservable.getDaoMovieXml().saveOrUpdate(movie);
-      MainObservable.getDaoActorXml().saveOrUpdate(MainObservable.getSelectedActor());
-      MainObservable.refreshMainView();
    }
 
    public IntegerProperty getId() {
