@@ -80,10 +80,9 @@ public class MainController {
    @FXML
    private Pane newActorPane;
 
-   @SuppressWarnings("unused")
    @FXML
    public void initialize() throws IOException {
-      MainObservable observable = new MainObservable(this);
+      MainObservable.setMainObservable(this);
       viewModel = new MainViewModel();
       loadFxmlFiles();
       prepareTable();
@@ -130,6 +129,12 @@ public class MainController {
    public void editActorToggle(){
       prepareDrawer(actorTopDrawer, editActorPane);
       toggle(actorStack, actorTopDrawer);
+   }
+
+   @FXML
+   public void permitSelection(){
+      movieActorsTable.getSelectionModel().clearSelection();
+      actorMoviesTable.getSelectionModel().clearSelection();
    }
 
 

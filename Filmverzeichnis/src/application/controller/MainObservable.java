@@ -9,8 +9,12 @@ public class MainObservable {
 
    private static MainController main;
 
-   public MainObservable(MainController main) {
-      MainObservable.main = main;
+//   public MainObservable(MainController main) {
+//      MainObservable.main = main;
+//   }
+
+   public static void setMainObservable(MainController mainController){
+      main = mainController;
    }
 
    public static void toggleMovie() {

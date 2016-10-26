@@ -22,23 +22,23 @@
               <AnchorPane fx:id="movieAnchor" minHeight="0.0" minWidth="0.0" prefHeight="450.0" prefWidth="637.0">
                      <children>
                         <JFXDrawer fx:id="movieTopDrawer" prefHeight="51.0" prefWidth="72.0" />
-                        <TableView fx:id="movieTable" layoutX="17.0" layoutY="246.0" prefHeight="146.0" prefWidth="528.0">
+                        <TableView fx:id="movieTable" layoutX="18.0" layoutY="201.0" prefHeight="146.0" prefWidth="528.0">
                           <columns>
                             <TableColumn fx:id="movieName" maxWidth="10000.0" minWidth="90.0" prefWidth="159.0" text="Name" />
                             <TableColumn fx:id="movieYear" maxWidth="10000.0" minWidth="100.0" prefWidth="220.0" text="Erscheinungsjahr" />
                               <TableColumn fx:id="movieGenre" maxWidth="10000.0" minWidth="100.0" prefWidth="148.0" text="Genre" />
                           </columns>
                         </TableView>
-                        <TableView fx:id="movieActorsTable" layoutX="19.0" layoutY="437.0" prefHeight="170.0" prefWidth="525.0">
+                        <TableView fx:id="movieActorsTable" layoutX="20.0" layoutY="392.0" onMouseClicked="#permitSelection" prefHeight="170.0" prefWidth="525.0">
                           <columns>
                             <TableColumn fx:id="movieActorsName" prefWidth="173.0" text="Name" />
                             <TableColumn fx:id="movieActorsBirth" prefWidth="173.0" text="Date of birth" />
                               <TableColumn fx:id="movieActorsSex" prefWidth="178.0" text="Sex" />
                           </columns>
                         </TableView>
-                        <JFXButton fx:id="btnNewMovie" layoutX="371.0" layoutY="393.0" onMouseClicked="#newMovieToggle" text="New Movie" />
-                        <Label fx:id="lblTitle" layoutX="19.0" layoutY="406.0" prefHeight="32.0" prefWidth="293.0" />
-                        <JFXButton fx:id="btnAddActor" layoutX="475.0" layoutY="607.0" onMouseClicked="#addActorToggle" text="Add Actor" />
+                        <JFXButton fx:id="btnNewMovie" layoutX="162.0" layoutY="580.0" onMouseClicked="#newMovieToggle" text="New Movie" />
+                        <Label fx:id="lblTitle" layoutX="20.0" layoutY="360.0" prefHeight="32.0" prefWidth="293.0" />
+                        <JFXButton fx:id="btnAddActor" layoutX="323.0" layoutY="580.0" onMouseClicked="#addActorToggle" text="Add Actor" />
                         <JFXDrawersStack fx:id="movieStack" layoutX="-1.0" prefHeight="201.0" prefWidth="565.0">
                            <children>
                               <Pane fx:id="addActorPane" prefHeight="184.0" prefWidth="565.0" visible="false" />
@@ -51,7 +51,7 @@
                               <Pane fx:id="editMoviePane" prefHeight="200.0" prefWidth="200.0" visible="false" />
                            </children>
                         </JFXDrawersStack>
-                        <JFXButton fx:id="btnEditMovie" layoutX="471.0" layoutY="393.0" onMouseClicked="#editMovieToggle" text="Edit Movie" />
+                        <JFXButton fx:id="btnEditMovie" layoutX="243.0" layoutY="580.0" onMouseClicked="#editMovieToggle" text="Edit Movie" />
                      </children>
                   </AnchorPane>
             </content>
@@ -68,7 +68,7 @@
                               <TableColumn fx:id="actorBirth" maxWidth="10000.0" minWidth="100.0" prefWidth="175.0" text="Date of birth" />
                            </columns>
                         </TableView>
-                        <TableView fx:id="actorMoviesTable" layoutX="14.0" layoutY="430.0" prefHeight="181.0" prefWidth="531.0">
+                        <TableView fx:id="actorMoviesTable" layoutX="14.0" layoutY="430.0" onMouseClicked="#permitSelection" prefHeight="181.0" prefWidth="531.0">
                            <columns>
                               <TableColumn fx:id="actorMoviesName" prefWidth="177.0" text="Name" />
                               <TableColumn fx:id="actorMoviesYear" prefWidth="190.0" text="Erscheinungsjahr" />
