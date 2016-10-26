@@ -1,6 +1,5 @@
 package application.model.dto;
 
-import java.time.LocalDate;
 import java.util.List;
 
 import javafx.beans.property.SimpleStringProperty;
@@ -77,8 +76,6 @@ public class Actor implements Comparable<Actor> {
     * @since 1.0
     */
    public StringProperty getBirthDate() {
-      LocalDate d = LocalDate.now();
-      birthDate.set(d.toString());
       return birthDate;
    }
 

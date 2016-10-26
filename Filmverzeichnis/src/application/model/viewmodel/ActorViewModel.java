@@ -25,41 +25,30 @@ public class ActorViewModel {
       actor.setName(name);
       actor.setSex(sex.get());
       actor.setBirthDate(birthDate);
-      for (Actor curActor : MainObservable.getDaoActorXml().getAll()) {
-         if (actor.getId() == curActor.getId())
-            actor.setId(MainObservable.getAddActorId());
-         curActor.setSex(sex.get());
-         curActor.setName(name);
-         curActor.setBirthDate(birthDate);
-         MainObservable.getDaoActorXml().saveOrUpdate(curActor);
-         curActor.getMovies().add(MainObservable.getSelectedMovie());
-         MainObservable.getDaoActorXml().saveOrUpdate(curActor);
-         MainObservable.getSelectedMovie().getActors().add(curActor);
-         return;
-      }
       MainObservable.getDaoActorXml().saveOrUpdate(actor);
    }
 
    public void addActor(LocalDate birth) {
-      StringProperty birthDate = new SimpleStringProperty(birth.toString());
+      birthDate.set(birth.toString());
       Actor actor = new Actor();
       actor.setId(MainObservable.getAddActorId());
       actor.setSex(sex.get());
       actor.setName(name);
       actor.setBirthDate(birthDate);
       actor.setMovies(new ArrayList<Movie>());
-      for (Actor curActor : MainObservable.getDaoActorXml().getAll()) {
-         if (actor.getId() == curActor.getId()) {
-            curActor.setSex(sex.get());
-            curActor.setName(name);
-            curActor.setBirthDate(birthDate);
-            MainObservable.getDaoActorXml().saveOrUpdate(curActor);
-            MainObservable.refreshMainView();
-            return;
-         }
-      }
       MainObservable.getDaoActorXml().saveOrUpdate(actor);
+      MainObservable.getSelectedMovie().getActors().add(actor);
       MainObservable.getDaoMovieXml().saveOrUpdate(MainObservable.getSelectedMovie());
+      MainObservable.refreshMainView();
+   }
+
+   public void editActor(LocalDate birth) {
+      birthDate.set(birth.toString());
+      Actor curActor = MainObservable.getSelectedActor();
+      curActor.setSex(sex.get());
+      curActor.setName(name);
+      curActor.setBirthDate(birthDate);
+      MainObservable.getDaoActorXml().saveOrUpdate(curActor);
       MainObservable.refreshMainView();
    }
 

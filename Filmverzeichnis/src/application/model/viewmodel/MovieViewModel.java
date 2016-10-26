@@ -34,6 +34,7 @@ public class MovieViewModel {
       movie.setReleaseYear(year);
       movie.setActors(new ArrayList<Actor>());
       MainObservable.getDaoMovieXml().saveOrUpdate(movie);
+      MainObservable.getSelectedActor().getMovies().add(movie);
       MainObservable.getDaoActorXml().saveOrUpdate(MainObservable.getSelectedActor());
       MainObservable.refreshMainView();
    }

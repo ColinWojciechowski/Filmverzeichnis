@@ -76,6 +76,8 @@ public class MainController {
    @FXML
    private Pane editMoviePane;
    @FXML
+   private Pane editActorPane;
+   @FXML
    private Pane newActorPane;
 
    @SuppressWarnings("unused")
@@ -121,6 +123,12 @@ public class MainController {
    @FXML
    public void newActorToggle() {
       prepareDrawer(actorTopDrawer, newActorPane);
+      toggle(actorStack, actorTopDrawer);
+   }
+
+   @FXML
+   public void editActorToggle(){
+      prepareDrawer(actorTopDrawer, editActorPane);
       toggle(actorStack, actorTopDrawer);
    }
 
@@ -202,6 +210,7 @@ public class MainController {
       editMoviePane = FXMLLoader.load(getClass().getResource("../view/fxml/EditMovie.fxml"));
       addMoviePane = FXMLLoader.load(getClass().getResource("../view/fxml/AddMovie.fxml"));
       newActorPane = FXMLLoader.load(getClass().getResource("../view/fxml/CreateActor.fxml"));
+      editActorPane = FXMLLoader.load(getClass().getResource("../view/fxml/EditActor.fxml"));
    }
 
    private void setDrawerDirection() {
