@@ -65,9 +65,7 @@ public class AddActorController {
          String sex = (rbtnMale.selectedProperty().get() == true) ? "Male" : "Female";
          this.sex = new SimpleStringProperty(sex);
          this.name.set(txtName.getText());
-         if (txtName.getText().isEmpty()
-//                  || dateBirth.getPromptText().isEmpty()
-                  )
+         if (txtName.getText().isEmpty() || dateBirth.getPromptText().isEmpty())
             throw new NullPointerException();
          viewModel.setSex(this.sex);
          viewModel.setName(name);

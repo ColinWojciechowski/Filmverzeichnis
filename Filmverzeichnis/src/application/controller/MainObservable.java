@@ -9,11 +9,7 @@ public class MainObservable {
 
    private static MainController main;
 
-//   public MainObservable(MainController main) {
-//      MainObservable.main = main;
-//   }
-
-   public static void setMainObservable(MainController mainController){
+   public static void setMainObservable(MainController mainController) {
       main = mainController;
    }
 
@@ -23,22 +19,6 @@ public class MainObservable {
 
    public static void toggleActor() {
       main.toggle(main.getActorStack(), main.getActorTopDrawer());
-   }
-
-   public IFachkonzept<Actor> getFachkonzeptActor() {
-      return main.getViewModel().getFachkonzeptActor();
-   }
-
-   public IFachkonzept<Movie> getFachkonzeptMovie() {
-      return main.getViewModel().getFachkonzeptMovie();
-   }
-
-   public static IDao<Actor> getDaoActorXml() {
-      return main.getViewModel().getDaoActorXml();
-   }
-
-   public static IDao<Movie> getDaoMovieXml() {
-      return main.getViewModel().getDaoMovieXml();
    }
 
    public static void refreshMainView() {
@@ -101,10 +81,25 @@ public class MainObservable {
       return main.getMovieTable().getSelectionModel().getSelectedItem();
    }
 
-   public static Actor getSelectedActor(){
+   public static Actor getSelectedActor() {
       return main.getActorTable().getSelectionModel().getSelectedItem();
    }
 
+   public IFachkonzept<Actor> getFachkonzeptActor() {
+      return main.getViewModel().getFachkonzeptActor();
+   }
+
+   public IFachkonzept<Movie> getFachkonzeptMovie() {
+      return main.getViewModel().getFachkonzeptMovie();
+   }
+
+   public static IDao<Actor> getDaoActorXml() {
+      return main.getViewModel().getDaoActorXml();
+   }
+
+   public static IDao<Movie> getDaoMovieXml() {
+      return main.getViewModel().getDaoMovieXml();
+   }
 }
 
 /**

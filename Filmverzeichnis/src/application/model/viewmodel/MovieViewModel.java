@@ -33,6 +33,15 @@ public class MovieViewModel {
       movie.setGenre(genre);
       movie.setReleaseYear(year);
       movie.setActors(new ArrayList<Actor>());
+      for(Movie curMovie : MainObservable.getDaoMovieXml().getAll()){
+         if(movie.getId() == curMovie.getId()){
+            if(MainObservable.getSelectedActor() != null){
+               movie.getActors().add(MainObservable.getSelectedActor());
+            }
+            MainObservable.getDaoMovieXml().saveOrUpdate(movie);
+            return;
+         }
+      }
       MainObservable.getDaoMovieXml().saveOrUpdate(movie);
       MainObservable.getSelectedActor().getMovies().add(movie);
       MainObservable.getDaoActorXml().saveOrUpdate(MainObservable.getSelectedActor());

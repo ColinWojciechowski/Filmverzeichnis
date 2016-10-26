@@ -36,6 +36,15 @@ public class ActorViewModel {
       actor.setName(name);
       actor.setBirthDate(birthDate);
       actor.setMovies(new ArrayList<Movie>());
+      for (Actor curActor : MainObservable.getDaoActorXml().getAll()) {
+         if (actor.getId() == curActor.getId()) {
+            if (MainObservable.getSelectedMovie() != null) {
+               actor.getMovies().add(MainObservable.getSelectedMovie());
+            }
+            MainObservable.getDaoActorXml().saveOrUpdate(actor);
+            return;
+         }
+      }
       MainObservable.getDaoActorXml().saveOrUpdate(actor);
       MainObservable.getSelectedMovie().getActors().add(actor);
       MainObservable.getDaoMovieXml().saveOrUpdate(MainObservable.getSelectedMovie());

@@ -133,8 +133,8 @@ public class MainController {
 
    @FXML
    public void permitSelection(){
-      movieActorsTable.getSelectionModel().clearSelection();
-      actorMoviesTable.getSelectionModel().clearSelection();
+//      movieActorsTable.getSelectionModel().clearSelection();
+//      actorMoviesTable.getSelectionModel().clearSelection();
    }
 
 
