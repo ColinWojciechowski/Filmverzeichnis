@@ -4,6 +4,7 @@ import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXRadioButton;
 
 import application.controller.MainObservable;
+import application.model.dto.enums.Sex;
 import application.model.viewmodel.ActorViewModel;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -48,7 +49,7 @@ public class CreateActorController {
       try {
          if (txtName.getText().isEmpty() || dateBirth.getPromptText().isEmpty())
             throw new NullPointerException();
-         String sex = (rbtnMale.selectedProperty().get() == true) ? "Male" : "Female";
+         String sex = (rbtnMale.selectedProperty().get() == true) ? Sex.MALE.toString() : Sex.FEMALE.toString();
          this.sex.set(sex);
          this.name.set(txtName.getText());
          viewModel.setSex(this.sex);

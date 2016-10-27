@@ -1,9 +1,12 @@
 package application.controller.edit;
 
+import java.time.LocalDate;
+
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXRadioButton;
 
 import application.controller.MainObservable;
+import application.model.dto.enums.Sex;
 import application.model.viewmodel.ActorViewModel;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -41,14 +44,35 @@ public class EditActorController {
       rbtnMale.setToggleGroup(group);
       rbtnFemale.setToggleGroup(group);
       dateBirth.editableProperty().set(false);
+
+      MainObservable.getActorTable().getSelectionModel().selectedItemProperty()
+      .addListener((obs, oldSelection, newSelection) -> {
+         if (newSelection != null) {
+            this.name = newSelection.getName();
+            this.sex = newSelection.getSex();
+            dateBirth.setValue(LocalDate.parse(newSelection.getBirthDate().get()));
+            if(this.sex.get().equals(Sex.MALE.toString())){
+               rbtnMale.fire();
+            }else{
+               rbtnFemale.fire();
+            }
+            txtName.textProperty().bind(name);
+         }
+         else{
+            txtName.clear();
+            rbtnMale.fire();
+            dateBirth.setValue(null);
+         }
+         txtName.textProperty().unbind();
+      });
    }
 
    @FXML
    public void btnOkClicked() {
       try {
-         if (txtName.getText().isEmpty() || dateBirth.getPromptText().isEmpty())
+         if (txtName.getText().isEmpty() || dateBirth.getPromptText().isEmpty() || dateBirth.getValue() == null)
             throw new NullPointerException();
-         String sex = (rbtnMale.selectedProperty().get() == true) ? "Male" : "Female";
+         String sex = (rbtnMale.selectedProperty().get() == true) ? Sex.MALE.toString() : Sex.FEMALE.toString();
          this.sex.set(sex);
          this.name.set(txtName.getText());
          viewModel.setSex(this.sex);

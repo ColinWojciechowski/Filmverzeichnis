@@ -4,19 +4,19 @@
   <void method="add">
    <object class="application.model.entity.EntityActor">
     <void property="birthDate">
-     <string>2016-10-09</string>
+     <string>2016-10-01</string>
     </void>
     <void property="id">
-     <int>2</int>
+     <int>1</int>
     </void>
     <void property="movieIds">
      <object class="java.util.ArrayList"/>
     </void>
     <void property="name">
-     <string>charley</string>
+     <string>a</string>
     </void>
     <void property="sex">
-     <string>Female</string>
+     <string>Male</string>
     </void>
    </object>
   </void>
@@ -26,46 +26,42 @@
      <string>2016-10-06</string>
     </void>
     <void property="id">
+     <int>2</int>
+    </void>
+    <void property="movieIds">
+     <object class="java.util.ArrayList"/>
+    </void>
+    <void property="name">
+     <string>b</string>
+    </void>
+    <void property="sex">
+     <string>Female</string>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="application.model.entity.EntityActor">
+    <void property="birthDate">
+     <string>2016-10-15</string>
+    </void>
+    <void property="id">
      <int>3</int>
     </void>
     <void property="movieIds">
      <object class="java.util.ArrayList"/>
     </void>
     <void property="name">
-     <string>asd</string>
+     <string>cd</string>
     </void>
     <void property="sex">
-     <string>Male</string>
+     <string>FEMALE</string>
     </void>
    </object>
   </void>
   <void method="add">
    <object class="application.model.entity.EntityActor">
     <void property="birthDate">
-     <string>2016-10-08</string>
-    </void>
-    <void property="id">
-     <int>1</int>
-    </void>
-    <void property="movieIds">
-     <object class="java.util.ArrayList">
-      <void method="add">
-       <int>1</int>
-      </void>
-     </object>
-    </void>
-    <void property="name">
-     <string>vb</string>
-    </void>
-    <void property="sex">
-     <string>Male</string>
-    </void>
-   </object>
-  </void>
-  <void method="add">
-   <object class="application.model.entity.EntityActor">
-    <void property="birthDate">
-     <string>2016-10-22</string>
+     <string>2016-10-06</string>
     </void>
     <void property="id">
      <int>4</int>
@@ -74,74 +70,10 @@
      <object class="java.util.ArrayList"/>
     </void>
     <void property="name">
-     <string>fff</string>
+     <string>d</string>
     </void>
     <void property="sex">
-     <string>Male</string>
-    </void>
-   </object>
-  </void>
-  <void method="add">
-   <object class="application.model.entity.EntityActor">
-    <void property="birthDate">
-     <string>2016-10-14</string>
-    </void>
-    <void property="id">
-     <int>5</int>
-    </void>
-    <void property="movieIds">
-     <object class="java.util.ArrayList"/>
-    </void>
-    <void property="name">
-     <string>s</string>
-    </void>
-    <void property="sex">
-     <string>Male</string>
-    </void>
-   </object>
-  </void>
-  <void method="add">
-   <object class="application.model.entity.EntityActor">
-    <void property="birthDate">
-     <string>2009-10-07</string>
-    </void>
-    <void property="id">
-     <int>7</int>
-    </void>
-    <void property="movieIds">
-     <object class="java.util.ArrayList"/>
-    </void>
-    <void property="name">
-     <string>Bruce Willis</string>
-    </void>
-    <void property="sex">
-     <string>Male</string>
-    </void>
-   </object>
-  </void>
-  <void method="add">
-   <object class="application.model.entity.EntityActor">
-    <void property="birthDate">
-     <string>2016-10-13</string>
-    </void>
-    <void property="id">
-     <int>6</int>
-    </void>
-    <void property="movieIds">
-     <object class="java.util.ArrayList">
-      <void method="add">
-       <int>1</int>
-      </void>
-      <void method="add">
-       <int>3</int>
-      </void>
-     </object>
-    </void>
-    <void property="name">
-     <string>ö</string>
-    </void>
-    <void property="sex">
-     <string>Male</string>
+     <string>MALE</string>
     </void>
    </object>
   </void>
