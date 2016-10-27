@@ -4,6 +4,7 @@ import application.model.dao.interfaces.IDao;
 import application.model.dto.Actor;
 import application.model.dto.Movie;
 import application.model.fachkonzept.interfaces.IFachkonzept;
+import javafx.scene.control.TableView;
 
 public class MainObservable {
 
@@ -75,6 +76,10 @@ public class MainObservable {
          return actorId + 1;
       } else
          return main.getMovieActorsTable().getSelectionModel().getSelectedItem().getId();
+   }
+
+   public static TableView<Movie> getMovieTable(){
+      return main.getMovieTable();
    }
 
    public static Movie getSelectedMovie() {

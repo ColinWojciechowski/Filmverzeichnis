@@ -31,7 +31,27 @@ public class EditMovieController {
    JFXTextField txtYear;
 
    @FXML
-   public void initialize(){
+   public void initialize() {
+      MainObservable.getMovieTable().getSelectionModel().selectedItemProperty()
+         .addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
+               this.name = newSelection.getName();
+               this.genre = newSelection.getGenre();
+               this.year = newSelection.getReleaseYear();
+               txtTitle.textProperty().bind(name);
+               txtGenre.textProperty().bind(genre);
+               txtYear.textProperty().bind(new SimpleStringProperty(""+year.get()));
+
+            }
+            else{
+               txtTitle.clear();
+               txtGenre.clear();
+               txtYear.clear();
+            }
+            txtTitle.textProperty().unbind();
+            txtGenre.textProperty().unbind();
+            txtYear.textProperty().unbind();
+         });
    }
 
    @FXML
@@ -88,9 +108,7 @@ public class EditMovieController {
       txtYear.setPromptText("Year");
    }
 
-
 }
-
 
 /**
  * $ID: EditMovieController.java,v $

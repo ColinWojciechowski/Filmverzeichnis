@@ -131,14 +131,6 @@ public class MainController {
       toggle(actorStack, actorTopDrawer);
    }
 
-   @FXML
-   public void permitSelection(){
-//      movieActorsTable.getSelectionModel().clearSelection();
-//      actorMoviesTable.getSelectionModel().clearSelection();
-   }
-
-
-
    public void prepareTable() {
       movieTable.setItems(null);
       movieTable.setItems(FXCollections.observableList(viewModel.getDaoMovieXml().getAll()));

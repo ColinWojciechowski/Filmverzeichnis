@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 
-<AnchorPane maxHeight="744.0" maxWidth="1030.0" prefHeight="679.0" prefWidth="559.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.MainController">
+<AnchorPane maxHeight="744.0" maxWidth="1030.0" prefHeight="657.0" prefWidth="559.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.MainController">
    <children>
       <JFXTabPane prefHeight="710.0" prefWidth="1030.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <tabs>
@@ -29,7 +29,7 @@
                               <TableColumn fx:id="movieGenre" maxWidth="10000.0" minWidth="100.0" prefWidth="148.0" text="Genre" />
                           </columns>
                         </TableView>
-                        <TableView fx:id="movieActorsTable" layoutX="20.0" layoutY="392.0" onMouseClicked="#permitSelection" prefHeight="170.0" prefWidth="525.0">
+                        <TableView fx:id="movieActorsTable" layoutX="20.0" layoutY="392.0" prefHeight="170.0" prefWidth="525.0">
                           <columns>
                             <TableColumn fx:id="movieActorsName" prefWidth="173.0" text="Name" />
                             <TableColumn fx:id="movieActorsBirth" prefWidth="173.0" text="Date of birth" />
@@ -61,23 +61,23 @@
                   <AnchorPane fx:id="actorAnchor" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
                         <JFXDrawer fx:id="actorTopDrawer" prefHeight="21.0" prefWidth="17.0" />
-                        <TableView fx:id="actorTable" layoutX="14.0" layoutY="245.0" prefHeight="139.0" prefWidth="527.0">
+                        <TableView fx:id="actorTable" layoutX="14.0" layoutY="201.0" prefHeight="139.0" prefWidth="527.0">
                            <columns>
                               <TableColumn fx:id="actorName" maxWidth="10000.0" minWidth="175.0" prefWidth="175.0" text="Name" />
                               <TableColumn fx:id="actorSex" maxWidth="10000.0" minWidth="100.0" prefWidth="182.0" text="Sex" />
                               <TableColumn fx:id="actorBirth" maxWidth="10000.0" minWidth="100.0" prefWidth="175.0" text="Date of birth" />
                            </columns>
                         </TableView>
-                        <TableView fx:id="actorMoviesTable" layoutX="14.0" layoutY="430.0" onMouseClicked="#permitSelection" prefHeight="181.0" prefWidth="531.0">
+                        <TableView fx:id="actorMoviesTable" layoutX="14.0" layoutY="386.0" prefHeight="181.0" prefWidth="531.0">
                            <columns>
                               <TableColumn fx:id="actorMoviesName" prefWidth="177.0" text="Name" />
                               <TableColumn fx:id="actorMoviesYear" prefWidth="190.0" text="Erscheinungsjahr" />
                               <TableColumn fx:id="actorMoviesGenre" prefWidth="163.0" text="Genre" />
                            </columns>
                         </TableView>
-                        <JFXButton layoutX="339.0" layoutY="386.0" onMouseClicked="#newActorToggle" text="New Actor" />
-                        <JFXButton layoutX="471.0" layoutY="611.0" onMouseClicked="#addMoviewToggle" text="Add Movie" />
-                        <Label fx:id="lblActor" layoutX="14.0" layoutY="398.0" prefHeight="36.0" prefWidth="325.0" />
+                        <JFXButton layoutX="170.0" layoutY="584.0" onMouseClicked="#newActorToggle" text="New Actor" />
+                        <JFXButton layoutX="325.0" layoutY="584.0" onMouseClicked="#addMoviewToggle" text="Add Movie" />
+                        <Label fx:id="lblActor" layoutX="14.0" layoutY="350.0" prefHeight="36.0" prefWidth="325.0" />
                         <JFXDrawersStack fx:id="actorStack" layoutX="-2.0" prefHeight="201.0" prefWidth="565.0">
                            <children>
                               <Pane fx:id="addMoviePane" prefHeight="184.0" prefWidth="565.0" visible="false" />
@@ -90,7 +90,7 @@
                               <Pane fx:id="editActorPane" prefHeight="200.0" prefWidth="200.0" visible="false" />
                            </children>
                         </JFXDrawersStack>
-                        <JFXButton layoutX="469.0" layoutY="386.0" onMouseClicked="#editActorToggle" text="Edit Actor" />
+                        <JFXButton layoutX="247.0" layoutY="584.0" onMouseClicked="#editActorToggle" text="Edit Actor" />
                      </children>
                   </AnchorPane>
                </content>
