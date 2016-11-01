@@ -10,14 +10,15 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
-public class MovieViewModel {
+public class MovieViewModel implements IFachkonzept{
 
    IntegerProperty id = new SimpleIntegerProperty();
    StringProperty title = new SimpleStringProperty();
    StringProperty genre = new SimpleStringProperty();
-   IntegerProperty year = new SimpleIntegerProperty();
+   StringProperty year = new SimpleStringProperty();
 
-   public void createMovie() {
+   @Override
+   public void create() {
       Movie movie = new Movie();
       movie.setId(MainObservable.getNewMovieId());
       movie.setName(title);
@@ -26,7 +27,8 @@ public class MovieViewModel {
       MainObservable.getDaoMovieXml().saveOrUpdate(movie);
    }
 
-   public void addMovie() {
+   @Override
+   public void add() {
       Movie movie = new Movie();
       movie.setId(MainObservable.getAddMovieId());
       movie.setName(title);
@@ -50,7 +52,8 @@ public class MovieViewModel {
       MainObservable.refreshMainView();
    }
 
-   public void editMovie() {
+   @Override
+   public void edit() {
       Movie curMovie = MainObservable.getSelectedMovie();
       if (curMovie != null) {
          curMovie.setName(title);
@@ -59,39 +62,15 @@ public class MovieViewModel {
          MainObservable.getDaoMovieXml().saveOrUpdate(curMovie);
          MainObservable.refreshMainView();
       } else {
-         createMovie();
+         create();
       }
    }
 
-   public IntegerProperty getId() {
-      return id;
-   }
-
-   public void setId(IntegerProperty id) {
-      this.id = id;
-   }
-
-   public StringProperty getTitle() {
-      return title;
-   }
-
-   public void setTitle(StringProperty title) {
-      this.title = title;
-   }
-
-   public StringProperty getGenre() {
-      return genre;
-   }
-
-   public void setGenre(StringProperty genre) {
+   @Override
+   public void bindAttributes(StringProperty name, StringProperty genre, StringProperty year) {
+      this.title = name;
       this.genre = genre;
-   }
-
-   public IntegerProperty getYear() {
-      return year;
-   }
-
-   public void setYear(IntegerProperty year) {
       this.year = year;
    }
+
 }

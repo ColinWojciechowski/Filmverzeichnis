@@ -6,6 +6,7 @@ import com.jfoenix.controls.JFXRadioButton;
 import application.controller.MainObservable;
 import application.model.dto.enums.Sex;
 import application.model.viewmodel.ActorViewModel;
+import application.model.viewmodel.IFachkonzept;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.fxml.FXML;
@@ -16,10 +17,11 @@ import javafx.scene.layout.AnchorPane;
 
 public class AddActorController {
 
-   ActorViewModel viewModel;
+   IFachkonzept viewModel;
    final ToggleGroup group = new ToggleGroup();
    StringProperty name = new SimpleStringProperty();
    StringProperty sex = new SimpleStringProperty();
+   StringProperty birth = new SimpleStringProperty();
 
    @FXML
    TextField txtName;
@@ -36,7 +38,6 @@ public class AddActorController {
 
    @FXML
    public void initialize() {
-
       addActorPane.getStylesheets()
          .add(getClass().getResource("../../view/application.css").toExternalForm());
       viewModel = new ActorViewModel();
@@ -66,11 +67,13 @@ public class AddActorController {
          String sex = (rbtnMale.selectedProperty().get() == true) ? Sex.MALE.toString() : Sex.FEMALE.toString();
          this.sex = new SimpleStringProperty(sex);
          this.name.set(txtName.getText());
+         this.birth = this.dateBirth.promptTextProperty();
          if (txtName.getText().isEmpty() || dateBirth.getPromptText().isEmpty())
             throw new NullPointerException();
-         viewModel.setSex(this.sex);
-         viewModel.setName(name);
-         viewModel.addActor(this.dateBirth.getValue());
+         viewModel.bindAttributes(name, this.sex, birth);
+//         viewModel.setSex(this.sex);
+//         viewModel.setName(name);
+         viewModel.add();
          MainObservable.refreshMainView();
          resetValues();
          MainObservable.toggleMovie();

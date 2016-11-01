@@ -9,7 +9,7 @@ import java.util.List;
 public class EntityMovie {
    private int id;
     private String name;
-    private int releaseYear;
+    private String releaseYear;
     private String genre;
     private List<Integer> actorIds;
 
@@ -32,11 +32,11 @@ public class EntityMovie {
         this.name = name;
     }
 
-    public int getReleaseYear() {
+    public String getReleaseYear() {
         return releaseYear;
     }
 
-    public void setReleaseYear(int releaseYear) {
+    public void setReleaseYear(String releaseYear) {
         this.releaseYear = releaseYear;
     }
 

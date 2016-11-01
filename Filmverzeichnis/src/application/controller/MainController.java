@@ -28,7 +28,7 @@ public class MainController {
    @FXML
    private TableColumn<Movie, String> movieName;
    @FXML
-   private TableColumn<Movie, Number> movieYear;
+   private TableColumn<Movie, String> movieYear;
    @FXML
    private TableColumn<Movie, String> movieGenre;
    @FXML
@@ -52,7 +52,7 @@ public class MainController {
    @FXML
    private TableColumn<Movie, String> actorMoviesName;
    @FXML
-   private TableColumn<Movie, Number> actorMoviesYear;
+   private TableColumn<Movie, String> actorMoviesYear;
    @FXML
    private TableColumn<Movie, String> actorMoviesGenre;
    @FXML

@@ -20,6 +20,7 @@ public class CreateActorController {
    ActorViewModel viewModel = new ActorViewModel();
    StringProperty sex = new SimpleStringProperty();
    StringProperty name = new SimpleStringProperty();
+   StringProperty birth = new SimpleStringProperty();
 
    @FXML
    Button btnAdd;
@@ -52,9 +53,11 @@ public class CreateActorController {
          String sex = (rbtnMale.selectedProperty().get() == true) ? Sex.MALE.toString() : Sex.FEMALE.toString();
          this.sex.set(sex);
          this.name.set(txtName.getText());
-         viewModel.setSex(this.sex);
-         viewModel.setName(name);
-         viewModel.createActor(this.dateBirth.getValue());
+         this.birth = this.dateBirth.promptTextProperty();
+         viewModel.bindAttributes(name, this.sex, birth);
+//         viewModel.setSex(this.sex);
+//         viewModel.setName(name);
+         viewModel.create();
          resetValues();
          MainObservable.toggleActor();
          MainObservable.refreshMainView();

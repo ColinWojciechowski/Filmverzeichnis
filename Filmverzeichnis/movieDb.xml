@@ -6,24 +6,18 @@
     <void property="actorIds">
      <object class="java.util.ArrayList">
       <void method="add">
-       <int>5</int>
-      </void>
-      <void method="add">
-       <int>6</int>
+       <int>1</int>
       </void>
      </object>
     </void>
     <void property="genre">
-     <string>Disney - Fantasy</string>
+     <string>action</string>
     </void>
     <void property="id">
      <int>1</int>
     </void>
     <void property="name">
-     <string>Pirates of the Caribian</string>
-    </void>
-    <void property="releaseYear">
-     <int>2010</int>
+     <string>die hard</string>
     </void>
    </object>
   </void>
@@ -34,28 +28,39 @@
       <void method="add">
        <int>3</int>
       </void>
+     </object>
+    </void>
+    <void property="genre">
+     <string>f</string>
+    </void>
+    <void property="id">
+     <int>3</int>
+    </void>
+    <void property="name">
+     <string>f</string>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="application.model.entity.EntityMovie">
+    <void property="actorIds">
+     <object class="java.util.ArrayList">
       <void method="add">
-       <int>8</int>
-      </void>
-      <void method="add">
-       <int>3</int>
-      </void>
-      <void method="add">
-       <int>9</int>
+       <int>4</int>
       </void>
      </object>
     </void>
     <void property="genre">
-     <string>öö</string>
+     <string>as</string>
     </void>
     <void property="id">
      <int>2</int>
     </void>
     <void property="name">
-     <string>fd</string>
+     <string>ac</string>
     </void>
     <void property="releaseYear">
-     <int>3</int>
+     <string>ac</string>
     </void>
    </object>
   </void>

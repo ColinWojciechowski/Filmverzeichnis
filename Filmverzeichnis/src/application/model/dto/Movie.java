@@ -2,8 +2,6 @@ package application.model.dto;
 
 import java.util.List;
 
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
@@ -14,7 +12,7 @@ import javafx.beans.property.StringProperty;
 public class Movie implements Comparable<Movie>{
     private int id;
     private StringProperty name = new SimpleStringProperty();
-    private IntegerProperty releaseYear = new SimpleIntegerProperty();
+    private StringProperty releaseYear = new SimpleStringProperty();
     private StringProperty genre = new SimpleStringProperty();
     private List<Actor> actors;
 
@@ -22,11 +20,11 @@ public class Movie implements Comparable<Movie>{
         return id;
     }
 
-    public IntegerProperty getReleaseYear() {
+    public StringProperty getReleaseYear() {
       return releaseYear;
    }
 
-   public void setReleaseYear(IntegerProperty releaseYear) {
+   public void setReleaseYear(StringProperty releaseYear) {
       this.releaseYear = releaseYear;
    }
 
@@ -62,4 +60,5 @@ public class Movie implements Comparable<Movie>{
    public int compareTo(Movie movie) {
       return this.name.get().compareTo(movie.name.get());
    }
+
 }

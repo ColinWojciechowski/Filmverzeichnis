@@ -8,6 +8,7 @@ import com.jfoenix.controls.JFXRadioButton;
 import application.controller.MainObservable;
 import application.model.dto.enums.Sex;
 import application.model.viewmodel.ActorViewModel;
+import application.model.viewmodel.IFachkonzept;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.fxml.FXML;
@@ -19,9 +20,10 @@ import javafx.scene.layout.AnchorPane;
 public class EditActorController {
 
    final ToggleGroup group = new ToggleGroup();
-   ActorViewModel viewModel = new ActorViewModel();
+   IFachkonzept viewModel = new ActorViewModel();
    StringProperty sex = new SimpleStringProperty();
    StringProperty name = new SimpleStringProperty();
+   StringProperty birth = new SimpleStringProperty();
 
    @FXML
    Button btnAdd;
@@ -75,9 +77,11 @@ public class EditActorController {
          String sex = (rbtnMale.selectedProperty().get() == true) ? Sex.MALE.toString() : Sex.FEMALE.toString();
          this.sex.set(sex);
          this.name.set(txtName.getText());
-         viewModel.setSex(this.sex);
-         viewModel.setName(name);
-          viewModel.editActor(this.dateBirth.getValue());
+         this.birth = this.dateBirth.promptTextProperty();
+         viewModel.bindAttributes(name, this.sex, birth);
+//         viewModel.setSex(this.sex);
+//         viewModel.setName(name);
+          viewModel.edit();
          resetValues();
          MainObservable.toggleActor();
          MainObservable.refreshMainView();

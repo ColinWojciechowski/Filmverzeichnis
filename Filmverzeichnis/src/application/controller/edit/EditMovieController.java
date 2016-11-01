@@ -3,9 +3,8 @@ package application.controller.edit;
 import com.jfoenix.controls.JFXTextField;
 
 import application.controller.MainObservable;
+import application.model.viewmodel.IFachkonzept;
 import application.model.viewmodel.MovieViewModel;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.fxml.FXML;
@@ -14,10 +13,10 @@ import javafx.scene.layout.AnchorPane;
 
 public class EditMovieController {
 
-   MovieViewModel viewModel = new MovieViewModel();
+   IFachkonzept viewModel = new MovieViewModel();
    StringProperty name = new SimpleStringProperty();
    StringProperty genre = new SimpleStringProperty();
-   IntegerProperty year = new SimpleIntegerProperty();
+   StringProperty year = new SimpleStringProperty();
 
    @FXML
    Button btnAdd;
@@ -59,7 +58,7 @@ public class EditMovieController {
       boolean yearValid = false;
       boolean txtValid = false;
       try {
-         this.year.set(Integer.parseInt(txtYear.getText()));
+         this.year.set(txtYear.getText());
          txtYear.setPromptText("Year");
          yearValid = true;
       } catch (NumberFormatException e) {
@@ -79,10 +78,11 @@ public class EditMovieController {
          txtGenre.setPromptText(txtGenre.getText().isEmpty() ? "Genre - Pflichtfeld" : "Genre");
       }
       if (yearValid && txtValid) {
-         viewModel.setTitle(name);
-         viewModel.setGenre(genre);
-         viewModel.setYear(year);
-         viewModel.editMovie();
+         viewModel.bindAttributes(name, genre, year);
+//         viewModel.setTitle(name);
+//         viewModel.setGenre(genre);
+//         viewModel.setYear(year);
+         viewModel.edit();
          MainObservable.refreshMainView();
          removeArguments();
          MainObservable.toggleMovie();

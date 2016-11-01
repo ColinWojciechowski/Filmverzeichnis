@@ -3,7 +3,6 @@ package application.controller;
 import application.model.dao.interfaces.IDao;
 import application.model.dto.Actor;
 import application.model.dto.Movie;
-import application.model.fachkonzept.interfaces.IFachkonzept;
 import javafx.scene.control.TableView;
 
 public class MainObservable {
@@ -92,14 +91,6 @@ public class MainObservable {
 
    public static Actor getSelectedActor() {
       return main.getActorTable().getSelectionModel().getSelectedItem();
-   }
-
-   public IFachkonzept<Actor> getFachkonzeptActor() {
-      return main.getViewModel().getFachkonzeptActor();
-   }
-
-   public IFachkonzept<Movie> getFachkonzeptMovie() {
-      return main.getViewModel().getFachkonzeptMovie();
    }
 
    public static IDao<Actor> getDaoActorXml() {

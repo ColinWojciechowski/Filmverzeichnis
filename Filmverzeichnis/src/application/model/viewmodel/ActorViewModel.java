@@ -1,6 +1,5 @@
 package application.model.viewmodel;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 
 import application.controller.MainObservable;
@@ -11,15 +10,15 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
-public class ActorViewModel {
+public class ActorViewModel implements IFachkonzept {
 
    IntegerProperty id = new SimpleIntegerProperty();
    StringProperty sex = new SimpleStringProperty();
    StringProperty name = new SimpleStringProperty();
    StringProperty birthDate = new SimpleStringProperty();
 
-   public void createActor(LocalDate birth) {
-      birthDate.set(birth.toString());
+   @Override
+   public void create() {
       Actor actor = new Actor();
       actor.setId(MainObservable.getNewActorId());
       actor.setName(name);
@@ -28,8 +27,8 @@ public class ActorViewModel {
       MainObservable.getDaoActorXml().saveOrUpdate(actor);
    }
 
-   public void addActor(LocalDate birth) {
-      birthDate.set(birth.toString());
+   @Override
+   public void add() {
       Actor actor = new Actor();
       actor.setId(MainObservable.getAddActorId());
       actor.setSex(sex.get());
@@ -53,34 +52,25 @@ public class ActorViewModel {
       MainObservable.refreshMainView();
    }
 
-   public void editActor(LocalDate birth) {
-      birthDate.set(birth.toString());
+   @Override
+   public void edit() {
       Actor curActor = MainObservable.getSelectedActor();
-      if(curActor != null){
-      curActor.setSex(sex.get());
-      curActor.setName(name);
-      curActor.setBirthDate(birthDate);
-      MainObservable.getDaoActorXml().saveOrUpdate(curActor);
-      MainObservable.refreshMainView();}
-      else{
-         createActor(birth);
+      if (curActor != null) {
+         curActor.setSex(sex.get());
+         curActor.setName(name);
+         curActor.setBirthDate(birthDate);
+         MainObservable.getDaoActorXml().saveOrUpdate(curActor);
+         MainObservable.refreshMainView();
+      } else {
+         create();
       }
    }
 
-   public StringProperty getSex() {
-      return sex;
-   }
-
-   public void setSex(StringProperty sex) {
-      this.sex = sex;
-   }
-
-   public StringProperty getName() {
-      return name;
-   }
-
-   public void setName(StringProperty name) {
+   @Override
+   public void bindAttributes(StringProperty name, StringProperty sex, StringProperty birthDate) {
       this.name = name;
+      this.sex = sex;
+      this.birthDate = birthDate;
    }
 
 }
