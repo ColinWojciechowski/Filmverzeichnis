@@ -40,11 +40,13 @@ public class ActorViewModel {
          if (actor.getId() == curActor.getId()) {
             if (MainObservable.getSelectedMovie() != null) {
                actor.getMovies().add(MainObservable.getSelectedMovie());
+               MainObservable.getDaoMovieXml().saveOrUpdate(MainObservable.getSelectedMovie());
             }
             MainObservable.getDaoActorXml().saveOrUpdate(actor);
             return;
          }
       }
+      actor.getMovies().add(MainObservable.getSelectedMovie());
       MainObservable.getDaoActorXml().saveOrUpdate(actor);
       MainObservable.getSelectedMovie().getActors().add(actor);
       MainObservable.getDaoMovieXml().saveOrUpdate(MainObservable.getSelectedMovie());
@@ -54,11 +56,15 @@ public class ActorViewModel {
    public void editActor(LocalDate birth) {
       birthDate.set(birth.toString());
       Actor curActor = MainObservable.getSelectedActor();
+      if(curActor != null){
       curActor.setSex(sex.get());
       curActor.setName(name);
       curActor.setBirthDate(birthDate);
       MainObservable.getDaoActorXml().saveOrUpdate(curActor);
-      MainObservable.refreshMainView();
+      MainObservable.refreshMainView();}
+      else{
+         createActor(birth);
+      }
    }
 
    public StringProperty getSex() {

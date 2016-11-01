@@ -33,28 +33,34 @@ public class MovieViewModel {
       movie.setGenre(genre);
       movie.setReleaseYear(year);
       movie.setActors(new ArrayList<Actor>());
-      for(Movie curMovie : MainObservable.getDaoMovieXml().getAll()){
-         if(movie.getId() == curMovie.getId()){
-            if(MainObservable.getSelectedActor() != null){
+      for (Movie curMovie : MainObservable.getDaoMovieXml().getAll()) {
+         if (movie.getId() == curMovie.getId()) {
+            if (MainObservable.getSelectedActor() != null) {
                movie.getActors().add(MainObservable.getSelectedActor());
+               MainObservable.getDaoActorXml().saveOrUpdate(MainObservable.getSelectedActor());
             }
             MainObservable.getDaoMovieXml().saveOrUpdate(movie);
             return;
          }
       }
+      movie.getActors().add(MainObservable.getSelectedActor());
       MainObservable.getDaoMovieXml().saveOrUpdate(movie);
       MainObservable.getSelectedActor().getMovies().add(movie);
       MainObservable.getDaoActorXml().saveOrUpdate(MainObservable.getSelectedActor());
       MainObservable.refreshMainView();
    }
 
-   public void editMovie(){
-         Movie curMovie = MainObservable.getSelectedMovie();
-            curMovie.setName(title);
-            curMovie.setGenre(genre);
-            curMovie.setReleaseYear(year);
-            MainObservable.getDaoMovieXml().saveOrUpdate(curMovie);
-            MainObservable.refreshMainView();
+   public void editMovie() {
+      Movie curMovie = MainObservable.getSelectedMovie();
+      if (curMovie != null) {
+         curMovie.setName(title);
+         curMovie.setGenre(genre);
+         curMovie.setReleaseYear(year);
+         MainObservable.getDaoMovieXml().saveOrUpdate(curMovie);
+         MainObservable.refreshMainView();
+      } else {
+         createMovie();
+      }
    }
 
    public IntegerProperty getId() {

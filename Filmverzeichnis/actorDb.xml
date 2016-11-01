@@ -42,25 +42,6 @@
   <void method="add">
    <object class="application.model.entity.EntityActor">
     <void property="birthDate">
-     <string>2016-10-15</string>
-    </void>
-    <void property="id">
-     <int>3</int>
-    </void>
-    <void property="movieIds">
-     <object class="java.util.ArrayList"/>
-    </void>
-    <void property="name">
-     <string>cd</string>
-    </void>
-    <void property="sex">
-     <string>FEMALE</string>
-    </void>
-   </object>
-  </void>
-  <void method="add">
-   <object class="application.model.entity.EntityActor">
-    <void property="birthDate">
      <string>2016-10-06</string>
     </void>
     <void property="id">
@@ -74,6 +55,128 @@
     </void>
     <void property="sex">
      <string>MALE</string>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="application.model.entity.EntityActor">
+    <void property="birthDate">
+     <string>2016-10-02</string>
+    </void>
+    <void property="id">
+     <int>5</int>
+    </void>
+    <void property="movieIds">
+     <object class="java.util.ArrayList"/>
+    </void>
+    <void property="name">
+     <string>Jonny Dep</string>
+    </void>
+    <void property="sex">
+     <string>MALE</string>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="application.model.entity.EntityActor">
+    <void property="birthDate">
+     <string>2016-10-27</string>
+    </void>
+    <void property="id">
+     <int>6</int>
+    </void>
+    <void property="movieIds">
+     <object class="java.util.ArrayList"/>
+    </void>
+    <void property="name">
+     <string>Orlando Bloom</string>
+    </void>
+    <void property="sex">
+     <string>MALE</string>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="application.model.entity.EntityActor">
+    <void property="birthDate">
+     <string>2016-10-12</string>
+    </void>
+    <void property="id">
+     <int>7</int>
+    </void>
+    <void property="movieIds">
+     <object class="java.util.ArrayList"/>
+    </void>
+    <void property="name">
+     <string>dede</string>
+    </void>
+    <void property="sex">
+     <string>MALE</string>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="application.model.entity.EntityActor">
+    <void property="birthDate">
+     <string>2016-11-04</string>
+    </void>
+    <void property="id">
+     <int>8</int>
+    </void>
+    <void property="movieIds">
+     <object class="java.util.ArrayList"/>
+    </void>
+    <void property="name">
+     <string>ss</string>
+    </void>
+    <void property="sex">
+     <string>FEMALE</string>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="application.model.entity.EntityActor">
+    <void property="birthDate">
+     <string>2016-11-04</string>
+    </void>
+    <void property="id">
+     <int>3</int>
+    </void>
+    <void property="movieIds">
+     <object class="java.util.ArrayList">
+      <void method="add">
+       <int>2</int>
+      </void>
+     </object>
+    </void>
+    <void property="name">
+     <string>dd</string>
+    </void>
+    <void property="sex">
+     <string>MALE</string>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="application.model.entity.EntityActor">
+    <void property="birthDate">
+     <string>2016-11-01</string>
+    </void>
+    <void property="id">
+     <int>9</int>
+    </void>
+    <void property="movieIds">
+     <object class="java.util.ArrayList">
+      <void method="add">
+       <int>2</int>
+      </void>
+     </object>
+    </void>
+    <void property="name">
+     <string>gg</string>
+    </void>
+    <void property="sex">
+     <string>FEMALE</string>
     </void>
    </object>
   </void>
