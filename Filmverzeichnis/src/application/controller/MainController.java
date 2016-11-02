@@ -27,6 +27,7 @@ public class MainController {
    FXMLLoader loader;
    URL movieUrl;
    URL actorUrl;
+   String buttonText;
 
    @FXML
    private TableView<Movie> movieTable;
@@ -81,7 +82,11 @@ public class MainController {
    @FXML
    private JFXButton btnMovie;
    @FXML
+   private JFXButton btnAddMovie;
+   @FXML
    private JFXButton btnActor;
+   @FXML
+   private JFXButton btnAddActor;
 
 
 
@@ -99,6 +104,7 @@ public class MainController {
 
    @FXML
    public void newMovieToggle() throws IOException {
+      buttonText = btnMovie.getText();
       loader = new FXMLLoader(movieUrl);
       loader.setController(new MovieController());
       moviePane = loader.load();
@@ -108,6 +114,7 @@ public class MainController {
 
    @FXML
    public void addMoviewToggle() throws IOException {
+      buttonText = btnAddMovie.getText();
       loader = new FXMLLoader(movieUrl);
       loader.setController(new MovieController());
       moviePane = loader.load();
@@ -117,15 +124,7 @@ public class MainController {
 
    @FXML
    public void newActorToggle() throws IOException {
-      loader = new FXMLLoader(actorUrl);
-      loader.setController(new ActorController());
-      actorPane = loader.load();
-      prepareDrawer(actorTopDrawer, actorPane);
-      toggle(actorStack, actorTopDrawer);
-   }
-
-   @FXML
-   public void editActorToggle() throws IOException {
+      buttonText = btnActor.getText();
       loader = new FXMLLoader(actorUrl);
       loader.setController(new ActorController());
       actorPane = loader.load();
@@ -135,6 +134,7 @@ public class MainController {
 
    @FXML
    public void addActorToggle() throws IOException {
+      buttonText = btnAddActor.getText();
       loader = new FXMLLoader(actorUrl);
       loader.setController(new ActorController());
       actorPane = loader.load();
@@ -266,6 +266,10 @@ public class MainController {
 
    public TableView<Movie> getActorMoviesTable() {
       return actorMoviesTable;
+   }
+
+   public String getButtonText(){
+      return buttonText;
    }
 
 }

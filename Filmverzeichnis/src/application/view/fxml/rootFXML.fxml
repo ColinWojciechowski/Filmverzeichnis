@@ -73,7 +73,7 @@
                            </columns>
                         </TableView>
                         <JFXButton fx:id="btnActor" layoutX="17.0" layoutY="584.0" onMouseClicked="#newActorToggle" text="New Actor" />
-                        <JFXButton layoutX="471.0" layoutY="584.0" onMouseClicked="#addMoviewToggle" text="Add Movie" />
+                        <JFXButton fx:id="btnAddMovie" layoutX="471.0" layoutY="584.0" onMouseClicked="#addMoviewToggle" text="Add Movie" />
                         <Label fx:id="lblActor" layoutX="14.0" layoutY="350.0" prefHeight="36.0" prefWidth="325.0" />
                         <JFXDrawersStack fx:id="actorStack" layoutX="-2.0" prefHeight="201.0" prefWidth="565.0">
                            <children>

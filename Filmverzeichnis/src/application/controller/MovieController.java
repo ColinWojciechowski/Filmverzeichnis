@@ -6,6 +6,7 @@ import application.model.viewmodel.impl.MovieViewModel;
 import application.model.viewmodel.interfaces.IFachkonzept;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 
 public class MovieController {
@@ -24,12 +25,15 @@ public class MovieController {
    JFXTextField txtGenre;
    @FXML
    JFXTextField txtYear;
+   @FXML
+   Label lblMovie;
 
    @FXML
    public void initialize() {
       newMoviePane.getStylesheets()
          .add(getClass().getResource("../view/application.css").toExternalForm());
       viewModel = new MovieViewModel();
+      lblMovie.setText(MainObservable.getButtonText());
    }
 
    @FXML

@@ -9,6 +9,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.AnchorPane;
@@ -33,6 +34,8 @@ public class ActorController {
    TextField txtName;
    @FXML
    JFXDatePicker dateBirth;
+   @FXML
+   Label lblActor;
 
    @FXML
    public void initialize() {
@@ -42,6 +45,7 @@ public class ActorController {
       rbtnMale.setToggleGroup(group);
       rbtnFemale.setToggleGroup(group);
       dateBirth.editableProperty().set(false);
+      lblActor.setText(MainObservable.getButtonText());
    }
 
    @FXML

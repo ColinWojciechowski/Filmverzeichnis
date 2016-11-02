@@ -100,6 +100,10 @@ public class MainObservable {
    public static IDao<Movie> getDaoMovieXml() {
       return main.getViewModel().getDaoMovieXml();
    }
+
+   public static String getButtonText(){
+      return main.getButtonText();
+   }
 }
 
 /**
