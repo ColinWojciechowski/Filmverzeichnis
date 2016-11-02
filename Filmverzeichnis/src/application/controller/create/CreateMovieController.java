@@ -40,6 +40,7 @@ public class CreateMovieController {
       boolean yearValid = false;
       boolean txtValid = false;
       try {
+         Integer.parseInt(txtYear.getText());
          this.year.set(txtYear.getText());
          txtYear.setPromptText("Year");
          yearValid = true;
@@ -54,6 +55,7 @@ public class CreateMovieController {
          txtGenre.setPromptText("Genre");
          this.name.set(txtTitle.getText());
          this.genre.set(txtGenre.getText());
+         this.year.set(txtYear.getText());
          txtValid = true;
       } catch (NullPointerException e) {
          txtTitle.setPromptText(txtTitle.getText().isEmpty() ? "Title - Pflichtfeld" : "Title");
@@ -61,9 +63,6 @@ public class CreateMovieController {
       }
       if (yearValid && txtValid) {
          viewModel.bindAttributes(name, genre, year);
-//         viewModel.setTitle(name);
-//         viewModel.setGenre(genre);
-//         viewModel.setYear(year);
          viewModel.create();
          MainObservable.refreshMainView();
          removeArguments();
@@ -90,9 +89,8 @@ public class CreateMovieController {
       txtYear.clear();
    }
 
-
    @FXML
-   public void selectNextTextField(){
+   public void selectNextTextField() {
    }
 
 }

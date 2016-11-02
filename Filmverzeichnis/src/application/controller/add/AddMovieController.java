@@ -41,6 +41,7 @@ public class AddMovieController {
       boolean yearValid = false;
       boolean txtValid = false;
       try {
+         Integer.parseInt(txtYear.getText());
          this.year.set(txtYear.getText());
          txtYear.setPromptText("Year");
          yearValid = true;
@@ -62,9 +63,6 @@ public class AddMovieController {
       }
       if (yearValid && txtValid) {
          viewModel.bindAttributes(name, genre, year);
-//         viewModel.setTitle(name);
-//         viewModel.setGenre(genre);
-//         viewModel.setYear(year);
          viewModel.add();
          removeArguments();
          MainObservable.refreshMainView();

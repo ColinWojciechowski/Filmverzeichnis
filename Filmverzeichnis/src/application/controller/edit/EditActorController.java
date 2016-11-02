@@ -48,40 +48,39 @@ public class EditActorController {
       dateBirth.editableProperty().set(false);
 
       MainObservable.getActorTable().getSelectionModel().selectedItemProperty()
-      .addListener((obs, oldSelection, newSelection) -> {
-         if (newSelection != null) {
-            this.name = newSelection.getName();
-            this.sex = newSelection.getSex();
-            dateBirth.setValue(LocalDate.parse(newSelection.getBirthDate().get()));
-            if(this.sex.get().equals(Sex.MALE.toString())){
+         .addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
+               this.name = newSelection.getName();
+               this.sex = newSelection.getSex();
+               dateBirth.setValue(LocalDate.parse(newSelection.getBirthDate().get()));
+               if (this.sex.get().equals(Sex.MALE.toString())) {
+                  rbtnMale.fire();
+               } else {
+                  rbtnFemale.fire();
+               }
+               txtName.textProperty().bind(name);
+            } else {
+               txtName.clear();
                rbtnMale.fire();
-            }else{
-               rbtnFemale.fire();
+               dateBirth.setValue(null);
             }
-            txtName.textProperty().bind(name);
-         }
-         else{
-            txtName.clear();
-            rbtnMale.fire();
-            dateBirth.setValue(null);
-         }
-         txtName.textProperty().unbind();
-      });
+            txtName.textProperty().unbind();
+         });
    }
 
    @FXML
    public void btnOkClicked() {
       try {
-         if (txtName.getText().isEmpty() || dateBirth.getPromptText().isEmpty() || dateBirth.getValue() == null)
+         if (txtName.getText().isEmpty() || dateBirth.getPromptText().isEmpty()
+            || dateBirth.getValue() == null)
             throw new NullPointerException();
-         String sex = (rbtnMale.selectedProperty().get() == true) ? Sex.MALE.toString() : Sex.FEMALE.toString();
+         String sex = (rbtnMale.selectedProperty().get() == true) ? Sex.MALE.toString()
+            : Sex.FEMALE.toString();
          this.sex.set(sex);
          this.name.set(txtName.getText());
-         this.birth = this.dateBirth.promptTextProperty();
+         this.birth = new SimpleStringProperty(this.dateBirth.getValue().toString());
          viewModel.bindAttributes(name, this.sex, birth);
-//         viewModel.setSex(this.sex);
-//         viewModel.setName(name);
-          viewModel.edit();
+         viewModel.edit();
          resetValues();
          MainObservable.toggleActor();
          MainObservable.refreshMainView();

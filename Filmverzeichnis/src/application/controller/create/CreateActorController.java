@@ -52,11 +52,9 @@ public class CreateActorController {
             throw new NullPointerException();
          String sex = (rbtnMale.selectedProperty().get() == true) ? Sex.MALE.toString() : Sex.FEMALE.toString();
          this.sex.set(sex);
-         this.name.set(txtName.getText());
-         this.birth = this.dateBirth.promptTextProperty();
+         this.name = txtName.textProperty();
+         this.birth = new SimpleStringProperty(this.dateBirth.getValue().toString());
          viewModel.bindAttributes(name, this.sex, birth);
-//         viewModel.setSex(this.sex);
-//         viewModel.setName(name);
          viewModel.create();
          resetValues();
          MainObservable.toggleActor();

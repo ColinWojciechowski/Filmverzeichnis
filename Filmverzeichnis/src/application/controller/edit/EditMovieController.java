@@ -58,6 +58,7 @@ public class EditMovieController {
       boolean yearValid = false;
       boolean txtValid = false;
       try {
+         Integer.parseInt(txtYear.getText());
          this.year.set(txtYear.getText());
          txtYear.setPromptText("Year");
          yearValid = true;
@@ -79,9 +80,6 @@ public class EditMovieController {
       }
       if (yearValid && txtValid) {
          viewModel.bindAttributes(name, genre, year);
-//         viewModel.setTitle(name);
-//         viewModel.setGenre(genre);
-//         viewModel.setYear(year);
          viewModel.edit();
          MainObservable.refreshMainView();
          removeArguments();
