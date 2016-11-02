@@ -18,16 +18,6 @@ public class ActorViewModel implements IFachkonzept {
    StringProperty birthDate = new SimpleStringProperty();
 
    @Override
-   public void create() {
-      Actor actor = new Actor();
-      actor.setId(MainObservable.getNewActorId());
-      actor.setName(name);
-      actor.setSex(sex.get());
-      actor.setBirthDate(birthDate);
-      MainObservable.getDaoActorXml().saveOrUpdate(actor);
-   }
-
-   @Override
    public void add() {
       Actor actor = new Actor();
       actor.setId(MainObservable.getAddActorId());
@@ -53,7 +43,7 @@ public class ActorViewModel implements IFachkonzept {
    }
 
    @Override
-   public void edit() {
+   public void saveOrUpdate() {
       Actor curActor = MainObservable.getSelectedActor();
       if (curActor != null) {
          curActor.setSex(sex.get());
@@ -62,7 +52,12 @@ public class ActorViewModel implements IFachkonzept {
          MainObservable.getDaoActorXml().saveOrUpdate(curActor);
          MainObservable.refreshMainView();
       } else {
-         create();
+         Actor actor = new Actor();
+         actor.setId(MainObservable.getNewActorId());
+         actor.setName(name);
+         actor.setSex(sex.get());
+         actor.setBirthDate(birthDate);
+         MainObservable.getDaoActorXml().saveOrUpdate(actor);
       }
    }
 

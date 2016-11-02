@@ -18,16 +18,6 @@ public class MovieViewModel implements IFachkonzept{
    StringProperty year = new SimpleStringProperty();
 
    @Override
-   public void create() {
-      Movie movie = new Movie();
-      movie.setId(MainObservable.getNewMovieId());
-      movie.setName(title);
-      movie.setGenre(genre);
-      movie.setReleaseYear(year);
-      MainObservable.getDaoMovieXml().saveOrUpdate(movie);
-   }
-
-   @Override
    public void add() {
       Movie movie = new Movie();
       movie.setId(MainObservable.getAddMovieId());
@@ -53,7 +43,7 @@ public class MovieViewModel implements IFachkonzept{
    }
 
    @Override
-   public void edit() {
+   public void saveOrUpdate() {
       Movie curMovie = MainObservable.getSelectedMovie();
       if (curMovie != null) {
          curMovie.setName(title);
@@ -62,7 +52,12 @@ public class MovieViewModel implements IFachkonzept{
          MainObservable.getDaoMovieXml().saveOrUpdate(curMovie);
          MainObservable.refreshMainView();
       } else {
-         create();
+         Movie movie = new Movie();
+         movie.setId(MainObservable.getNewMovieId());
+         movie.setName(title);
+         movie.setGenre(genre);
+         movie.setReleaseYear(year);
+         MainObservable.getDaoMovieXml().saveOrUpdate(movie);
       }
    }
 

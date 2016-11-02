@@ -13,7 +13,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
-import javafx.scene.layout.AnchorPane;
 
 public class AddActorController {
 
@@ -28,8 +27,6 @@ public class AddActorController {
    @FXML
    Button btnAdd;
    @FXML
-   AnchorPane addActorPane;
-   @FXML
    JFXRadioButton rbtnMale;
    @FXML
    JFXRadioButton rbtnFemale;
@@ -38,8 +35,6 @@ public class AddActorController {
 
    @FXML
    public void initialize() {
-      addActorPane.getStylesheets()
-         .add(getClass().getResource("../../view/application.css").toExternalForm());
       viewModel = new ActorViewModel();
       rbtnMale.fire();
       rbtnMale.setToggleGroup(group);

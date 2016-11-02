@@ -1,10 +1,16 @@
 package application.controller;
 
 import java.io.IOException;
+import java.net.URL;
 
 import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.JFXDrawersStack;
 
+import application.controller.add.AddActorController;
+import application.controller.add.AddMovieController;
+import application.controller.create.CreateActorController;
+import application.controller.create.CreateMovieController;
+import application.controller.edit.EditActorController;
 import application.model.dto.Actor;
 import application.model.dto.Movie;
 import application.model.viewmodel.MainViewModel;
@@ -22,6 +28,7 @@ public class MainController {
    private MainViewModel viewModel;
    private ObservableList<Actor> movieActors = FXCollections.observableArrayList();
    private ObservableList<Movie> actorMovies = FXCollections.observableArrayList();
+   FXMLLoader loader;
 
    @FXML
    private TableView<Movie> movieTable;
@@ -68,23 +75,21 @@ public class MainController {
    @FXML
    private Pane addActorPane;
    @FXML
-   private Pane newMoviePane;
+   private Pane moviePane;
    @FXML
    private JFXDrawersStack actorStack;
    @FXML
-   private Pane addMoviePane;
-   @FXML
-   private Pane editMoviePane;
-   @FXML
-   private Pane editActorPane;
-   @FXML
-   private Pane newActorPane;
+   private Pane actorPane;
+
+   URL movieUrl;
+   URL actorUrl;
 
    @FXML
    public void initialize() throws IOException {
+      movieUrl = getClass().getResource("../view/fxml/Movie.fxml");
+      actorUrl = getClass().getResource("../view/fxml/Actor.fxml");
       MainObservable.setMainObservable(this);
       viewModel = new MainViewModel();
-      loadFxmlFiles();
       prepareTable();
       bindMovieTableToContent();
       bindActorTableToContent();
@@ -92,43 +97,61 @@ public class MainController {
    }
 
    @FXML
-   public void addActorToggle() {
-      prepareDrawer(movieTopDrawer, addActorPane);
+   public void newMovieToggle() throws IOException {
+      loader = new FXMLLoader(movieUrl);
+      loader.setController(new CreateMovieController());
+      moviePane = loader.load();
+      prepareDrawer(movieTopDrawer, moviePane);
       toggle(movieStack, movieTopDrawer);
    }
 
    @FXML
-   public void newMovieToggle() {
-      prepareDrawer(movieTopDrawer, newMoviePane);
+   public void editMovieToggle() throws IOException {
+      loader = new FXMLLoader(movieUrl);
+      loader.setController(new CreateMovieController());
+      moviePane = loader.load();
+      prepareDrawer(movieTopDrawer, moviePane);
       toggle(movieStack, movieTopDrawer);
    }
 
    @FXML
-   public void editMovieToggle(){
-      prepareDrawer(movieTopDrawer, editMoviePane);
+   public void addMoviewToggle() throws IOException {
+      loader = new FXMLLoader(movieUrl);
+      loader.setController(new AddMovieController());
+      moviePane = loader.load();
+      prepareDrawer(actorTopDrawer, moviePane);
+      toggle(actorStack, actorTopDrawer);
+   }
+
+   @FXML
+   public void newActorToggle() throws IOException {
+      loader = new FXMLLoader(actorUrl);
+      loader.setController(new CreateActorController());
+      actorPane = loader.load();
+      prepareDrawer(actorTopDrawer, actorPane);
+      toggle(actorStack, actorTopDrawer);
+   }
+
+   @FXML
+   public void editActorToggle() throws IOException {
+      loader = new FXMLLoader(actorUrl);
+      loader.setController(new EditActorController());
+      actorPane = loader.load();
+      prepareDrawer(actorTopDrawer, actorPane);
+      toggle(actorStack, actorTopDrawer);
+   }
+
+   @FXML
+   public void addActorToggle() throws IOException {
+      loader = new FXMLLoader(actorUrl);
+      loader.setController(new AddActorController());
+      actorPane = loader.load();
+      prepareDrawer(movieTopDrawer, actorPane);
       toggle(movieStack, movieTopDrawer);
    }
 
    public void toggle(JFXDrawersStack stack, JFXDrawer drawer) {
       stack.toggle(drawer);
-   }
-
-   @FXML
-   public void addMoviewToggle() {
-      prepareDrawer(actorTopDrawer, addMoviePane);
-      toggle(actorStack, actorTopDrawer);
-   }
-
-   @FXML
-   public void newActorToggle() {
-      prepareDrawer(actorTopDrawer, newActorPane);
-      toggle(actorStack, actorTopDrawer);
-   }
-
-   @FXML
-   public void editActorToggle(){
-      prepareDrawer(actorTopDrawer, editActorPane);
-      toggle(actorStack, actorTopDrawer);
    }
 
    public void prepareTable() {
@@ -201,23 +224,14 @@ public class MainController {
       movieActorsSex.setCellValueFactory(cellData -> cellData.getValue().getSex());
    }
 
-   private void loadFxmlFiles() throws IOException {
-      addActorPane = FXMLLoader.load(getClass().getResource("../view/fxml/AddActor.fxml"));
-      newMoviePane = FXMLLoader.load(getClass().getResource("../view/fxml/CreateMovie.fxml"));
-      editMoviePane = FXMLLoader.load(getClass().getResource("../view/fxml/EditMovie.fxml"));
-      addMoviePane = FXMLLoader.load(getClass().getResource("../view/fxml/AddMovie.fxml"));
-      newActorPane = FXMLLoader.load(getClass().getResource("../view/fxml/CreateActor.fxml"));
-      editActorPane = FXMLLoader.load(getClass().getResource("../view/fxml/EditActor.fxml"));
+   private void prepareDrawer(JFXDrawer drawer, Pane pane) {
+      drawer.setSidePane(pane);
+      drawer.setDefaultDrawerSize(400);
    }
 
    private void setDrawerDirection() {
       movieTopDrawer.setDirection(JFXDrawer.DrawerDirection.TOP);
       actorTopDrawer.setDirection(JFXDrawer.DrawerDirection.TOP);
-   }
-
-   private void prepareDrawer(JFXDrawer drawer, Pane pane) {
-      drawer.setSidePane(pane);
-      drawer.setDefaultDrawerSize(400);
    }
 
    public JFXDrawersStack getMovieStack() {

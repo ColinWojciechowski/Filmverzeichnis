@@ -1,28 +1,3 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <java version="1.8.0_60" class="java.beans.XMLDecoder">
- <object class="java.util.ArrayList">
-  <void method="add">
-   <object class="application.model.entity.EntityActor">
-    <void property="birthDate">
-     <string>2016-11-03</string>
-    </void>
-    <void property="id">
-     <int>1</int>
-    </void>
-    <void property="movieIds">
-     <object class="java.util.ArrayList">
-      <void method="add">
-       <int>1</int>
-      </void>
-     </object>
-    </void>
-    <void property="name">
-     <string>s</string>
-    </void>
-    <void property="sex">
-     <string>FEMALE</string>
-    </void>
-   </object>
-  </void>
- </object>
 </java>

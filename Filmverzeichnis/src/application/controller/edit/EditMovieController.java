@@ -80,7 +80,7 @@ public class EditMovieController {
       }
       if (yearValid && txtValid) {
          viewModel.bindAttributes(name, genre, year);
-         viewModel.edit();
+         viewModel.saveOrUpdate();
          MainObservable.refreshMainView();
          removeArguments();
          MainObservable.toggleMovie();

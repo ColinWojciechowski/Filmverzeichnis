@@ -55,7 +55,7 @@ public class CreateActorController {
          this.name = txtName.textProperty();
          this.birth = new SimpleStringProperty(this.dateBirth.getValue().toString());
          viewModel.bindAttributes(name, this.sex, birth);
-         viewModel.create();
+         viewModel.saveOrUpdate();
          resetValues();
          MainObservable.toggleActor();
          MainObservable.refreshMainView();

@@ -80,7 +80,7 @@ public class EditActorController {
          this.name.set(txtName.getText());
          this.birth = new SimpleStringProperty(this.dateBirth.getValue().toString());
          viewModel.bindAttributes(name, this.sex, birth);
-         viewModel.edit();
+         viewModel.saveOrUpdate();
          resetValues();
          MainObservable.toggleActor();
          MainObservable.refreshMainView();

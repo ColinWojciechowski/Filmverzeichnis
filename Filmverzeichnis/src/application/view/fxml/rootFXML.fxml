@@ -41,14 +41,12 @@
                         <JFXButton fx:id="btnAddActor" layoutX="475.0" layoutY="580.0" onMouseClicked="#addActorToggle" text="Add Actor" />
                         <JFXDrawersStack fx:id="movieStack" layoutX="-1.0" prefHeight="201.0" prefWidth="565.0">
                            <children>
-                              <Pane fx:id="addActorPane" prefHeight="184.0" prefWidth="565.0" visible="false" />
-                              <Pane fx:id="newMoviePane" prefHeight="200.0" prefWidth="200.0" visible="false" />
+                              <Pane fx:id="moviePane" prefHeight="200.0" prefWidth="200.0" visible="false" />
                               <ImageView fx:id="imgFilmrolle" fitHeight="149.0" fitWidth="200.0">
                                  <image>
                                     <Image url="@../finalMovieImage.png" />
                                  </image>
                               </ImageView>
-                              <Pane fx:id="editMoviePane" prefHeight="200.0" prefWidth="200.0" visible="false" />
                            </children>
                         </JFXDrawersStack>
                         <JFXButton fx:id="btnEditMovie" layoutX="246.0" layoutY="580.0" onMouseClicked="#editMovieToggle" text="Edit Movie" />
@@ -80,14 +78,12 @@
                         <Label fx:id="lblActor" layoutX="14.0" layoutY="350.0" prefHeight="36.0" prefWidth="325.0" />
                         <JFXDrawersStack fx:id="actorStack" layoutX="-2.0" prefHeight="201.0" prefWidth="565.0">
                            <children>
-                              <Pane fx:id="addMoviePane" prefHeight="184.0" prefWidth="565.0" visible="false" />
-                              <Pane fx:id="newActorPane" prefHeight="200.0" prefWidth="200.0" visible="false" />
+                              <Pane fx:id="actorPane" prefHeight="200.0" prefWidth="200.0" visible="false" />
                               <ImageView fx:id="imgFilmrolle1" fitHeight="149.0" fitWidth="200.0">
                                  <image>
                                     <Image url="@../finalMovieImage.png" />
                                  </image>
                               </ImageView>
-                              <Pane fx:id="editActorPane" prefHeight="200.0" prefWidth="200.0" visible="false" />
                            </children>
                         </JFXDrawersStack>
                         <JFXButton layoutX="247.0" layoutY="584.0" onMouseClicked="#editActorToggle" text="Edit Actor" />
