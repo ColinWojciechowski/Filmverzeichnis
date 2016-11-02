@@ -36,7 +36,7 @@
                               <TableColumn fx:id="movieActorsSex" prefWidth="178.0" text="Sex" />
                           </columns>
                         </TableView>
-                        <JFXButton fx:id="btnMovie" layoutX="20.0" layoutY="580.0" onMouseClicked="#newMovieToggle" text="New Movie" />
+                        <JFXButton fx:id="btnMovie" layoutX="368.0" layoutY="580.0" onMouseClicked="#newMovieToggle" text="New Movie" />
                         <Label fx:id="lblTitle" layoutX="20.0" layoutY="360.0" prefHeight="32.0" prefWidth="293.0" />
                         <JFXButton fx:id="btnAddActor" layoutX="475.0" layoutY="580.0" onMouseClicked="#addActorToggle" text="Add Actor" />
                         <JFXDrawersStack fx:id="movieStack" layoutX="-1.0" prefHeight="201.0" prefWidth="565.0">
@@ -72,7 +72,7 @@
                               <TableColumn fx:id="actorMoviesGenre" prefWidth="163.0" text="Genre" />
                            </columns>
                         </TableView>
-                        <JFXButton fx:id="btnActor" layoutX="17.0" layoutY="584.0" onMouseClicked="#newActorToggle" text="New Actor" />
+                        <JFXButton fx:id="btnActor" layoutX="375.0" layoutY="584.0" onMouseClicked="#newActorToggle" text="New Actor" />
                         <JFXButton fx:id="btnAddMovie" layoutX="471.0" layoutY="584.0" onMouseClicked="#addMoviewToggle" text="Add Movie" />
                         <Label fx:id="lblActor" layoutX="14.0" layoutY="350.0" prefHeight="36.0" prefWidth="325.0" />
                         <JFXDrawersStack fx:id="actorStack" layoutX="-2.0" prefHeight="201.0" prefWidth="565.0">

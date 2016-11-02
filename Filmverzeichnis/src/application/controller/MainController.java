@@ -88,10 +88,10 @@ public class MainController {
    @FXML
    private JFXButton btnAddActor;
 
-
-
    @FXML
    public void initialize() throws IOException {
+      btnAddActor.setDisable(true);
+      btnAddMovie.setDisable(true);
       movieUrl = getClass().getResource("../view/fxml/Movie.fxml");
       actorUrl = getClass().getResource("../view/fxml/Actor.fxml");
       MainObservable.setMainObservable(this);
@@ -99,6 +99,8 @@ public class MainController {
       prepareTable();
       bindMovieTableToContent();
       bindActorTableToContent();
+      bindMovieActorsTableToContent();
+      bindActorsMovieTableToContent();
       setDrawerDirection();
    }
 
@@ -176,6 +178,7 @@ public class MainController {
       actorTable.getSelectionModel().selectedItemProperty()
          .addListener((obs, oldSelection, newSelection) -> {
             if (newSelection != null) {
+               this.btnAddMovie.setDisable(false);
                btnActor.setText("Edit Actor");
                lblActor.textProperty().bind(newSelection.getName());
                actorMovies.clear();
@@ -183,7 +186,8 @@ public class MainController {
                   actorMovies.addAll(newSelection.getMovies());
                   changeAcorMoviesTableContent();
                }
-            }else{
+            } else {
+               this.btnAddMovie.setDisable(true);
                btnActor.setText("New Actor");
             }
          });
@@ -192,6 +196,7 @@ public class MainController {
    private void bindMovieTableToContent() {
       movieTable.getSelectionModel().selectedItemProperty()
          .addListener((obs, oldSelection, newSelection) -> {
+            this.btnAddActor.setDisable(false);
             if (newSelection != null) {
                btnMovie.setText("Edit Movie");
                lblTitle.textProperty().bind(newSelection.getName());
@@ -200,8 +205,31 @@ public class MainController {
                   movieActors.addAll(newSelection.getActors());
                   changeMovieActorsTableContent();
                }
-            }else{
+            } else {
+               this.btnAddActor.setDisable(true);
                btnMovie.setText("New Movie");
+            }
+         });
+   }
+
+   private void bindMovieActorsTableToContent() {
+      movieActorsTable.getSelectionModel().selectedItemProperty()
+         .addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
+               this.btnAddActor.setText("Edit Actor");
+            } else {
+               this.btnAddActor.setText("Add Actor");
+            }
+         });
+   }
+
+   private void bindActorsMovieTableToContent() {
+      actorMoviesTable.getSelectionModel().selectedItemProperty()
+         .addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
+               this.btnAddMovie.setText("Edit Movie");
+            } else {
+               this.btnAddMovie.setText("Add Movie");
             }
          });
    }
@@ -268,7 +296,7 @@ public class MainController {
       return actorMoviesTable;
    }
 
-   public String getButtonText(){
+   public String getButtonText() {
       return buttonText;
    }
 
