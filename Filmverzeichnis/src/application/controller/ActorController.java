@@ -46,7 +46,10 @@ public class ActorController {
       rbtnFemale.setToggleGroup(group);
       dateBirth.editableProperty().set(false);
       lblActor.setText(MainObservable.getButtonText());
+      bindEditProperties();
    }
+
+
 
    @FXML
    public void btnOkClicked() {
@@ -72,6 +75,32 @@ public class ActorController {
    public void btnCancleClicked() {
       resetValues();
       MainObservable.toggleActor();
+   }
+
+   private void bindEditProperties() {
+      if(MainObservable.getSelectedActor() != null){
+         txtName.textProperty().set(MainObservable.getSelectedActor().getName().get());
+         this.sex = MainObservable.getSelectedActor().getSex();
+         this.dateBirth.promptTextProperty().set(MainObservable.getSelectedActor().getBirthDate().get());
+      }
+      MainObservable.getActorTable().getSelectionModel().selectedItemProperty()
+         .addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
+               txtName.textProperty().set(newSelection.getName().get());
+               this.sex = newSelection.getSex();
+               if(this.sex.get().equals(Sex.MALE.toString())){
+                  rbtnMale.fire();
+               }else{
+                  rbtnFemale.fire();
+               }
+               this.dateBirth.promptTextProperty().set(newSelection.getBirthDate().get());
+            }else{
+               txtName.clear();
+               this.sex = null;
+               rbtnMale.fire();
+               this.dateBirth.promptTextProperty().set(null);
+            }
+         });
    }
 
    private void resetValues() {

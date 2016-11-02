@@ -139,5 +139,28 @@
     </void>
    </object>
   </void>
+  <void method="add">
+   <object class="application.model.entity.EntityActor">
+    <void property="birthDate">
+     <string>2016-11-09</string>
+    </void>
+    <void property="id">
+     <int>7</int>
+    </void>
+    <void property="movieIds">
+     <object class="java.util.ArrayList">
+      <void method="add">
+       <int>3</int>
+      </void>
+     </object>
+    </void>
+    <void property="name">
+     <string>addddddddd</string>
+    </void>
+    <void property="sex">
+     <string>MALE</string>
+    </void>
+   </object>
+  </void>
  </object>
 </java>

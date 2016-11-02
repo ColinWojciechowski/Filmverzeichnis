@@ -34,6 +34,7 @@ public class MovieController {
          .add(getClass().getResource("../view/application.css").toExternalForm());
       viewModel = new MovieViewModel();
       lblMovie.setText(MainObservable.getButtonText());
+      bindEditProperties();
    }
 
    @FXML
@@ -87,6 +88,26 @@ public class MovieController {
       }
    }
 
+   private void bindEditProperties() {
+      if(MainObservable.getSelectedMovie() != null){
+         txtTitle.textProperty().set(MainObservable.getSelectedMovie().getName().get());
+         txtGenre.textProperty().set(MainObservable.getSelectedMovie().getGenre().get());
+         txtYear.textProperty().set(MainObservable.getSelectedMovie().getReleaseYear().get());
+      }
+      MainObservable.getMovieTable().getSelectionModel().selectedItemProperty()
+         .addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
+               txtTitle.textProperty().set(newSelection.getName().get());
+               txtGenre.textProperty().set(newSelection.getGenre().get());
+               txtYear.textProperty().set(newSelection.getReleaseYear().get());
+            }else{
+               txtTitle.clear();
+               txtGenre.clear();
+               txtYear.clear();
+            }
+         });
+   }
+
    private void resetPrompt() {
       txtTitle.setPromptText("Title");
       txtGenre.setPromptText("Genre");
@@ -98,5 +119,7 @@ public class MovieController {
       txtGenre.clear();
       txtYear.clear();
    }
+
+
 
 }
