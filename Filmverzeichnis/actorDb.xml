@@ -1,3 +1,143 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <java version="1.8.0_60" class="java.beans.XMLDecoder">
+ <object class="java.util.ArrayList">
+  <void method="add">
+   <object class="application.model.entity.EntityActor">
+    <void property="birthDate">
+     <string>2016-11-01</string>
+    </void>
+    <void property="id">
+     <int>1</int>
+    </void>
+    <void property="movieIds">
+     <object class="java.util.ArrayList">
+      <void method="add">
+       <int>1</int>
+      </void>
+     </object>
+    </void>
+    <void property="name">
+     <string>Bruce Willis</string>
+    </void>
+    <void property="sex">
+     <string>MALE</string>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="application.model.entity.EntityActor">
+    <void property="birthDate">
+     <string>2016-11-02</string>
+    </void>
+    <void property="id">
+     <int>2</int>
+    </void>
+    <void property="movieIds">
+     <object class="java.util.ArrayList">
+      <void method="add">
+       <int>2</int>
+      </void>
+     </object>
+    </void>
+    <void property="name">
+     <string>Samuel L. Jackson</string>
+    </void>
+    <void property="sex">
+     <string>MALE</string>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="application.model.entity.EntityActor">
+    <void property="birthDate">
+     <string>2016-11-11</string>
+    </void>
+    <void property="id">
+     <int>3</int>
+    </void>
+    <void property="movieIds">
+     <object class="java.util.ArrayList">
+      <void method="add">
+       <int>2</int>
+      </void>
+     </object>
+    </void>
+    <void property="name">
+     <string>Hans Gruber</string>
+    </void>
+    <void property="sex">
+     <string>FEMALE</string>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="application.model.entity.EntityActor">
+    <void property="birthDate">
+     <string>2016-11-05</string>
+    </void>
+    <void property="id">
+     <int>4</int>
+    </void>
+    <void property="movieIds">
+     <object class="java.util.ArrayList">
+      <void method="add">
+       <int>2</int>
+      </void>
+     </object>
+    </void>
+    <void property="name">
+     <string>Jonny Banana</string>
+    </void>
+    <void property="sex">
+     <string>MALE</string>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="application.model.entity.EntityActor">
+    <void property="birthDate">
+     <string>2016-11-06</string>
+    </void>
+    <void property="id">
+     <int>5</int>
+    </void>
+    <void property="movieIds">
+     <object class="java.util.ArrayList">
+      <void method="add">
+       <int>2</int>
+      </void>
+     </object>
+    </void>
+    <void property="name">
+     <string>a</string>
+    </void>
+    <void property="sex">
+     <string>FEMALE</string>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="application.model.entity.EntityActor">
+    <void property="birthDate">
+     <string>2016-11-28</string>
+    </void>
+    <void property="id">
+     <int>6</int>
+    </void>
+    <void property="movieIds">
+     <object class="java.util.ArrayList">
+      <void method="add">
+       <int>3</int>
+      </void>
+     </object>
+    </void>
+    <void property="name">
+     <string>cc</string>
+    </void>
+    <void property="sex">
+     <string>MALE</string>
+    </void>
+   </object>
+  </void>
+ </object>
 </java>

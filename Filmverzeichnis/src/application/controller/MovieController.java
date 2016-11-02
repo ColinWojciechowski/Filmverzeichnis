@@ -1,33 +1,53 @@
-package application.controller.add;
+package application.controller;
 
-import application.controller.MainObservable;
-import application.model.viewmodel.IFachkonzept;
-import application.model.viewmodel.MovieViewModel;
+import com.jfoenix.controls.JFXTextField;
+
+import application.model.viewmodel.impl.MovieViewModel;
+import application.model.viewmodel.interfaces.IFachkonzept;
 import javafx.fxml.FXML;
-import javafx.scene.control.TextField;
+import javafx.scene.control.Button;
+import javafx.scene.layout.AnchorPane;
 
-public class AddMovieController {
+public class MovieController {
 
-   private IFachkonzept viewModel;
-   boolean yearValid = false;
-   boolean txtValid = false;
+   IFachkonzept viewModel;
+   boolean yearValid;
+   boolean txtValid;
 
    @FXML
-   TextField txtTitle;
+   Button btnAdd;
    @FXML
-   TextField txtGenre;
+   AnchorPane newMoviePane;
    @FXML
-   TextField txtYear;
+   JFXTextField txtTitle;
+   @FXML
+   JFXTextField txtGenre;
+   @FXML
+   JFXTextField txtYear;
 
    @FXML
    public void initialize() {
+      newMoviePane.getStylesheets()
+         .add(getClass().getResource("../view/application.css").toExternalForm());
       viewModel = new MovieViewModel();
    }
 
    @FXML
+   public void btnCancleClicked() {
+      removeArguments();
+      resetPrompt();
+      MainObservable.toggleMovie();
+   }
+
+   @FXML
    public void btnOkClicked() {
-      boolean yearValid = false;
-      boolean txtValid = false;
+      checkValidYear();
+      checkValidTitleAndGenre();
+      persistMovie();
+   }
+
+   private void checkValidYear() {
+      yearValid = false;
       try {
          Integer.parseInt(txtYear.getText());
          txtYear.setPromptText("Year");
@@ -36,6 +56,10 @@ public class AddMovieController {
          txtYear.clear();
          txtYear.setPromptText("Bitte Jahreszahl eingeben!");
       }
+   }
+
+   private void checkValidTitleAndGenre() {
+      txtValid = false;
       try {
          if (txtTitle.getText().isEmpty() || txtGenre.getText().isEmpty())
             throw new NullPointerException();
@@ -46,21 +70,23 @@ public class AddMovieController {
          txtTitle.setPromptText(txtTitle.getText().isEmpty() ? "Title - Pflichtfeld" : "Title");
          txtGenre.setPromptText(txtGenre.getText().isEmpty() ? "Genre - Pflichtfeld" : "Genre");
       }
+   }
+
+   private void persistMovie() {
       if (yearValid && txtValid) {
          viewModel.bindAttributes(txtTitle.textProperty(), txtGenre.textProperty(),
             txtYear.textProperty());
-         viewModel.add();
-         removeArguments();
+         viewModel.persist();
          MainObservable.refreshMainView();
-         MainObservable.toggleActor();
+         removeArguments();
+         MainObservable.toggleMovie();
       }
    }
 
-   @FXML
-   public void btnCancleClicked() {
-      removeArguments();
-      MainObservable.toggleActor();
-      resetPrompt();
+   private void resetPrompt() {
+      txtTitle.setPromptText("Title");
+      txtGenre.setPromptText("Genre");
+      txtYear.setPromptText("Year");
    }
 
    private void removeArguments() {
@@ -69,9 +95,4 @@ public class AddMovieController {
       txtYear.clear();
    }
 
-   private void resetPrompt() {
-      txtTitle.setPromptText("Title");
-      txtGenre.setPromptText("Genre");
-      txtYear.setPromptText("Year");
-   }
 }

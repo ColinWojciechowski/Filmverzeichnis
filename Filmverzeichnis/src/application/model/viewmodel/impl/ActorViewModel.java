@@ -1,10 +1,11 @@
-package application.model.viewmodel;
+package application.model.viewmodel.impl;
 
 import java.util.ArrayList;
 
 import application.controller.MainObservable;
 import application.model.dto.Actor;
 import application.model.dto.Movie;
+import application.model.viewmodel.interfaces.IFachkonzept;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -18,33 +19,9 @@ public class ActorViewModel implements IFachkonzept {
    StringProperty birthDate = new SimpleStringProperty();
 
    @Override
-   public void add() {
-      Actor actor = new Actor();
-      actor.setId(MainObservable.getAddActorId());
-      actor.setSex(sex.get());
-      actor.setName(name);
-      actor.setBirthDate(birthDate);
-      actor.setMovies(new ArrayList<Movie>());
-      for (Actor curActor : MainObservable.getDaoActorXml().getAll()) {
-         if (actor.getId() == curActor.getId()) {
-            if (MainObservable.getSelectedMovie() != null) {
-               actor.getMovies().add(MainObservable.getSelectedMovie());
-               MainObservable.getDaoMovieXml().saveOrUpdate(MainObservable.getSelectedMovie());
-            }
-            MainObservable.getDaoActorXml().saveOrUpdate(actor);
-            return;
-         }
-      }
-      actor.getMovies().add(MainObservable.getSelectedMovie());
-      MainObservable.getDaoActorXml().saveOrUpdate(actor);
-      MainObservable.getSelectedMovie().getActors().add(actor);
-      MainObservable.getDaoMovieXml().saveOrUpdate(MainObservable.getSelectedMovie());
-      MainObservable.refreshMainView();
-   }
-
-   @Override
-   public void saveOrUpdate() {
+   public void persist() {
       Actor curActor = MainObservable.getSelectedActor();
+      Movie curMovie = MainObservable.getSelectedMovie();
       if (curActor != null) {
          curActor.setSex(sex.get());
          curActor.setName(name);
@@ -57,6 +34,24 @@ public class ActorViewModel implements IFachkonzept {
          actor.setName(name);
          actor.setSex(sex.get());
          actor.setBirthDate(birthDate);
+         if(curMovie != null){
+            actor.setMovies(new ArrayList<Movie>());
+            for (Actor curActor2 : MainObservable.getDaoActorXml().getAll()) {
+               if (actor.getId() == curActor2.getId()) {
+                  if (MainObservable.getSelectedMovie() != null) {
+                     actor.getMovies().add(MainObservable.getSelectedMovie());
+                     MainObservable.getDaoMovieXml().saveOrUpdate(MainObservable.getSelectedMovie());
+                  }
+                  MainObservable.getDaoActorXml().saveOrUpdate(actor);
+                  return;
+               }
+            }
+            actor.getMovies().add(MainObservable.getSelectedMovie());
+            MainObservable.getDaoActorXml().saveOrUpdate(actor);
+            MainObservable.getSelectedMovie().getActors().add(actor);
+            MainObservable.getDaoMovieXml().saveOrUpdate(MainObservable.getSelectedMovie());
+            MainObservable.refreshMainView();
+         }
          MainObservable.getDaoActorXml().saveOrUpdate(actor);
       }
    }

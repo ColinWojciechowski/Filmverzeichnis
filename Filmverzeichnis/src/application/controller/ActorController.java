@@ -1,11 +1,10 @@
-package application.controller.create;
+package application.controller;
 
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXRadioButton;
 
-import application.controller.MainObservable;
 import application.model.dto.enums.Sex;
-import application.model.viewmodel.ActorViewModel;
+import application.model.viewmodel.impl.ActorViewModel;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.fxml.FXML;
@@ -14,7 +13,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.AnchorPane;
 
-public class CreateActorController {
+public class ActorController {
 
    final ToggleGroup group = new ToggleGroup();
    ActorViewModel viewModel = new ActorViewModel();
@@ -38,7 +37,7 @@ public class CreateActorController {
    @FXML
    public void initialize() {
       newActorPane.getStylesheets()
-         .add(getClass().getResource("../../view/application.css").toExternalForm());
+         .add(getClass().getResource("../view/application.css").toExternalForm());
       rbtnMale.fire();
       rbtnMale.setToggleGroup(group);
       rbtnFemale.setToggleGroup(group);
@@ -55,7 +54,7 @@ public class CreateActorController {
          this.name = txtName.textProperty();
          this.birth = new SimpleStringProperty(this.dateBirth.getValue().toString());
          viewModel.bindAttributes(name, this.sex, birth);
-         viewModel.saveOrUpdate();
+         viewModel.persist();
          resetValues();
          MainObservable.toggleActor();
          MainObservable.refreshMainView();
