@@ -3,6 +3,7 @@ package application.controller;
 import java.io.IOException;
 import java.net.URL;
 
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.JFXDrawersStack;
 
@@ -77,6 +78,10 @@ public class MainController {
    private JFXDrawersStack actorStack;
    @FXML
    private Pane actorPane;
+   @FXML
+   private JFXButton btnMovie;
+   @FXML
+   private JFXButton btnActor;
 
 
 
@@ -94,15 +99,6 @@ public class MainController {
 
    @FXML
    public void newMovieToggle() throws IOException {
-      loader = new FXMLLoader(movieUrl);
-      loader.setController(new MovieController());
-      moviePane = loader.load();
-      prepareDrawer(movieTopDrawer, moviePane);
-      toggle(movieStack, movieTopDrawer);
-   }
-
-   @FXML
-   public void editMovieToggle() throws IOException {
       loader = new FXMLLoader(movieUrl);
       loader.setController(new MovieController());
       moviePane = loader.load();
@@ -180,12 +176,15 @@ public class MainController {
       actorTable.getSelectionModel().selectedItemProperty()
          .addListener((obs, oldSelection, newSelection) -> {
             if (newSelection != null) {
+               btnActor.setText("Edit Actor");
                lblActor.textProperty().bind(newSelection.getName());
                actorMovies.clear();
                if (newSelection.getMovies() != null) {
                   actorMovies.addAll(newSelection.getMovies());
                   changeAcorMoviesTableContent();
                }
+            }else{
+               btnActor.setText("New Actor");
             }
          });
    }
@@ -194,12 +193,15 @@ public class MainController {
       movieTable.getSelectionModel().selectedItemProperty()
          .addListener((obs, oldSelection, newSelection) -> {
             if (newSelection != null) {
+               btnMovie.setText("Edit Movie");
                lblTitle.textProperty().bind(newSelection.getName());
                movieActors.clear();
                if (newSelection.getActors() != null) {
                   movieActors.addAll(newSelection.getActors());
                   changeMovieActorsTableContent();
                }
+            }else{
+               btnMovie.setText("New Movie");
             }
          });
    }
