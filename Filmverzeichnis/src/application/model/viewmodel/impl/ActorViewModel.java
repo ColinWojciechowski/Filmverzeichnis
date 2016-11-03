@@ -32,16 +32,20 @@ public class ActorViewModel implements IFachkonzept<Actor> {
    private void updateMoviesActor(Actor actor) {
       actor.setId(MainObservable.getAddActorId());
       actor.setMovies(new ArrayList<Movie>());
-      if (!isMoviesActorSelected()){
+      if (!isMoviesActorSelected()) {
          movieTableItem.getActors().add(actor);
          actor.getMovies().add(movieTableItem);
+         update(actor);
+      } else {
+         setValues(movieActorsItem);
+         movieActorsItem.getMovies().add(movieTableItem);
+         MainObservable.getDaoActorXml().saveOrUpdate(movieActorsItem);
       }
-      update(actor);
       MainObservable.getDaoMovieXml().saveOrUpdate(movieTableItem);
    }
 
    private boolean isMoviesActorSelected() {
-      return movieActorsItem != null && actor.getId() == movieActorsItem.getId();
+      return movieActorsItem != null;
    }
 
    @Override
@@ -62,7 +66,6 @@ public class ActorViewModel implements IFachkonzept<Actor> {
          updateMoviesActor(actor);
          MainObservable.toggleMovie();
       } else {
-         actor.setId(MainObservable.getNewActorId());
          update(actor);
          MainObservable.toggleActor();
       }
@@ -70,6 +73,7 @@ public class ActorViewModel implements IFachkonzept<Actor> {
 
    @Override
    public void update(Actor actor) {
+      actor.setId(MainObservable.getNewActorId());
       setValues(actor);
       MainObservable.getDaoActorXml().saveOrUpdate(actor);
    }

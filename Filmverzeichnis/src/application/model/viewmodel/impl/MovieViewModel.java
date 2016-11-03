@@ -26,25 +26,27 @@ public class MovieViewModel implements IFachkonzept<Movie> {
       else {
          update(movieTableItem);
          MainObservable.toggleMovie();
-         MainObservable.getMovieTable().getSelectionModel().clearSelection();
       }
    }
 
    private void updateActorsMovie(Movie movie) {
       movie.setId(MainObservable.getAddMovieId());
       movie.setActors(new ArrayList<Actor>());
-      if (!isActorsMovieSelected()){
+      if (!isActorsMovieSelected()) {
          actorTableItem.getMovies().add(movie);
          movie.getActors().add(actorTableItem);
+         update(movie);
+      } else {
+         setValues(actorMoviesItem);
+         actorMoviesItem.getActors().add(actorTableItem);
+         MainObservable.getDaoMovieXml().saveOrUpdate(actorMoviesItem);
       }
-      update(movie);
       MainObservable.getDaoActorXml().saveOrUpdate(actorTableItem);
    }
 
    private boolean isActorsMovieSelected() {
-      return actorMoviesItem != null && movie.getId() == actorMoviesItem.getId();
+      return actorMoviesItem != null;
    }
-
 
    @Override
    public void bindAttributes(StringProperty name, StringProperty genre, StringProperty year) {
@@ -54,28 +56,26 @@ public class MovieViewModel implements IFachkonzept<Movie> {
    }
 
    @Override
-   public void delete() {
-      MainObservable.getDaoMovieXml().delete(MainObservable.getSelectedMovie());
-   }
-
-   @Override
    public void create() {
       if (actorTableItem != null) {
          updateActorsMovie(movie);
          MainObservable.toggleActor();
-         MainObservable.getActorTable().getSelectionModel().clearSelection();
       } else {
-         movie.setId(MainObservable.getNewMovieId());
          update(movie);
          MainObservable.toggleMovie();
-         MainObservable.getMovieTable().getSelectionModel().clearSelection();
       }
    }
 
    @Override
-   public void update(Movie t) {
+   public void update(Movie movie) {
+      movie.setId(MainObservable.getNewMovieId());
       setValues(movie);
       MainObservable.getDaoMovieXml().saveOrUpdate(movie);
+   }
+
+   @Override
+   public void delete() {
+      MainObservable.getDaoMovieXml().delete(MainObservable.getSelectedMovie());
    }
 
    @Override

@@ -2,6 +2,7 @@ package application.controller;
 
 import com.jfoenix.controls.JFXTextField;
 
+import application.model.dto.Movie;
 import application.model.viewmodel.impl.MovieViewModel;
 import application.model.viewmodel.interfaces.IFachkonzept;
 import javafx.fxml.FXML;
@@ -11,7 +12,7 @@ import javafx.scene.layout.AnchorPane;
 
 public class MovieController {
 
-   IFachkonzept viewModel;
+   IFachkonzept<Movie> viewModel;
    boolean yearValid;
    boolean txtValid;
 
@@ -38,12 +39,6 @@ public class MovieController {
    }
 
    @FXML
-   public void btnCancleClicked() {
-      removeArguments();
-      resetPrompt();
-   }
-
-   @FXML
    public void btnOkClicked() {
       checkValidYear();
       checkValidTitleAndGenre();
@@ -51,7 +46,7 @@ public class MovieController {
    }
 
    @FXML
-   public void btnDeleteClicked(){
+   public void btnDeleteClicked() {
       viewModel.delete();
    }
 
@@ -92,7 +87,7 @@ public class MovieController {
    }
 
    private void bindEditProperties() {
-      if(MainObservable.getSelectedMovie() != null){
+      if (MainObservable.getSelectedMovie() != null) {
          txtTitle.textProperty().set(MainObservable.getSelectedMovie().getName().get());
          txtGenre.textProperty().set(MainObservable.getSelectedMovie().getGenre().get());
          txtYear.textProperty().set(MainObservable.getSelectedMovie().getReleaseYear().get());
@@ -103,7 +98,7 @@ public class MovieController {
                txtTitle.textProperty().set(newSelection.getName().get());
                txtGenre.textProperty().set(newSelection.getGenre().get());
                txtYear.textProperty().set(newSelection.getReleaseYear().get());
-            }else{
+            } else {
                txtTitle.clear();
                txtGenre.clear();
                txtYear.clear();
@@ -111,18 +106,10 @@ public class MovieController {
          });
    }
 
-   private void resetPrompt() {
-      txtTitle.setPromptText("Title");
-      txtGenre.setPromptText("Genre");
-      txtYear.setPromptText("Year");
-   }
-
    private void removeArguments() {
       txtTitle.clear();
       txtGenre.clear();
       txtYear.clear();
    }
-
-
 
 }

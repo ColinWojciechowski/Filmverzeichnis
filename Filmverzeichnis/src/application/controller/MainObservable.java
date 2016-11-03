@@ -77,18 +77,19 @@ public class MainObservable {
          return main.getMovieActorsTable().getSelectionModel().getSelectedItem().getId();
    }
 
-   public static TableView<Movie> getMovieTable(){
+   public static TableView<Movie> getMovieTable() {
       return main.getMovieTable();
    }
 
-   public static TableView<Actor> getActorTable(){
+   public static TableView<Actor> getActorTable() {
       return main.getActorTable();
    }
 
-   public static Actor getMovieActorsTableItem(){
+   public static Actor getMovieActorsTableItem() {
       return main.getMovieActorsTable().getSelectionModel().getSelectedItem();
    }
-   public static Movie getActorsMovieTableItem(){
+
+   public static Movie getActorsMovieTableItem() {
       return main.getActorMoviesTable().getSelectionModel().getSelectedItem();
    }
 
@@ -108,7 +109,7 @@ public class MainObservable {
       return main.getViewModel().getDaoMovieXml();
    }
 
-   public static String getButtonText(){
+   public static String getButtonText() {
       return main.getButtonText();
    }
 }

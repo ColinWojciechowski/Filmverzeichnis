@@ -6,15 +6,18 @@ import java.net.URL;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.JFXDrawersStack;
+import com.jfoenix.controls.JFXTabPane;
 
 import application.model.dto.Actor;
 import application.model.dto.Movie;
 import application.model.viewmodel.MainViewModel;
+import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
+import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.Pane;
@@ -87,6 +90,12 @@ public class MainController {
    private JFXButton btnActor;
    @FXML
    private JFXButton btnAddActor;
+   @FXML
+   private JFXTabPane tabPane;
+   @FXML
+   private Tab tabMovie;
+   @FXML
+   private Tab tabActor;
 
    @FXML
    public void initialize() throws IOException {
@@ -101,6 +110,7 @@ public class MainController {
       bindActorTableToContent();
       bindMovieActorsTableToContent();
       bindActorsMovieTableToContent();
+      tabChangeResets();
       setDrawerDirection();
    }
 
@@ -252,6 +262,18 @@ public class MainController {
       movieActorsBirth
          .setCellValueFactory(cellData -> cellData.getValue().getBirthDate());
       movieActorsSex.setCellValueFactory(cellData -> cellData.getValue().getSex());
+   }
+
+   private void tabChangeResets() {
+      tabPane.getSelectionModel().selectedItemProperty()
+         .addListener((ChangeListener<Tab>) (tab, oldTab, newTab) -> {
+            movieTable.getSelectionModel().clearSelection();
+            actorTable.getSelectionModel().clearSelection();
+            movieActorsTable.getSelectionModel().clearSelection();
+            actorMoviesTable.getSelectionModel().clearSelection();
+            movieActorsTable.setItems(null);
+            actorMoviesTable.setItems(null);
+         });
    }
 
    private void prepareDrawer(JFXDrawer drawer, Pane pane) {
