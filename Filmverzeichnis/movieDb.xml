@@ -100,5 +100,43 @@
     </void>
    </object>
   </void>
+  <void method="add">
+   <object class="application.model.entity.EntityMovie">
+    <void property="actorIds">
+     <object class="java.util.ArrayList"/>
+    </void>
+    <void property="genre">
+     <string>f</string>
+    </void>
+    <void property="id">
+     <int>6</int>
+    </void>
+    <void property="name">
+     <string>f</string>
+    </void>
+    <void property="releaseYear">
+     <string>6</string>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="application.model.entity.EntityMovie">
+    <void property="actorIds">
+     <object class="java.util.ArrayList"/>
+    </void>
+    <void property="genre">
+     <string>gg</string>
+    </void>
+    <void property="id">
+     <int>7</int>
+    </void>
+    <void property="name">
+     <string>gg</string>
+    </void>
+    <void property="releaseYear">
+     <string>77</string>
+    </void>
+   </object>
+  </void>
  </object>
 </java>

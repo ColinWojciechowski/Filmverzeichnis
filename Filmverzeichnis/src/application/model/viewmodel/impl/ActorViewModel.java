@@ -1,5 +1,7 @@
 package application.model.viewmodel.impl;
 
+import java.util.ArrayList;
+
 import application.controller.MainObservable;
 import application.model.dto.Actor;
 import application.model.dto.Movie;
@@ -29,9 +31,12 @@ public class ActorViewModel implements IFachkonzept<Actor> {
 
    private void updateMoviesActor(Actor actor) {
       actor.setId(MainObservable.getAddActorId());
-      update(actor);
-      if (!isMoviesActorSelected())
+      actor.setMovies(new ArrayList<Movie>());
+      if (!isMoviesActorSelected()){
          movieTableItem.getActors().add(actor);
+         actor.getMovies().add(movieTableItem);
+      }
+      update(actor);
       MainObservable.getDaoMovieXml().saveOrUpdate(movieTableItem);
    }
 

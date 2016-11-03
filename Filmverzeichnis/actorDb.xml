@@ -52,7 +52,11 @@
      <int>3</int>
     </void>
     <void property="movieIds">
-     <object class="java.util.ArrayList"/>
+     <object class="java.util.ArrayList">
+      <void method="add">
+       <int>7</int>
+      </void>
+     </object>
     </void>
     <void property="name">
      <string>c</string>
