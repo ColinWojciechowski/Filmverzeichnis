@@ -5,6 +5,7 @@ import javafx.beans.property.StringProperty;
 public interface IFachkonzept {
 
    void persist();
+   void delete();
    void bindAttributes(StringProperty string1, StringProperty string2, StringProperty string3);
 
 }

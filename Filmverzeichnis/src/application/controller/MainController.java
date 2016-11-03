@@ -107,9 +107,7 @@ public class MainController {
    @FXML
    public void newMovieToggle() throws IOException {
       buttonText = btnMovie.getText();
-      loader = new FXMLLoader(movieUrl);
-      loader.setController(new MovieController());
-      moviePane = loader.load();
+      prepareMovieFxml();
       prepareDrawer(movieTopDrawer, moviePane);
       toggle(movieStack, movieTopDrawer);
    }
@@ -117,19 +115,21 @@ public class MainController {
    @FXML
    public void addMoviewToggle() throws IOException {
       buttonText = btnAddMovie.getText();
+      prepareMovieFxml();
+      prepareDrawer(actorTopDrawer, moviePane);
+      toggle(actorStack, actorTopDrawer);
+   }
+
+   private void prepareMovieFxml() throws IOException {
       loader = new FXMLLoader(movieUrl);
       loader.setController(new MovieController());
       moviePane = loader.load();
-      prepareDrawer(actorTopDrawer, moviePane);
-      toggle(actorStack, actorTopDrawer);
    }
 
    @FXML
    public void newActorToggle() throws IOException {
       buttonText = btnActor.getText();
-      loader = new FXMLLoader(actorUrl);
-      loader.setController(new ActorController());
-      actorPane = loader.load();
+      prepareActorFxml();
       prepareDrawer(actorTopDrawer, actorPane);
       toggle(actorStack, actorTopDrawer);
    }
@@ -137,11 +137,15 @@ public class MainController {
    @FXML
    public void addActorToggle() throws IOException {
       buttonText = btnAddActor.getText();
+      prepareActorFxml();
+      prepareDrawer(movieTopDrawer, actorPane);
+      toggle(movieStack, movieTopDrawer);
+   }
+
+   private void prepareActorFxml() throws IOException {
       loader = new FXMLLoader(actorUrl);
       loader.setController(new ActorController());
       actorPane = loader.load();
-      prepareDrawer(movieTopDrawer, actorPane);
-      toggle(movieStack, movieTopDrawer);
    }
 
    public void toggle(JFXDrawersStack stack, JFXDrawer drawer) {

@@ -5,6 +5,7 @@ import com.jfoenix.controls.JFXRadioButton;
 
 import application.model.dto.enums.Sex;
 import application.model.viewmodel.impl.ActorViewModel;
+import application.model.viewmodel.interfaces.IFachkonzept;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.fxml.FXML;
@@ -17,7 +18,7 @@ import javafx.scene.layout.AnchorPane;
 public class ActorController {
 
    final ToggleGroup group = new ToggleGroup();
-   ActorViewModel viewModel = new ActorViewModel();
+   IFachkonzept viewModel;
    StringProperty sex = new SimpleStringProperty();
    StringProperty name = new SimpleStringProperty();
    StringProperty birth = new SimpleStringProperty();
@@ -41,6 +42,7 @@ public class ActorController {
    public void initialize() {
       newActorPane.getStylesheets()
          .add(getClass().getResource("../view/application.css").toExternalForm());
+      viewModel = new ActorViewModel();
       rbtnMale.fire();
       rbtnMale.setToggleGroup(group);
       rbtnFemale.setToggleGroup(group);
@@ -63,7 +65,6 @@ public class ActorController {
          viewModel.bindAttributes(name, this.sex, birth);
          viewModel.persist();
          resetValues();
-         MainObservable.toggleActor();
          MainObservable.refreshMainView();
       } catch (NullPointerException e) {
          txtName.setPromptText(txtName.getText().isEmpty() ? "Name - Pflichtfeld" : "Name");
@@ -74,7 +75,6 @@ public class ActorController {
    @FXML
    public void btnCancleClicked() {
       resetValues();
-      MainObservable.toggleActor();
    }
 
    private void bindEditProperties() {

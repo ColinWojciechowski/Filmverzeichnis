@@ -85,6 +85,13 @@ public class MainObservable {
       return main.getActorTable();
    }
 
+   public static Actor getMovieActorsTableItem(){
+      return main.getMovieActorsTable().getSelectionModel().getSelectedItem();
+   }
+   public static Movie getActorsMovieTableItem(){
+      return main.getActorMoviesTable().getSelectionModel().getSelectedItem();
+   }
+
    public static Movie getSelectedMovie() {
       return main.getMovieTable().getSelectionModel().getSelectedItem();
    }

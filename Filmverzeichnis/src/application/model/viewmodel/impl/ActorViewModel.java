@@ -21,39 +21,51 @@ public class ActorViewModel implements IFachkonzept {
    @Override
    public void persist() {
       Actor curActor = MainObservable.getSelectedActor();
-      Movie curMovie = MainObservable.getSelectedMovie();
-      if (curActor != null) {
-         curActor.setSex(sex.get());
-         curActor.setName(name);
-         curActor.setBirthDate(birthDate);
-         MainObservable.getDaoActorXml().saveOrUpdate(curActor);
-         MainObservable.refreshMainView();
+
+      if (curActor == null) {
+         createNewActor();
       } else {
-         Actor actor = new Actor();
-         actor.setId(MainObservable.getNewActorId());
-         actor.setName(name);
-         actor.setSex(sex.get());
-         actor.setBirthDate(birthDate);
-         if(curMovie != null){
-            actor.setMovies(new ArrayList<Movie>());
-            for (Actor curActor2 : MainObservable.getDaoActorXml().getAll()) {
-               if (actor.getId() == curActor2.getId()) {
-                  if (MainObservable.getSelectedMovie() != null) {
-                     actor.getMovies().add(MainObservable.getSelectedMovie());
-                     MainObservable.getDaoMovieXml().saveOrUpdate(MainObservable.getSelectedMovie());
-                  }
-                  MainObservable.getDaoActorXml().saveOrUpdate(actor);
-                  return;
-               }
-            }
-            actor.getMovies().add(MainObservable.getSelectedMovie());
-            MainObservable.getDaoActorXml().saveOrUpdate(actor);
-            MainObservable.getSelectedMovie().getActors().add(actor);
-            MainObservable.getDaoMovieXml().saveOrUpdate(MainObservable.getSelectedMovie());
-            MainObservable.refreshMainView();
-         }
-         MainObservable.getDaoActorXml().saveOrUpdate(actor);
+         updateExistingActor(curActor);
       }
+   }
+
+
+
+   private void createNewActor() {
+      Movie curMovie = MainObservable.getSelectedMovie();
+      Actor actor = new Actor();
+      actor.setId(MainObservable.getNewActorId());
+      actor.setName(name);
+      actor.setSex(sex.get());
+      actor.setBirthDate(birthDate);
+      if (curMovie != null) {
+         actor.setMovies(new ArrayList<Movie>());
+         for (Actor curActor2 : MainObservable.getDaoActorXml().getAll()) {
+            if (actor.getId() == curActor2.getId()) {
+               if (MainObservable.getSelectedMovie() != null) {
+                  actor.getMovies().add(MainObservable.getSelectedMovie());
+                  MainObservable.getDaoMovieXml()
+                     .saveOrUpdate(MainObservable.getSelectedMovie());
+               }
+               MainObservable.getDaoActorXml().saveOrUpdate(actor);
+               return;
+            }
+         }
+         actor.getMovies().add(MainObservable.getSelectedMovie());
+         MainObservable.getDaoActorXml().saveOrUpdate(actor);
+         MainObservable.getSelectedMovie().getActors().add(actor);
+         MainObservable.getDaoMovieXml().saveOrUpdate(MainObservable.getSelectedMovie());
+         MainObservable.refreshMainView();
+      }
+      MainObservable.getDaoActorXml().saveOrUpdate(actor);
+   }
+
+   private void updateExistingActor(Actor curActor) {
+      curActor.setSex(sex.get());
+      curActor.setName(name);
+      curActor.setBirthDate(birthDate);
+      MainObservable.getDaoActorXml().saveOrUpdate(curActor);
+      MainObservable.refreshMainView();
    }
 
    @Override
@@ -61,6 +73,11 @@ public class ActorViewModel implements IFachkonzept {
       this.name = name;
       this.sex = sex;
       this.birthDate = birthDate;
+   }
+
+   @Override
+   public void delete() {
+      MainObservable.getDaoActorXml().delete(MainObservable.getSelectedActor());
    }
 
 }

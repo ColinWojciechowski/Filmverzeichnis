@@ -41,7 +41,6 @@ public class MovieController {
    public void btnCancleClicked() {
       removeArguments();
       resetPrompt();
-      MainObservable.toggleMovie();
    }
 
    @FXML
@@ -49,6 +48,11 @@ public class MovieController {
       checkValidYear();
       checkValidTitleAndGenre();
       persistMovie();
+   }
+
+   @FXML
+   public void btnDeleteClicked(){
+      viewModel.delete();
    }
 
    private void checkValidYear() {
@@ -84,7 +88,6 @@ public class MovieController {
          viewModel.persist();
          MainObservable.refreshMainView();
          removeArguments();
-         MainObservable.toggleMovie();
       }
    }
 

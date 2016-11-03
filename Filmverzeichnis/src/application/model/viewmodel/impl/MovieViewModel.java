@@ -1,7 +1,5 @@
 package application.model.viewmodel.impl;
 
-import java.util.ArrayList;
-
 import application.controller.MainObservable;
 import application.model.dto.Actor;
 import application.model.dto.Movie;
@@ -17,41 +15,57 @@ public class MovieViewModel implements IFachkonzept {
    StringProperty title = new SimpleStringProperty();
    StringProperty genre = new SimpleStringProperty();
    StringProperty year = new SimpleStringProperty();
+   Movie movieTableItem = MainObservable.getSelectedMovie();
+   Actor actorTableItem = MainObservable.getSelectedActor();
+   Movie actorMoviesItem = MainObservable.getActorsMovieTableItem();
+   Actor movieActorsItem = MainObservable.getMovieActorsTableItem();
+   Movie movie = new Movie();
 
    @Override
    public void persist() {
-      Movie curMovie = MainObservable.getSelectedMovie();
-      Actor curActor = MainObservable.getSelectedActor();
-      if (curMovie != null) {
-         curMovie.setName(title);
-         curMovie.setGenre(genre);
-         curMovie.setReleaseYear(year);
-         MainObservable.getDaoMovieXml().saveOrUpdate(curMovie);
-         MainObservable.refreshMainView();
+      if (movieTableItem == null) {
+         createNewMovie();
       } else {
-         Movie movie = new Movie();
-         movie.setId(MainObservable.getNewMovieId());
-         movie.setName(title);
-         movie.setGenre(genre);
-         movie.setReleaseYear(year);
-         if (curActor != null) {
-            movie.setActors(new ArrayList<Actor>());
-            for (Movie curMovie2 : MainObservable.getDaoMovieXml().getAll()) {
-               if (movie.getId() == curMovie2.getId()) {
-                  movie.getActors().add(MainObservable.getSelectedActor());
-                  MainObservable.getDaoActorXml().saveOrUpdate(MainObservable.getSelectedActor());
-                  MainObservable.getDaoMovieXml().saveOrUpdate(movie);
-                  return;
-               }
-            }
-            movie.getActors().add(MainObservable.getSelectedActor());
-            MainObservable.getDaoMovieXml().saveOrUpdate(movie);
-            MainObservable.getSelectedActor().getMovies().add(movie);
-            MainObservable.getDaoActorXml().saveOrUpdate(MainObservable.getSelectedActor());
-            MainObservable.refreshMainView();
-         }
-         MainObservable.getDaoMovieXml().saveOrUpdate(movie);
+         updateMovie(movieTableItem);
+         MainObservable.toggleMovie();
       }
+   }
+
+   private void createNewMovie() {
+      if (actorTableItem != null) {
+         updateActorsMovie(movie);
+         MainObservable.toggleActor();
+      } else {
+         movie.setId(MainObservable.getNewMovieId());
+         updateMovie(movie);
+         MainObservable.toggleMovie();
+      }
+   }
+
+   private void updateActorsMovie(Movie movie) {
+      movie.setId(MainObservable.getAddMovieId());
+      if(actorMoviesItem != null && movie.getId() == actorMoviesItem.getId()){
+         setValues(movie);
+         MainObservable.getDaoMovieXml().saveOrUpdate(movie);
+         MainObservable.getDaoActorXml().saveOrUpdate(actorTableItem);
+      }else{
+         updateMovie(movie);
+         actorTableItem.getMovies().add(movie);
+         MainObservable.getDaoActorXml().saveOrUpdate(actorTableItem);
+         MainObservable.toggleMovie();
+      }
+      MainObservable.toggleMovie();
+   }
+
+   private void updateMovie(Movie movie) {
+      setValues(movie);
+      MainObservable.getDaoMovieXml().saveOrUpdate(movie);
+   }
+
+   private void setValues(Movie movie) {
+      movie.setName(title);
+      movie.setGenre(genre);
+      movie.setReleaseYear(year);
    }
 
    @Override
@@ -59,6 +73,11 @@ public class MovieViewModel implements IFachkonzept {
       this.title = name;
       this.genre = genre;
       this.year = year;
+   }
+
+   @Override
+   public void delete() {
+      MainObservable.getDaoMovieXml().delete(MainObservable.getSelectedMovie());
    }
 
 }
