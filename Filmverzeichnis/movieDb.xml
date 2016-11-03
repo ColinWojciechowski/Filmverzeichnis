@@ -80,7 +80,11 @@
   <void method="add">
    <object class="application.model.entity.EntityMovie">
     <void property="actorIds">
-     <object class="java.util.ArrayList"/>
+     <object class="java.util.ArrayList">
+      <void method="add">
+       <int>3</int>
+      </void>
+     </object>
     </void>
     <void property="genre">
      <string>e</string>
