@@ -4,7 +4,17 @@
   <void method="add">
    <object class="application.model.entity.EntityMovie">
     <void property="actorIds">
-     <object class="java.util.ArrayList"/>
+     <object class="java.util.ArrayList">
+      <void method="add">
+       <int>1</int>
+      </void>
+      <void method="add">
+       <int>2</int>
+      </void>
+      <void method="add">
+       <int>5</int>
+      </void>
+     </object>
     </void>
     <void property="genre">
      <string>a</string>
@@ -26,16 +36,16 @@
      <object class="java.util.ArrayList"/>
     </void>
     <void property="genre">
-     <string>b</string>
+     <string>v</string>
     </void>
     <void property="id">
      <int>2</int>
     </void>
     <void property="name">
-     <string>b</string>
+     <string>v</string>
     </void>
     <void property="releaseYear">
-     <string>2</string>
+     <string>11</string>
     </void>
    </object>
   </void>
@@ -45,35 +55,13 @@
      <object class="java.util.ArrayList"/>
     </void>
     <void property="genre">
-     <string>c</string>
-    </void>
-    <void property="id">
-     <int>3</int>
+     <string>a</string>
     </void>
     <void property="name">
-     <string>c</string>
+     <string>a</string>
     </void>
     <void property="releaseYear">
-     <string>3</string>
-    </void>
-   </object>
-  </void>
-  <void method="add">
-   <object class="application.model.entity.EntityMovie">
-    <void property="actorIds">
-     <object class="java.util.ArrayList"/>
-    </void>
-    <void property="genre">
-     <string>d</string>
-    </void>
-    <void property="id">
-     <int>4</int>
-    </void>
-    <void property="name">
-     <string>d</string>
-    </void>
-    <void property="releaseYear">
-     <string>4</string>
+     <string>11111</string>
     </void>
    </object>
   </void>
@@ -82,59 +70,21 @@
     <void property="actorIds">
      <object class="java.util.ArrayList">
       <void method="add">
-       <int>3</int>
+       <int>1</int>
       </void>
      </object>
     </void>
     <void property="genre">
-     <string>e</string>
+     <string>a</string>
     </void>
     <void property="id">
-     <int>5</int>
+     <int>3</int>
     </void>
     <void property="name">
-     <string>e</string>
+     <string>a</string>
     </void>
     <void property="releaseYear">
-     <string>5</string>
-    </void>
-   </object>
-  </void>
-  <void method="add">
-   <object class="application.model.entity.EntityMovie">
-    <void property="actorIds">
-     <object class="java.util.ArrayList"/>
-    </void>
-    <void property="genre">
-     <string>f</string>
-    </void>
-    <void property="id">
-     <int>6</int>
-    </void>
-    <void property="name">
-     <string>f</string>
-    </void>
-    <void property="releaseYear">
-     <string>6</string>
-    </void>
-   </object>
-  </void>
-  <void method="add">
-   <object class="application.model.entity.EntityMovie">
-    <void property="actorIds">
-     <object class="java.util.ArrayList"/>
-    </void>
-    <void property="genre">
-     <string>gg</string>
-    </void>
-    <void property="id">
-     <int>7</int>
-    </void>
-    <void property="name">
-     <string>gg</string>
-    </void>
-    <void property="releaseYear">
-     <string>77</string>
+     <string>123</string>
     </void>
    </object>
   </void>

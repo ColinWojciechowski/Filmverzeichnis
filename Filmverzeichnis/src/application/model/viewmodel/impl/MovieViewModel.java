@@ -11,7 +11,7 @@ import javafx.beans.property.StringProperty;
 
 public class MovieViewModel implements IFachkonzept<Movie> {
 
-   StringProperty title = new SimpleStringProperty();
+   StringProperty name = new SimpleStringProperty();
    StringProperty genre = new SimpleStringProperty();
    StringProperty year = new SimpleStringProperty();
    Movie movieTableItem = MainObservable.getSelectedMovie();
@@ -26,6 +26,7 @@ public class MovieViewModel implements IFachkonzept<Movie> {
       else {
          update(movieTableItem);
          MainObservable.toggleMovie();
+         MainObservable.getMovieTable().getSelectionModel().clearSelection();
       }
    }
 
@@ -47,7 +48,7 @@ public class MovieViewModel implements IFachkonzept<Movie> {
 
    @Override
    public void bindAttributes(StringProperty name, StringProperty genre, StringProperty year) {
-      this.title = name;
+      this.name = name;
       this.genre = genre;
       this.year = year;
    }
@@ -62,10 +63,12 @@ public class MovieViewModel implements IFachkonzept<Movie> {
       if (actorTableItem != null) {
          updateActorsMovie(movie);
          MainObservable.toggleActor();
+         MainObservable.getActorTable().getSelectionModel().clearSelection();
       } else {
          movie.setId(MainObservable.getNewMovieId());
          update(movie);
          MainObservable.toggleMovie();
+         MainObservable.getMovieTable().getSelectionModel().clearSelection();
       }
    }
 
@@ -77,7 +80,7 @@ public class MovieViewModel implements IFachkonzept<Movie> {
 
    @Override
    public void setValues(Movie movie) {
-      movie.setName(title);
+      movie.setName(name);
       movie.setGenre(genre);
       movie.setReleaseYear(year);
    }
