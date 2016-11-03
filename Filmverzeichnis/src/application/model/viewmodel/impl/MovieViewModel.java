@@ -23,9 +23,9 @@ public class MovieViewModel implements IFachkonzept {
 
    @Override
    public void persist() {
-      if (movieTableItem == null) {
+      if (movieTableItem == null)
          createNewMovie();
-      } else {
+      else {
          updateMovie(movieTableItem);
          MainObservable.toggleMovie();
       }
@@ -44,17 +44,14 @@ public class MovieViewModel implements IFachkonzept {
 
    private void updateActorsMovie(Movie movie) {
       movie.setId(MainObservable.getAddMovieId());
-      if(actorMoviesItem != null && movie.getId() == actorMoviesItem.getId()){
-         setValues(movie);
-         MainObservable.getDaoMovieXml().saveOrUpdate(movie);
-         MainObservable.getDaoActorXml().saveOrUpdate(actorTableItem);
-      }else{
-         updateMovie(movie);
+      updateMovie(movie);
+      if (!isActorsMovieSelected())
          actorTableItem.getMovies().add(movie);
-         MainObservable.getDaoActorXml().saveOrUpdate(actorTableItem);
-         MainObservable.toggleMovie();
-      }
-      MainObservable.toggleMovie();
+      MainObservable.getDaoActorXml().saveOrUpdate(actorTableItem);
+   }
+
+   private boolean isActorsMovieSelected() {
+      return actorMoviesItem != null && movie.getId() == actorMoviesItem.getId();
    }
 
    private void updateMovie(Movie movie) {

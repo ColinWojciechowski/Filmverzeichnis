@@ -12,18 +12,15 @@
     <void property="movieIds">
      <object class="java.util.ArrayList">
       <void method="add">
-       <int>1</int>
-      </void>
-      <void method="add">
-       <int>2</int>
+       <int>5</int>
       </void>
      </object>
     </void>
     <void property="name">
-     <string>BB</string>
+     <string>a</string>
     </void>
     <void property="sex">
-     <string>FEMALE</string>
+     <string>MALE</string>
     </void>
    </object>
   </void>
