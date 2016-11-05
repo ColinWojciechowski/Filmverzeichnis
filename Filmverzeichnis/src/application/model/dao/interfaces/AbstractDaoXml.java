@@ -45,7 +45,7 @@ public abstract class AbstractDaoXml <Dto, Entity, ReferencedDto> implements IDa
    protected void deleteDto(Dto dto) {
       Entity entity = null;
       for(Entity currentEntity : entityList){
-         if(isEntityIdEqualDtoId(dto, entity)){
+         if(isEntityIdEqualDtoId(dto, currentEntity)){
             entity = currentEntity;
          }
       }
