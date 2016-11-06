@@ -70,6 +70,11 @@ public class ActorController {
          dateBirth.setPromptText("Geburtstag - Pflichtfeld");
       }
    }
+   
+   public void btnDeleteClicked(){
+	   viewModel.delete();
+	   MainObservable.refreshMainView();
+   }
 
    private void bindEditProperties() {
       if (MainObservable.getSelectedActor() != null) {

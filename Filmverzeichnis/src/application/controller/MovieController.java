@@ -48,6 +48,7 @@ public class MovieController {
    @FXML
    public void btnDeleteClicked() {
       viewModel.delete();
+      MainObservable.refreshMainView();
    }
 
    private void checkValidYear() {

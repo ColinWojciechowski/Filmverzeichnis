@@ -2,9 +2,9 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="C:/Users/cw/git/Filmverzeichnis/Filmverzeichnis/Libraries/jfoenix.jar"/>
-	<classpathentry kind="lib" path="C:/Users/cw/git/Filmverzeichnis/Filmverzeichnis/Libraries/controlsfx-8.40.12.jar"/>
-	<classpathentry kind="lib" path="C:/Users/cw/git/Filmverzeichnis/Filmverzeichnis/Libraries/controlsfx-samples-8.40.12.jar"/>
-	<classpathentry kind="lib" path="C:/Users/cw/git/Filmverzeichnis/Filmverzeichnis/Libraries/fxsampler-1.0.9.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Colin/git/Filmverzeichnis/Filmverzeichnis/Libraries/controlsfx-8.40.12.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Colin/git/Filmverzeichnis/Filmverzeichnis/Libraries/controlsfx-samples-8.40.12.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Colin/git/Filmverzeichnis/Filmverzeichnis/Libraries/fxsampler-1.0.9.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Colin/git/Filmverzeichnis/Filmverzeichnis/Libraries/jfoenix.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
